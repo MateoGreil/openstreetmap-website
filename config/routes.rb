@@ -214,6 +214,7 @@ OpenStreetMap::Application.routes.draw do
     collection do
       get "friends" => "diary_entries#index", :friends => true
       get "nearby" => "diary_entries#index", :nearby => true
+      get "preferred_languages" => "diary_entries#index", :preferred_languages => true
     end
   end
   get "/user/:display_name/diary/rss" => "diary_entries#rss", :defaults => { :format => :rss }

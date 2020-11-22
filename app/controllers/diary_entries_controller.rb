@@ -142,6 +142,9 @@ class DiaryEntriesController < ApplicationController
         require_user
         return
       end
+    elsif params[:preferred_languages]
+      @title = t "diary_entries.index.in_preferred_languages"
+      @entries = DiaryEntry.where(language_code: preferred_languages.map(&:language))
     else
       @entries = DiaryEntry.joins(:user).where(:users => { :status => %w[active confirmed] })
 
