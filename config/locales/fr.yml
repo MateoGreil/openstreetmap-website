@@ -37,7 +37,9 @@
 # Author: Lucky
 # Author: Macofe
 # Author: Manaviko
+# Author: Mathieu
 # Author: McDutchie
+# Author: Mdk
 # Author: Metroitendo
 # Author: Momo50WM
 # Author: Mulcyber
@@ -52,6 +54,7 @@
 # Author: Peter17
 # Author: Phoenamandre
 # Author: Pipo
+# Author: Pols12
 # Author: Pyrog
 # Author: Quentinv57
 # Author: Roptat
@@ -77,6 +80,8 @@ fr:
     formats:
       friendly: '%e %B %Y à %-Hh%M'
   helpers:
+    file:
+      prompt: Choisir un fichier
     submit:
       diary_comment:
         create: Enregistrer
@@ -89,7 +94,7 @@ fr:
         create: Envoyer
       client_application:
         create: Enregistrer
-        update: Modifier
+        update: Mettre à jour
       redaction:
         create: Créer le masquage
         update: Enregistrer le masquage
@@ -141,6 +146,19 @@ fr:
       way_node: Nœud du chemin
       way_tag: Attribut du chemin
     attributes:
+      client_application:
+        name: Nom (obligatoire)
+        url: URL principale de l’application (obligatoire)
+        callback_url: URL de rappel
+        support_url: URL de l’assistance
+        allow_read_prefs: lire les préférences de l’utilisateur
+        allow_write_prefs: modifier les préférences de l’utilisateur
+        allow_write_diary: créer des entrées d’agenda, des commentaires et se faire
+          des amis
+        allow_write_api: modifier la carte
+        allow_read_gpx: lire ses traces GPS privées
+        allow_write_gpx: téléverser des traces GPS
+        allow_write_notes: modifier les notes
       diary_comment:
         body: Corps
       diary_entry:
@@ -155,17 +173,23 @@ fr:
       trace:
         user: Utilisateur
         visible: Visible
-        name: Nom
+        name: Nom du fichier
         size: Taille
         latitude: Latitude
         longitude: Longitude
         public: Public
         description: Description
+        gpx_file: Téléverser un fichier GPX
+        visibility: Visibilité
+        tagstring: Balises
       message:
         sender: Expéditeur
         title: Sujet
         body: Corps
         recipient: Destinataire
+      report:
+        category: Sélectionner un motif pour votre signalement
+        details: Veuillez fournir plus de détails sur le problème (obligatoire).
       user:
         email: Courriel
         active: Actif
@@ -173,6 +197,10 @@ fr:
         description: Description
         languages: Langues
         pass_crypt: Mot de passe
+        pass_crypt_confirmation: Confirmer le mot de passe
+    help:
+      trace:
+        tagstring: données séparées par des virgules
   datetime:
     distance_in_words_ago:
       about_x_hours:
@@ -251,7 +279,7 @@ fr:
       rss:
         title: Notes OpenStreetMap
         description_area: Une liste de notes, signalées, commentées ou fermées dans
-          votre zone [(%{min_lat} ; %{min_lon}) – (%{max_lat} ; %{max_lon})]
+          votre zone [(%{min_lat} ; %{min_lon}) – (%{max_lat} ; %{max_lon})]
         description_item: Un fil RSS pour la note %{id}
         opened: nouvelle note (près de %{place})
         commented: nouveau commentaire (près de %{place})
@@ -274,10 +302,18 @@ fr:
     anonymous: anonyme
     no_comment: (aucun commentaire)
     part_of: Appartient à
+    part_of_relations:
+      one: 1 relation
+      other: '%{count} relations'
+    part_of_ways:
+      one: 1 chemin
+      other: '%{count} chemins'
     download_xml: Télécharger en XML
     view_history: Voir l’historique
     view_details: Afficher les détails
     location: 'Emplacement :'
+    common_details:
+      coordinates_html: '%{latitude}, %{longitude}'
     changeset:
       title: 'Groupe de modifications : %{id}'
       belongs_to: Auteur
@@ -288,8 +324,8 @@ fr:
       relation: Relations (%{count})
       relation_paginated: Relations (%{x} à %{y} sur %{count})
       comment: Commentaires (%{count})
-      hidden_commented_by: Commentaire masqué de %{user}, <abbr title="%{exact_time}">%{when}</abbr>
-      commented_by: Commentaire de %{user} <abbr title="%{exact_time}">%{when}</abbr>
+      hidden_commented_by_html: Commentaire masqué de %{user}, <abbr title="%{exact_time}">%{when}</abbr>
+      commented_by_html: Commentaire de %{user} <abbr title="%{exact_time}">%{when}</abbr>
       changesetxml: XML du groupe de modifications
       osmchangexml: XML osmChange
       feed:
@@ -300,19 +336,25 @@ fr:
       still_open: Ensemble de modifications toujours ouvert – la discussion s’ouvrira
         une fois que l’ensemble de modifications sera fermé.
     node:
-      title_html: 'Nœud : %{name}'
-      history_title_html: 'Historique du nœud : %{name}'
+      title_html: 'Nœud : %{name}'
+      history_title_html: 'Historique du nœud : %{name}'
     way:
-      title_html: 'Chemin : %{name}'
-      history_title_html: 'Historique du chemin : %{name}'
+      title_html: 'Chemin : %{name}'
+      history_title_html: 'Historique du chemin : %{name}'
       nodes: Nœuds
+      nodes_count:
+        one: 1 nœud
+        other: '%{count} nœuds'
       also_part_of_html:
         one: partie du chemin %{related_ways}
         other: partie des chemins %{related_ways}
     relation:
-      title_html: 'Relation : %{name}'
-      history_title_html: 'Historique de la relation : %{name}'
+      title_html: 'Relation : %{name}'
+      history_title_html: 'Historique de la relation : %{name}'
       members: Membres
+      members_count:
+        one: 1 membre
+        other: '%{count} membres'
     relation_member:
       entry_html: '%{type} %{name}'
       entry_role_html: '%{type} %{name} avec le rôle %{role}'
@@ -322,8 +364,9 @@ fr:
         relation: Relation
     containing_relation:
       entry_html: Relation %{relation_name}
-      entry_role_html: Relation %{relation_name} (en tant que %{relation_role})
+      entry_role_html: Relation %{relation_name} (avec le rôle %{relation_role})
     not_found:
+      title: Non trouvé
       sorry: 'Désolé, %{type} #%{id} n’a pas pu être trouvé.'
       type:
         node: nœud
@@ -332,6 +375,7 @@ fr:
         changeset: groupe de modifications
         note: note
     timeout:
+      title: Erreur de dépassement de temps
       sorry: Désolé, les données pour le type %{type} avec l’id %{id} prennent trop
         de temps à être récupérées.
       type:
@@ -371,16 +415,17 @@ fr:
       open_title: Note non résolue nº %{note_name}
       closed_title: Note résolue nº %{note_name}
       hidden_title: Note masquée nº %{note_name}
-      opened_by: Créée par %{user}, <abbr title="%{exact_time}">%{when}</abbr>
-      opened_by_anonymous: Créée par un utilisateur anonyme, <abbr title="%{exact_time}">%{when}</abbr>
-      commented_by: Commenté par %{user} <abbr title="%{exact_time}">%{when}</abbr>
-      commented_by_anonymous: Commenté par un utilisateur anonyme <abbr title="%{exact_time}">%{when}</abbr>
-      closed_by: Résolu par %{user} <abbr title="%{exact_time}">%{when}</abbr>
-      closed_by_anonymous: Résolu par un utilisateur anonyme le <abbr title="%{exact_time}">%{when}</abbr>
-      reopened_by: Réactivée par %{user}, <abbr title="%{exact_time}">%{when}</abbr>
-      reopened_by_anonymous: Réactivé par un utilisateur anonyme <abbr title="%{exact_time}">%{when}</abbr>
-      hidden_by: Masqué par %{user} <abbr title="%{exact_time}">%{when}</abbr>
+      opened_by_html: Créée par %{user}, <abbr title="%{exact_time}">%{when}</abbr>
+      opened_by_anonymous_html: Créée par un utilisateur anonyme, <abbr title="%{exact_time}">%{when}</abbr>
+      commented_by_html: Commenté par %{user} <abbr title="%{exact_time}">%{when}</abbr>
+      commented_by_anonymous_html: Commenté par un utilisateur anonyme <abbr title="%{exact_time}">%{when}</abbr>
+      closed_by_html: Résolu par %{user} <abbr title="%{exact_time}">%{when}</abbr>
+      closed_by_anonymous_html: Résolu par un utilisateur anonyme le <abbr title="%{exact_time}">%{when}</abbr>
+      reopened_by_html: Réactivée par %{user}, <abbr title="%{exact_time}">%{when}</abbr>
+      reopened_by_anonymous_html: Réactivé par un utilisateur anonyme <abbr title="%{exact_time}">%{when}</abbr>
+      hidden_by_html: Masqué par %{user} <abbr title="%{exact_time}">%{when}</abbr>
       report: Signaler cette note
+      coordinates_html: '%{latitude}, %{longitude}'
     query:
       title: Requête sur les objets
       introduction: Cliquer sur la carte pour trouver les objets à proximité.
@@ -418,15 +463,15 @@ fr:
         met trop de temps pour être chargée.
   changeset_comments:
     comment:
-      comment: Nouveau commentaire sur le groupe de modifications nº %{changeset_id}
+      comment: Nouveau commentaire sur le groupe de modifications nº %{changeset_id}
         par %{author}
       commented_at_by_html: Mis à jour le %{when} par %{user}
     comments:
-      comment: Nouveau commentaire sur le groupe de modifications nº %{changeset_id}
+      comment: Nouveau commentaire sur le groupe de modifications nº %{changeset_id}
         par %{author}
     index:
       title_all: Discussion sur le groupe de modifications OpenStreetMap
-      title_particular: Discussion sur le groupe de modifications OpenStreetMap nº %{changeset_id}
+      title_particular: Discussion sur le groupe de modifications OpenStreetMap nº %{changeset_id}
     timeout:
       sorry: Désolé, la liste des commentaires d’ensembles de modifications que vous
         avez demandée est trop longue à récupérer.
@@ -434,12 +479,12 @@ fr:
     new:
       title: Nouvelle entrée du journal
     form:
-      subject: 'Sujet :'
-      body: 'Corps :'
-      language: 'Langue :'
-      location: 'Lieu :'
-      latitude: 'Latitude :'
-      longitude: 'Longitude :'
+      subject: 'Sujet :'
+      body: 'Corps :'
+      language: 'Langue :'
+      location: 'Lieu :'
+      latitude: 'Latitude :'
+      longitude: 'Longitude :'
       use_map_link: utiliser la carte
     index:
       title: Journaux des utilisateurs
@@ -465,14 +510,14 @@ fr:
       login: Se connecter
     no_such_entry:
       title: Aucune entrée du journal correspondante
-      heading: 'Aucune entrée avec l’id : %{id}'
+      heading: 'Aucune entrée avec l’id : %{id}'
       body: Désolé, il n’y a aucune entrée ou commentaire dans le journal avec l’id
         %{id}. Veuillez vérifier votre orthographe ou la validité du lien que vous
         avez cliqué.
     diary_entry:
       posted_by_html: Publié par %{link_user} le %{created} en %{language_link}
       comment_link: Commenter cette entrée
-      reply_link: Répondre à cette entrée
+      reply_link: Envoyer un message à l’auteur
       comment_count:
         zero: Aucun commentaire
         one: Un commentaire
@@ -489,9 +534,10 @@ fr:
       confirm: Confirmer
       report: Signaler ce commentaire
     location:
-      location: 'Lieu :'
+      location: 'Lieu :'
       view: Afficher
       edit: Modifier
+      coordinates: '%{latitude} ; %{longitude}'
     feed:
       user:
         title: Entrées du journal OpenStreetMap de %{user}
@@ -512,27 +558,27 @@ fr:
       older_comments: Commentaires plus anciens
   friendships:
     make_friend:
-      heading: Ajouter %{user} en tant qu’ami ?
-      button: Ajouter en tant qu’ami
-      success: '%{name} est désormais votre ami !'
-      failed: Désolé, échec lors de l’ajout de %{name} en tant qu’ami
-      already_a_friend: Vous êtes déjà ami avec %{name}.
+      heading: Ajouter %{user} en tant qu’ami(e) ?
+      button: Ajouter en tant qu’ami(e)
+      success: '%{name} est désormais votre ami(e) !'
+      failed: Désolé, échec lors de l’ajout de %{name} en tant qu’ami(e).
+      already_a_friend: Vous et %{name} êtes déjà ami(e)s.
     remove_friend:
-      heading: Supprimer %{user} en tant qu’ami ?
-      button: Supprimer en tant qu’ami
-      success: '%{name} a été retiré de vos amis.'
-      not_a_friend: '%{name} n’est pas parmi vos amis.'
+      heading: Supprimer %{user} en tant qu’ami(e) ?
+      button: Supprimer en tant qu’ami(e)
+      success: '%{name} a été retiré de vos ami(e)s.'
+      not_a_friend: '%{name} n’est pas parmi vos ami(e)s.'
   geocoder:
     search:
       title:
         latlon_html: Résultats <a href="https://openstreetmap.org/">internes</a>
-        ca_postcode_html: Résultats depuis <a href="https://geocoder.ca/">Geocoder.CA</a>
-        osm_nominatim_html: Résultats de <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_html: Résultats depuis <a href="http://www.geonames.org/">GeoNames</a>
-        osm_nominatim_reverse_html: Résultats de <a href="https://nominatim.openstreetmap.org/">Nominatim
+        ca_postcode_html: Résultats venant de <a href="https://geocoder.ca/">Geocoder.CA</a>
+        osm_nominatim_html: Résultats venant de <a href="https://nominatim.openstreetmap.org/">Nominatim
           sur OpenStreetMap</a>
-        geonames_reverse_html: Résultats de <a href="http://www.geonames.org/">GeoNames</a>
+        geonames_html: Résultats venant de <a href="http://www.geonames.org/">GeoNames</a>
+        osm_nominatim_reverse_html: Résultats venant de <a href="https://nominatim.openstreetmap.org/">Nominatim
+          sur OpenStreetMap</a>
+        geonames_reverse_html: Résultats venant de <a href="http://www.geonames.org/">GeoNames</a>
     search_osm_nominatim:
       prefix:
         aerialway:
@@ -540,10 +586,12 @@ fr:
           chair_lift: Télésiège
           drag_lift: Téléski
           gondola: Télécabine
+          magic_carpet: Tapis roulant élévateur
           platter: Monte-plat
           pylon: Pylône
           station: Gare de télécabine
           t-bar: Monte-barre en T
+          "yes": Voie aérienne
         aeroway:
           aerodrome: Aérodrome
           airstrip: Piste d’atterrissage
@@ -552,11 +600,15 @@ fr:
           hangar: Hangar aéronautique
           helipad: Héliport
           holding_position: Position d’attente
+          navigationaid: Aide à la navigation aérienne
           parking_position: Place de parking
           runway: Piste
+          taxilane: Voie de taxi
           taxiway: Piste de circulation d’un aéroport
           terminal: Terminal
+          windsock: Manche à air
         amenity:
+          animal_boarding: Embarquement d’animaux
           animal_shelter: Refuge pour animaux
           arts_centre: Centre artistique
           atm: Distributeur automatique de billets
@@ -566,7 +618,9 @@ fr:
           bench: Banc
           bicycle_parking: Parking à vélos
           bicycle_rental: Location de vélos
+          bicycle_repair_station: Atelier de réparation de vélos
           biergarten: Brasserie en plein air
+          blood_bank: Banque de sang
           boat_rental: Location de bateaux
           brothel: Bordel
           bureau_de_change: Bureau de change
@@ -583,6 +637,7 @@ fr:
           clock: Horloge
           college: Établissement d’enseignement supérieur
           community_centre: Salle polyvalente
+          conference_centre: Centre de conférence
           courthouse: Palais de justice
           crematorium: Crématorium
           dentist: Dentiste
@@ -590,6 +645,7 @@ fr:
           drinking_water: Eau potable
           driving_school: École de conduite
           embassy: Ambassade
+          events_venue: Accueil d’événements
           fast_food: Restauration rapide
           ferry_terminal: Terminal de ferry
           fire_station: Caserne des pompiers
@@ -602,36 +658,42 @@ fr:
           hospital: Hôpital
           hunting_stand: Stand de tir
           ice_cream: Glacier
+          internet_cafe: Cybercafé
           kindergarten: Jardin d’enfant
+          language_school: École de langue
           library: Bibliothèque
+          loading_dock: Quai de chargement
+          love_hotel: Hôtel d’amour
           marketplace: Marché
+          mobile_money_agent: Agent monétaire mobile
           monastery: Monastère
+          money_transfer: Transfert d’argent
           motorcycle_parking: Parking à motos
+          music_school: École de musique
           nightclub: Boîte de nuit
           nursing_home: Maison de retraite médicalisée
-          office: Bureau
           parking: Parking
           parking_entrance: Entrée d’un parking
           parking_space: Place de parking
+          payment_terminal: Terminal de paiement
           pharmacy: Pharmacie
           place_of_worship: Lieu de culte
           police: Police
           post_box: Boîte aux lettres
           post_office: Bureau de poste
-          preschool: Préscolaire
           prison: Prison
           pub: Pub
+          public_bath: Bains publics
+          public_bookcase: Bibliothèque publique
           public_building: Bâtiment public
+          ranger_station: Poste de garde forestière
           recycling: Point de recyclage
           restaurant: Restaurant
-          retirement_home: Maison de retraite
-          sauna: Sauna
+          sanitary_dump_station: Station de pompage sanitaire
           school: École
           shelter: Abri
-          shop: Boutique
           shower: Douche
           social_centre: Centre social
-          social_club: Club social
           social_facility: Service social
           studio: Studio
           swimming_pool: Piscine
@@ -640,19 +702,27 @@ fr:
           theatre: Théâtre
           toilets: Toilettes
           townhall: Hôtel de ville / mairie
+          training: Établissement d’entraînement
           university: Université
+          vehicle_inspection: Inspection de véhicule
           vending_machine: Distributeur automatique
           veterinary: Clinique vétérinaire
           village_hall: Salle municipale
           waste_basket: Poubelle
           waste_disposal: Élimination des déchets
+          waste_dump_site: Site de décharge de déchets
+          watering_place: Lieu d’arrosage
           water_point: Point d’eau
-          youth_centre: Centre pour la jeunesse
+          weighbridge: Pont-bascule
+          "yes": Infrastructure
         boundary:
+          aboriginal_lands: Territoires aborigènes
           administrative: Limite administrative
           census: Frontière statistique
           national_park: Parc national
+          political: Circonscription électorale
           protected_area: Zone protégée
+          "yes": Frontière
         bridge:
           aqueduct: Aqueduc
           boardwalk: Promenade
@@ -661,24 +731,94 @@ fr:
           viaduct: Viaduc
           "yes": Pont
         building:
+          apartment: Appartement
+          apartments: Appartements
+          barn: Grange
+          bungalow: Bungalow
+          cabin: Cabine
+          chapel: Chapelle
+          church: Bâtiment d’église
+          civic: Bâtiment municipal
+          college: Bâtiment de collège
+          commercial: Bâtiment de bureaux
+          construction: Bâtiment en construction
+          detached: Maison isolée
+          dormitory: Dortoir
+          duplex: Maison en duplex
+          farm: Corps de ferme
+          farm_auxiliary: Bâtiment de ferme auxiliaire
+          garage: Garage
+          garages: Garages
+          greenhouse: Serre
+          hangar: Hangar
+          hospital: Bâtiment hospitalier
+          hotel: Bâtiment d’hôtel
+          house: Maison
+          houseboat: Habitation flottante
+          hut: Cahute
+          industrial: Bâtiment industriel
+          kindergarten: Bâtiment de jardin d’enfant
+          manufacture: Bâtiment d’usine
+          office: Bâtiment de bureaux
+          public: Bâtiment public
+          residential: Bâtiment résidentiel
+          retail: Magasin
+          roof: Toit
+          ruins: Bâtiment en ruine
+          school: Bâtiment d’école
+          semidetached_house: Maison mitoyenne
+          service: Bâtiment de service
+          shed: Cabanon
+          stable: Écurie
+          static_caravan: Caravane
+          temple: Bâtiment de temple
+          terrace: Rangée de bâtiments
+          train_station: Bâtiment de gare ferroviaire
+          university: Bâtiment d’université
+          warehouse: Entrepôt
           "yes": Bâtiment
+        club:
+          scout: Base de groupe de scout
+          sport: Club de sport
+          "yes": Club
         craft:
+          beekeper: Apiculteur
+          blacksmith: Forgeron
           brewery: Brasserie
           carpenter: Charpentier
+          caterer: Réfectoire / cantine
+          confectionery: Confiserie
+          dressmaker: Couturier
           electrician: Électricien
+          electronics_repair: Réparateur électronique
           gardener: Jardinier
+          glaziery: Vitrerie
+          handicraft: Artisanat
+          hvac: Fabricant de climatisation
+          metal_construction: Constructeur en métal
           painter: Peintre
           photographer: Photographe
           plumber: Plombier
+          roofer: Couvreur
+          sawmill: Scierie
           shoemaker: Cordonnier
+          stonemason: Maçon
           tailor: Tailleur
+          window_construction: Construction de fenêtre
+          winery: Domaine viticole
           "yes": Boutique d’artisanat
         emergency:
+          access_point: Point d’accès
           ambulance_station: Dépôt d’ambulances
           assembly_point: Point de rassemblement
           defibrillator: Défibrillateur
+          fire_xtinguisher: Extincteur
+          fire_water_pond: Bassin d’eau contre les incendies
           landing_site: Terrain d’atterrissage d’urgence
+          life_ring: Bouée de sauvetage d’urgence
           phone: Borne d’appel d’urgence
+          siren: Sirène d’urgence
+          suction_point: Point d’aspiration d’urgence
           water_tank: Citerne d’eau d’urgence
           "yes": Urgence
         highway:
@@ -691,9 +831,10 @@ fr:
           cycleway: Piste cyclable
           elevator: Ascenseur
           emergency_access_point: Point d’accès d’urgence
+          emergency_bay: Zone de secours
           footway: Chemin piéton
           ford: Gué
-          give_way: Panneau « Cédez le passage »
+          give_way: Panneau « Cédez le passage »
           living_street: Rue en zone de rencontre
           milestone: Borne kilométrique
           motorway: Autoroute
@@ -716,42 +857,50 @@ fr:
           services: Services autoroutiers
           speed_camera: Radar de vitesse
           steps: Escalier
-          stop: Panneau « Stop / Arrêt »
+          stop: Panneau « Stop / Arrêt »
           street_lamp: Lampadaire
           tertiary: Route tertiaire
           tertiary_link: Route tertiaire
           track: Chemin
+          traffic_mirror: Miroir de circulation
           traffic_signals: Feux de circulation
-          trail: Sentier
+          trailhead: Point de départ
           trunk: Voie express
           trunk_link: Voie express
           turning_loop: Virage en boucle
           unclassified: Route mineure
           "yes": Route
         historic:
+          aircraft: Avion historique
           archaeological_site: Site archéologique
+          bomb_crater: Cratère de bombe historique
           battlefield: Champ de bataille
           boundary_stone: Borne frontière
           building: Bâtiment historique
           bunker: Bunker
+          cannon: Canon historique
           castle: Château
+          charcoal_pile: Terril charbonnier historique
           church: Église
           city_gate: Porte de ville / porte fortifiée
           citywalls: Remparts / murailles
           fort: Fort
           heritage: Site / objet du patrimoine
+          hollow_way: Chemin creux
           house: Maison historique
-          icon: Icône
           manor: Manoir
           memorial: Mémorial
+          milestone: Borne historique
           mine: Mine
           mine_shaft: Puits de mine
           monument: Grand monument commémoratif
+          railway: Chemin de fer historique
           roman_road: Voie romaine
           ruins: Ruines
           stone: Pierre
           tomb: Tombeau
           tower: Tour
+          wayside_chapel: Chapelle en bord de route
           wayside_cross: Calvaire
           wayside_shrine: Oratoire
           wreck: Épave
@@ -760,6 +909,7 @@ fr:
           "yes": Intersection / carrefour
         landuse:
           allotments: Jardins familiaux
+          aquaculture: Aquaculture
           basin: Bassin
           brownfield: Friche industrielle
           cemetery: Cimetière
@@ -779,21 +929,28 @@ fr:
           military: Zone militaire
           mine: Mine
           orchard: Verger
+          plant_nursery: Crèche d’usine
           quarry: Carrière
           railway: Voie ferrée
           recreation_ground: Aire de jeux
+          religious: Terrain religieux
           reservoir: Réservoir
           reservoir_watershed: Bassin versant de réservoir
           residential: Zone résidentielle
           retail: Zone commerciale
-          road: Zone routière
           village_green: Pré communal
           vineyard: Vignoble
           "yes": Utilisation des terres
         leisure:
+          adult_gaming_centre: Centre de jeu pour adultes
+          amusement_arcade: Salle de jeux vidéo
+          bandstand: Kiosque à musique
           beach_resort: Station balnéaire
           bird_hide: Observatoire ornithologique
+          bleachers: Gradins
+          bowling_alley: Piste de bowling
           common: Terrains communaux
+          dance: Salle de bal
           dog_park: Parc à chiens
           firepit: Foyer
           fishing: Zone de pêche
@@ -806,7 +963,9 @@ fr:
           marina: Port de plaisance
           miniature_golf: Mini golf
           nature_reserve: Réserve naturelle
+          outdoor_seating: Sièges extérieurs
           park: Parc
+          picnic_table: Table de pique-nique
           pitch: Terrain de sport
           playground: Aire de jeux
           recreation_ground: Terrain de jeux
@@ -821,13 +980,21 @@ fr:
           "yes": Loisirs
         man_made:
           adit: Galerie d’accès de mine
+          advertising: Publicité
+          antenna: Antenne
+          avalanche_protection: Pare-avalanches
           beacon: Balise
+          beam: Rayon
           beehive: Ruche
           breakwater: Brise-lames
           bridge: Pont
           bunker_silo: Bunker
+          cairn: Cairn
           chimney: Cheminée
+          clearcut: Déboisement
+          communications_tower: Tour de communication
           crane: Grue
+          cross: Croix
           dolphin: Poste d’amarrage
           dyke: Digue
           embankment: Talus
@@ -836,6 +1003,7 @@ fr:
           groyne: Épi
           kiln: Four
           lighthouse: Phare
+          manhole: Bouche d’égout
           mast: Mât / pylône
           mine: Mine
           mineshaft: Puits de mine
@@ -843,12 +1011,20 @@ fr:
           petroleum_well: Puits de pétrole
           pier: Jetée
           pipeline: Pipeline
+          pumping_station: Station de pompage
+          reservoir_covered: Réservoir couvert
           silo: Silo
+          snow_cannon: Canon à neige
+          snow_fence: Barrière à neige
           storage_tank: Citerne de stockage
+          street_cabinet: Armoire de rue
           surveillance: Dispositif / caméra de surveillance
+          telescope: Téléscope
           tower: Tour
+          utility_pole: Poteau utilitaire
           wastewater_plant: Station de traitement des eaux usées
           watermill: Moulin à eau
+          water_tap: Robinet d'eau
           water_tower: Château d’eau
           water_well: Puits
           water_works: Système hydraulique
@@ -859,10 +1035,13 @@ fr:
           airfield: Terrain d’aviation militaire
           barracks: Caserne
           bunker: Bunker
+          checkpoint: Point de contrôle
+          trench: Tranchée
           "yes": Militaire
         mountain_pass:
           "yes": Col de montagne
         natural:
+          bare_rock: Roche nue
           bay: Baie
           beach: Plage
           cape: Cap
@@ -878,6 +1057,7 @@ fr:
           grassland: Herbage
           heath: Bruyère
           hill: Colline
+          hot_spring: Source thermale
           island: Île
           land: Terre
           marsh: Marécage
@@ -901,20 +1081,31 @@ fr:
           water: Eau
           wetland: Zone humide
           wood: Forêt
+          "yes": Élément naturel
         office:
           accountant: Comptable
           administrative: Administration
+          advertising_agency: Agence publicitaire
           architect: Architecte
           association: Association
           company: Entreprise
+          diplomatic: Bureau diplomatique
           educational_institution: Institution éducative
           employment_agency: Agence pour l’emploi
+          energy_supplier: Agence de fournisseur d’électricité
           estate_agent: Agent immobilier
+          financial: Bureau de finance
           government: Administration publique
           insurance: Agence d’assurance
           it: Bureau informatique
           lawyer: Avocat
+          logistics: Agence de logistique
+          newspaper: Agence de journal
           ngo: Agence d’une ONG
+          notary: Notaire
+          religion: Bureau confessionnel
+          research: Bureau de recherche
+          tax_advisor: Fiscaliste
           telecommunication: Agence de télécommunication
           travel_agent: Agence de voyage
           "yes": Bureau
@@ -934,6 +1125,7 @@ fr:
           locality: Lieu-dit inhabité
           municipality: Municipalité
           neighbourhood: Quartier
+          plot: Lopin
           postcode: Code postal
           quarter: Quartier
           region: Région
@@ -943,7 +1135,6 @@ fr:
           subdivision: Subdivision
           suburb: Quartier
           town: Ville
-          unincorporated_area: Territoire non organisé
           village: Village
           "yes": Lieu
         railway:
@@ -969,12 +1160,19 @@ fr:
           switch: Aiguillage
           tram: Tramway
           tram_stop: Arrêt de tram
+          yard: Voie de triage
         shop:
+          agrarian: Magasin agricole
           alcohol: Vendeur d’alcool à emporter / caviste
           antiques: Antiquaire
+          appliance: Magasin d’électroménager
           art: Boutique d’art
+          baby_goods: Accessoires pour bébés
+          bag: Maroquinerie
           bakery: Boulangerie
+          bathroom_furnishing: Fournitures de salle de bain
           beauty: Magasin de produits de beauté
+          bed: Produits de literie
           beverages: Magasin de boissons
           bicycle: Magasin de vélos
           bookmaker: Bureau de paris
@@ -986,65 +1184,90 @@ fr:
           car_repair: Garage de réparation automobile
           carpet: Magasin de tapis
           charity: Boutique humanitaire
+          cheese: Fromager
           chemist: Droguerie
+          chocolate: Chocolat
           clothes: Boutique de vêtements
+          coffee: Magasin de café
           computer: Boutique informatique
           confectionery: Confiserie
           convenience: Épicerie
           copyshop: Boutique de photocopies
           cosmetics: Boutique de cosmétiques
+          craft: Magasin de fournitures pour activités manuelles
+          curtain: Magasin de rideaux
+          dairy: Crèmerie
           deli: Traiteur
           department_store: Grand magasin
           discount: Magasin discount
           doityourself: Magasin de bricolage
           dry_cleaning: Pressing de nettoyage à sec
+          e-cigarette: Magasin de cigarettes électroniques
           electronics: Boutique de produits électroniques
+          erotic: Boutique érotique
           estate_agent: Agent immobilier
+          fabric: Magasin de tissu
           farm: Magasin de produits agricoles
           fashion: Boutique de mode
-          fish: Poissonnerie
+          fishing: Magasin de fournitures de pêche
           florist: Fleuriste
           food: Magasin d’alimentation
+          frame: Magasin de cadres
           funeral_directors: Pompes funèbres
           furniture: Magasin de meubles
-          gallery: Galerie
           garden_centre: Jardinerie
+          gas: Marchand de gaz
           general: Magasin généraliste
           gift: Boutique de cadeaux
           greengrocer: Marchand de fruits et légumes
           grocery: Épicerie
           hairdresser: Coiffeur
           hardware: Quincaillerie
+          health_food: Magasin d’aliments naturels
+          hearing_aids: Aides auditives
+          herbalist: Herboriste
           hifi: Magasin Hi-Fi
           houseware: Magasin d’articles ménagers
+          ice_cream: Marchand de glace
           interior_decoration: Décoration intérieure
           jewelry: Bijouterie
           kiosk: Kiosque
           kitchen: Magasin de cuisine
           laundry: Blanchisserie
+          locksmith: Serrurier
           lottery: Loterie
           mall: Centre commercial
-          market: Marché
           massage: Massage
+          medical_supply: Magasin d'appareils médicaux
           mobile_phone: Boutique de téléphones mobiles
+          money_lender: Prêts d'argent
           motorcycle: Magasin de motos
+          motorcycle_repair: Magasin de réparation de moto
           music: Boutique de musique / disquaire
+          musical_instrument: Instruments de musique
           newsagent: Marchand de journaux
+          nutrition_supplements: Compléments alimentaires
           optician: Opticien
           organic: Magasin d’alimentation bio
           outdoor: Magasin d’articles pour activité en plein air
           paint: Magasin de peinture
+          pastry: Pâtisserie
           pawnbroker: Prêteur sur gages
+          perfumery: Parfumerie
           pet: Animalerie
-          pharmacy: Pharmacie
+          pet_grooming: Soin des animaux
           photo: Boutique de photographie
           seafood: Fruits de mer
           second_hand: Boutique de produits d’occasion
+          sewing: Mercerie
           shoes: Magasin de chaussures
           sports: Magasin de d’articles de sport
           stationery: Papeterie
+          storage_rental: Garde-meuble
           supermarket: Supermarché
           tailor: Tailleur
+          tattoo: Tatoueur
+          tea: Magasin de thé
           ticket: Billetterie
           tobacco: Bureau de tabac
           toys: Magasin de jouets
@@ -1053,6 +1276,8 @@ fr:
           vacant: Commerce vacant
           variety_store: Magasin à prix unique ou réduit
           video: Magasin de vidéos
+          video_games: Magasin de jeux vidéos
+          wholesale: Magasin de gros
           wine: Caviste
           "yes": Boutique
         tourism:
@@ -1062,6 +1287,7 @@ fr:
           attraction: Attraction
           bed_and_breakfast: Gîte
           cabin: Hutte
+          camp_pitch: Terrain de camping
           camp_site: Camping
           caravan_site: Site pour caravanes
           chalet: Chalet
@@ -1075,6 +1301,7 @@ fr:
           picnic_site: Aire de pique-nique
           theme_park: Parc à thème
           viewpoint: Point de vue
+          wilderness_hut: Cabane sauvage
           zoo: Zoo
         tunnel:
           building_passage: Passage de bâtiment
@@ -1107,11 +1334,6 @@ fr:
         level8: Limite communale
         level9: Limite de village ou arrondissement municipal
         level10: Limite de quartier
-    description:
-      title:
-        osm_nominatim: Localisation depuis <a href="https://nominatim.openstreetmap.org/">Nominatim
-          sur OpenStreetMap</a>
-        geonames: Localisation depuis <a href="http://www.geonames.org/">GeoNames</a>
       types:
         cities: Villes
         towns: Villages
@@ -1190,8 +1412,6 @@ fr:
     new:
       title_html: Rapport %{link}
       missing_params: Impossible de créer un nouveau rapport
-      details: Veuillez fournir plus de détails sur le problème (obligatoire).
-      select: 'Sélectionnez un motif pour votre rapport :'
       disclaimer:
         intro: 'Avant d’envoyer votre rapport aux modérateurs du site, veuillez vous
           assurer que :'
@@ -1275,7 +1495,7 @@ fr:
       text: Faire un don
     learn_more: En savoir plus
     more: Plus
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} a publié un commentaire sur un article de
         journal'
@@ -1283,13 +1503,14 @@ fr:
       header: '%{from_user} a publié un commentaire sur un article récent du journal
         OpenStreetMap avec le sujet %{subject} :'
       footer: Vous pouvez également lire le commentaire sur %{readurl}, le commenter
-        sur %{commenturl} ou répondre sur %{replyurl}
+        sur %{commenturl} ou envoyer un message à l'auteur sur %{replyurl}
     message_notification:
+      subject_header: '[OpenStreetMap] %{subject}'
       hi: Bonjour %{to_user},
       header: '%{from_user} vous a envoyé un message depuis OpenStreetMap avec le
         sujet %{subject} :'
-      footer_html: Vous pouvez aussi lire le message à %{readurl} et vous pouvez y
-        répondre à %{replyurl}
+      footer_html: Vous pouvez aussi lire le message sur %{readurl} ou envoyer un
+        message à l'auteur sur %{replyurl}
     friendship_notification:
       hi: Bonjour %{to_user},
       subject: '[OpenStreetMap] %{user} vous a ajouté comme ami'
@@ -1308,6 +1529,7 @@ fr:
         more_info_1: Plus d’informations sur les échecs d’import GPX et comment les
           éviter
         more_info_2: 'peuvent être trouvés sur :'
+        import_failures_url: https://wiki.openstreetmap.org/wiki/GPX_Import_Failures
       success:
         subject: '[OpenStreetMap] Import GPX réussi'
         loaded_successfully:
@@ -1389,7 +1611,7 @@ fr:
           vos ensembles de changements'
         commented_changeset: '%{commenter} a laissé un commentaire le %{time} sur
           un ensemble de changements créé par %{changeset_author} et que vous suivez'
-        partial_changeset_with_comment: avec le commentaire «&nbsp;%{changeset_comment}'&nbsp;»
+        partial_changeset_with_comment: avec le commentaire « %{changeset_comment}' »
         partial_changeset_without_comment: sans commentaire
       details: Plus de détails sur l’ensemble de modifications à %{url}.
       unsubscribe: Pour vous désabonner des mises à jour de cet ensemble de modifications,
@@ -1475,8 +1697,8 @@ fr:
     about:
       next: Suivant
       copyright_html: © Contributeurs<br /> d’OpenStreetMap
-      used_by_html: '%{name} fournit des données cartographiques sur des milliers
-        de sites web, applications mobiles et appareils'
+      used_by_html: '%{name} fournit les données cartographiques de milliers de sites
+        web, d''applications mobiles et d''appareils'
       lede_text: OpenStreetMap est bâti par une communauté de cartographes bénévoles
         qui contribuent et maintiennent les données des routes, sentiers, cafés, stations
         ferroviaires et bien plus encore, partout dans le monde.
@@ -1538,20 +1760,23 @@ fr:
           contributeurs. Si vous modifiez ou utilisez nos données dans d’autres œuvres dérivées, vous
           ne pouvez distribuer celles-ci que sous la même licence. Le <a href="https://opendatacommons.org/licenses/odbl/1.0/">texte
           légal</a> complet détaille vos droits et responsabilités.
-        intro_3_html: |-
-          Nos carreaux de rendu cartographiques, ainsi que notre documentation, sont disponibles sous
-          la licence <a href="https://creativecommons.org/licenses/by-sa/2.0/">Creative
-          Commons paternité – partage à l’identique 2.0</a> (CC-BY-SA).
+        intro_3_1_html: "Notre documentation est disponible sous la licence \n<a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">Creative\nCommons
+          paternité – partage à l’identique 2.0</a> (CC-BY-SA 2.0)."
         credit_title_html: Comment créditer OpenStreetMap
         credit_1_html: Nous demandons que votre crédit comporte la mention « © les
           contributeurs d’OpenStreetMap ».
-        credit_2_html: |-
+        credit_2_1_html: |-
           Vous devez également préciser clairement que les données sont disponibles sous la licence
           ODbL (Open Database License) et, si vous utilisez les tuiles de notre carte, que la carte est sous la
           licence CC BY-SA. Vous pouvez mentionner ceci avec un lien hypertexte vers
           <a href="https://www.openstreetmap.org/copyright">cette page de mentions légales</a>.
           Alternativement, et obligatoirement si vous distribuez OpenStreetMap sous forme de données brutes, vous pouvez directement nommer et fournir un lien vers la ou les licences. Sur les supports où les liens hypertexte sont impossibles (par exemple sur un support papier), nous vous suggérons de rediriger vos lecteurs vers le site openstreetmap.org (éventuellement en développant « OpenStreetMap » en son adresse complète openstreetmap.org), vers opendatacommons.org et, si c’est pertinent, vers creativecommons.org.
-        credit_3_html: |-
+        credit_3_1_html: "Les carrés de la carte dans le &ldquo;style standard&rdquo;
+          sur www.openstreetmap.org sont un travail produit par la fondation OpenStreetMap
+          en utilisant les données de OpenStreetMap sous la licence Open Database.
+          Si vous utilisez ces carrés, veuillez utiliser l’attribution suivante :
+          \n&ldquo;Carte de base et données de OpenStreetMap et de la Fondation OpenStreetMap&rdquo;."
+        credit_4_html: |-
           Pour une carte électronique navigable, le crédit devrait apparaître dans un coin de la carte.
           Par exemple :
         attribution_example:
@@ -1947,11 +2172,6 @@ fr:
         points ordonnés avec les dates)
     new:
       upload_trace: Téléverser la trace GPS
-      upload_gpx: 'Envoyer un fichier GPX :'
-      description: 'Description :'
-      tags: 'Mots-clés :'
-      tags_help: données séparées par des virgules
-      visibility: 'Visibilité :'
       visibility_help: qu’est-ce que cela veut dire ?
       visibility_help_url: https://wiki.openstreetmap.org/wiki/FR:Visibilit%C3%A9_des_traces_GPS
       help: Aide
@@ -1971,20 +2191,9 @@ fr:
           préférable d’attendre qu’elles soient terminées avant d’en charger d’autres,
           afin de ne pas bloquer la file d’attente pour les autres utilisateurs.
     edit:
+      cancel: Annuler
       title: Modifier la trace %{name}
       heading: Modifier la trace %{name}
-      filename: 'Nom du fichier :'
-      download: télécharger
-      uploaded_at: 'Envoyé le :'
-      points: 'Points :'
-      start_coord: 'Coordonnées de départ :'
-      map: carte
-      edit: modifier
-      owner: 'Propriétaire :'
-      description: 'Description :'
-      tags: 'Mots-clés :'
-      tags_help: données séparées par des virgules
-      visibility: 'Visibilité :'
       visibility_help: qu’est-ce que cela veut dire ?
     update:
       updated: Traces mises à jour
@@ -1999,6 +2208,7 @@ fr:
       uploaded: 'Envoyé le :'
       points: 'Points :'
       start_coordinates: 'Coordonnées de départ :'
+      coordinates_html: '%{latitude} ; %{longitude}'
       map: carte
       edit: modifier
       owner: 'Propriétaire :'
@@ -2124,14 +2334,6 @@ fr:
       delete: Supprimer le client
       confirm: Êtes-vous sûr ?
       requests: 'Demande les permissions suivantes à l’utilisateur :'
-      allow_read_prefs: consulter ses préférences utilisateur.
-      allow_write_prefs: modifier ses préférences utilisateur.
-      allow_write_diary: créez des entrées dans le journal, des commentaires et faites-vous
-        des amis.
-      allow_write_api: modifier la carte.
-      allow_read_gpx: lire ses traces GPS privées.
-      allow_write_gpx: téléverser des traces GPS.
-      allow_write_notes: modifier les notes.
     index:
       title: Mes détails OAuth
       my_tokens: Mes applications enregistrées
@@ -2149,20 +2351,7 @@ fr:
         :'
       register_new: Enregistrez votre application
     form:
-      name: Nom
-      required: Requis
-      url: URL principale de l’application
-      callback_url: URL de rappel
-      support_url: URL de soutien
       requests: 'Demander les permissions suivantes à l’utilisateur :'
-      allow_read_prefs: lire ses préférences utilisateur.
-      allow_write_prefs: modifier ses préférences utilisateur.
-      allow_write_diary: créez des entrées dans le journal, des commentaires et faites-vous
-        des amis.
-      allow_write_api: modifier la carte.
-      allow_read_gpx: lire ses traces GPS privées.
-      allow_write_gpx: envoyer des traces GPS.
-      allow_write_notes: modifier les notes.
     not_found:
       sorry: Désolé, ce %{type} n’a pas pu être trouvé.
     create:
@@ -2245,8 +2434,6 @@ fr:
     reset_password:
       title: Réinitialiser le mot de passe
       heading: Réinitialiser le mot de passe de %{user}
-      password: 'Mot de passe :'
-      confirm password: 'Confirmez le mot de passe :'
       reset: Réinitialiser le mot de passe
       flash changed: Votre mot de passe a été modifié.
       flash token bad: Ce jeton est introuvable, veuillez vérifier l’URL.
@@ -2262,8 +2449,6 @@ fr:
         html: |-
           <p>À la différence des autres cartes, OpenStreetMap est entièrement créé par des gens comme vous, et chacun est libre de le modifier, le mettre à jour, le télécharger et l’utiliser.</p>
           <p>Inscrivez-vous pour commencer à participer. Nous vous enverrons un courriel pour confirmer votre compte.</p>
-      license_agreement: En confirmant votre compte, vous devrez accepter les <a href="https://www.osmfoundation.org/wiki/License/Contributor_Terms">termes
-        du contributeur</a>.
       email address: 'Adresse de courriel :'
       confirm email address: 'Confirmez l’adresse de courriel :'
       not_displayed_publicly_html: Votre adresse n'est pas affichée publiquement,
@@ -2346,7 +2531,7 @@ fr:
       ct status: 'Conditions du contributeur:'
       ct undecided: Indécis
       ct declined: Refusé
-      latest edit: 'Dernière modification (%{ago})&nbsp;:'
+      latest edit: 'Dernière modification (%{ago}) :'
       email address: 'Adresse de courriel :'
       created from: 'Créé depuis :'
       status: 'État :'
@@ -2475,11 +2660,11 @@ fr:
       reconfirm_html: Si vous avez besoin que nous vous renvoyions un courriel de
         confirmation, <a href="%{reconfirm}">cliquez ici</a>.
     confirm_resend:
-      success: Nous avons envoyé une nouvelle confirmation à %{email} et dès que vous
-        aurez confirmé votre compte, vous pourrez commencer à cartographier.<br /><br
-        /> Si vous utilisez un filtre contre les courriels indésirables qui renvoie
-        à l’expéditeur des demandes de confirmation, veuillez ajouter %{sender} à
-        votre liste blanche, car nous ne sommes pas en mesure de répondre à aucune
+      success_html: Nous avons envoyé une nouvelle confirmation à %{email} et dès
+        que vous aurez confirmé votre compte, vous pourrez commencer à cartographier.<br
+        /><br /> Si vous utilisez un filtre contre les courriels indésirables qui
+        renvoie à l’expéditeur des demandes de confirmation, veuillez ajouter %{sender}
+        à votre liste blanche, car nous ne sommes pas en mesure de répondre à aucune
         des demandes de confirmation.
       failure: L’utilisateur %{name} est introuvable.
     confirm_email:
@@ -2615,11 +2800,11 @@ fr:
       revoke: Révoquer !
       flash: Ce blocage a été révoqué.
     helper:
-      time_future: Prends fin dans %{time}.
+      time_future_html: Prends fin dans %{time}.
       until_login: Actif jusqu’à ce que l’utilisateur se connecte.
-      time_future_and_until_login: Finit dans %{time} et une fois que l’utilisateur
+      time_future_and_until_login_html: Finit dans %{time} et une fois que l’utilisateur
         s’est connecté.
-      time_past: Terminé à %{time}.
+      time_past_html: Terminé à %{time}.
       block_duration:
         hours:
           one: '%{count} heure'
@@ -2670,7 +2855,7 @@ fr:
       next: Suivant »
       previous: « Précédent
   notes:
-    mine:
+    index:
       title: Notes soumises ou commentées par « %{user} »
       heading: Notes de « %{user} »
       subheading_html: Notes soumises ou commentées par « %{user} »
@@ -2724,6 +2909,7 @@ fr:
         cycle_map: Carte cyclable
         transport_map: Carte de transport
         hot: Humanitaire
+        opnvkarte: ÖPNVKarte
       layers:
         header: Couches de carte
         notes: Notes de carte
@@ -2736,6 +2922,8 @@ fr:
       terms: <a href='%{terms_url}' target='_blank'>Conditions du site web et de l’API</a>
       thunderforest: Priorité des carreaux de <a href='%{thunderforest_url}' target='_blank'>Andy
         Allan</a>
+      opnvkarte: Tuiles obtenues grâce à l'amabilité de <a href='%{memomaps_url}'
+        target='_blank'>MeMoMaps</a>
       hotosm: Style des carreaux de <a href='%{hotosm_url}' target='_blank'>l’équipe
         humanitaire de OpenStreetMap</a> hébergé par <a href='%{osmfrance_url}' target='_blank'>OpenStreetMap
         France</a>
@@ -2777,10 +2965,10 @@ fr:
     directions:
       ascend: Croissant
       engines:
-        fossgis_osrm_bike: À bicyclette (OSRM)
+        fossgis_osrm_bike: À vélo (OSRM)
         fossgis_osrm_car: En voiture (<i>OSRM</i>)
         fossgis_osrm_foot: À pied (OSRM)
-        graphhopper_bicycle: À vélo (<i>GraphHopper</i>)
+        graphhopper_bicycle: À vélo (GraphHopper)
         graphhopper_car: En voiture (GraphHopper)
         graphhopper_foot: À pied (<i>GraphHopper</i>)
       descend: Décroissant

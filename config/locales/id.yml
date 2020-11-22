@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Abijeet Patro
+# Author: Akmaie Ajam
 # Author: Arief
 # Author: Arifin.wijaya
 # Author: ArlandGa
@@ -21,6 +22,7 @@
 # Author: Kenrick95
 # Author: Macofe
 # Author: Pebaryan
+# Author: RXerself
 # Author: Rachmat04
 # Author: Reksa Tresna
 # Author: Relly Komaruzaman
@@ -34,6 +36,8 @@ id:
     formats:
       friendly: '%e %B %Y pada %H:%M'
   helpers:
+    file:
+      prompt: Pilih berkas
     submit:
       diary_comment:
         create: Simpan
@@ -98,6 +102,18 @@ id:
       way_node: Node/Titik dari garis
       way_tag: Tag way/garis
     attributes:
+      client_application:
+        name: Nama (diperlukan)
+        url: URL Aplikasi Utama (diperlukan)
+        callback_url: Panggilan kembali URL
+        support_url: URL Dukungan
+        allow_read_prefs: Baca pengaturan mereka sebagai pengguna.
+        allow_write_prefs: memodifikasi pengaturan mereka sebagai pengguna
+        allow_write_diary: membuat entri buku harian, komentar dan berteman
+        allow_write_api: modifikasi peta
+        allow_read_gpx: baca jejak GPS pribadi mereka
+        allow_write_gpx: unggah jejak GPS
+        allow_write_notes: memodifikasi catatan
       diary_comment:
         body: Isi
       diary_entry:
@@ -112,17 +128,23 @@ id:
       trace:
         user: Pengguna
         visible: Terlihat
-        name: Nama
+        name: Nama berkas
         size: Ukuran
         latitude: Garis Lintang
         longitude: Garis Bujur
         public: Publik
         description: Deskripsi
+        gpx_file: 'Unggah File GPX:'
+        visibility: Visibilitas
+        tagstring: Label
       message:
         sender: Pengirim
         title: Subyek
         body: Isi
         recipient: Penerima
+      report:
+        category: 'Pilih alasan laporan Anda:'
+        details: Silakan berikan rincian tentang masalah (wajib).
       user:
         email: Email
         active: Aktif
@@ -130,6 +152,9 @@ id:
         description: Keterangan
         languages: Bahasa
         pass_crypt: Kata Sandi
+    help:
+      trace:
+        tagstring: dipisahkan oleh koma
   datetime:
     distance_in_words_ago:
       about_x_hours:
@@ -245,10 +270,10 @@ id:
       relation: Hubungan (%{count})
       relation_paginated: Hubungan (%{x}-%{y} dari %{count})
       comment: Komentar %{count}
-      hidden_commented_by: Komentar tersembunyi dari %{user} <abbr title='%{exact_time}'>%{when}
+      hidden_commented_by_html: Komentar tersembunyi dari %{user} <abbr title='%{exact_time}'>%{when}
         yang lalu</abbr>
-      commented_by: Komentar dari %{user} <abbr title='%{exact_time}'>%{when} yang
-        lalu</abbr>
+      commented_by_html: Komentar dari %{user} <abbr title='%{exact_time}'>%{when}
+        yang lalu</abbr>
       changesetxml: Set Perubahan XML
       osmchangexml: osmChange XML
       feed:
@@ -315,10 +340,11 @@ id:
       wiki_link:
         key: Deskripsi halaman wiki untuk tag %{key}
         tag: Deskripsi halaman wiki untuk  %{key}=%{value} tag
-      wikidata_link: Item %{page} di Wikidata
+      wikidata_link: Butir mengenai %{page} di Wikidata
       wikipedia_link: Artikel %{page} di Wikipedia
       wikimedia_commons_link: Item %{page} di Wikimedia Commons
       telephone_link: Hubungi %{phone_number}
+      colour_preview: Pratinjau warna %{colour_value}
     note:
       title: 'Catatan: %{id}'
       new_note: Catatan Baru
@@ -326,23 +352,24 @@ id:
       open_title: 'Catatan belum tuntas: %{note_name}'
       closed_title: 'Catatan tuntas: %{note_name}'
       hidden_title: 'Catatan tersembunyi #%{note_name}'
-      opened_by: Dibuat oleh %{user} <abbr title='%{exact_time}'>%{when} yang lalu</abbr>
-      opened_by_anonymous: Dibuat oleh anonim <abbr title='%{exact_time}'>%{when}
-        yang lalu</abbr>
-      commented_by: Komentar dari %{user} <abbr title='%{exact_time}'>%{when} yang
+      opened_by_html: Dibuat oleh %{user} <abbr title='%{exact_time}'>%{when} yang
         lalu</abbr>
-      commented_by_anonymous: Komentar dari anonim <abbr title='%{exact_time}'>%{when}
+      opened_by_anonymous_html: Dibuat oleh anonim <abbr title='%{exact_time}'>%{when}
         yang lalu</abbr>
-      closed_by: Diselesaikan oleh %{user} <abbr title='%{exact_time}'>%{when} yang
-        lalu</abbr>
-      closed_by_anonymous: Diselesaikan oleh anonim <abbr title='%{exact_time}'>%{when}
+      commented_by_html: Komentar dari %{user} <abbr title='%{exact_time}'>%{when}
         yang lalu</abbr>
-      reopened_by: Diaktifkan kembali oleh %{user} <abbr title='%{exact_time}'>%{when}
+      commented_by_anonymous_html: Komentar dari anonim <abbr title='%{exact_time}'>%{when}
         yang lalu</abbr>
-      reopened_by_anonymous: Diaktifkan kembali oleh anonim <abbr title='%{exact_time}'>%{when}
+      closed_by_html: Diselesaikan oleh %{user} <abbr title='%{exact_time}'>%{when}
         yang lalu</abbr>
-      hidden_by: Disembunyikan oleh %{user} <abbr title='%{exact_time}'>%{when} yang
-        lalu</abbr>
+      closed_by_anonymous_html: Diselesaikan oleh anonim <abbr title='%{exact_time}'>%{when}
+        yang lalu</abbr>
+      reopened_by_html: Diaktifkan kembali oleh %{user} <abbr title='%{exact_time}'>%{when}
+        yang lalu</abbr>
+      reopened_by_anonymous_html: Diaktifkan kembali oleh anonim <abbr title='%{exact_time}'>%{when}
+        yang lalu</abbr>
+      hidden_by_html: Disembunyikan oleh %{user} <abbr title='%{exact_time}'>%{when}
+        yang lalu</abbr>
       report: Laporkan catatan ini
     query:
       title: Fitur Kueri
@@ -562,7 +589,6 @@ id:
           motorcycle_parking: Parkir Motor
           nightclub: Klub Malam
           nursing_home: Panti Jompo
-          office: Kantor
           parking: Parkir
           parking_entrance: Pintu Masuk Parkiran
           parking_space: Tempat Parkir
@@ -571,20 +597,15 @@ id:
           police: Polisi
           post_box: Kotak Pos
           post_office: Kantor Pos
-          preschool: Prasekolah
           prison: Penjara
           pub: Pub
           public_building: Bangunan Publik
           recycling: Titik Daur Ulang
           restaurant: Restoran
-          retirement_home: Rumah Jompo
-          sauna: Sauna
           school: Sekolah
           shelter: Tempat Berlindung
-          shop: Toko
           shower: Tempat Pemandian Umum
           social_centre: Pusat Sosial
-          social_club: Klub Sosial
           social_facility: Fasilitas Sosial
           studio: Studio
           swimming_pool: Kolam Renang
@@ -599,7 +620,6 @@ id:
           village_hall: Balai Desa
           waste_basket: Keranjang Sampah
           waste_disposal: Tempat Pembuangan Akhir
-          youth_centre: Pusat Pemuda
         boundary:
           administrative: Batas Administratif
           census: Batas Sensus
@@ -672,7 +692,6 @@ id:
           tertiary_link: Jalan Tersier
           track: Trek
           traffic_signals: Lampu Lalu Lintas
-          trail: Jejak
           trunk: Jalan Nasional
           trunk_link: Jalan Nasional
           turning_loop: Petak Balon
@@ -691,7 +710,6 @@ id:
           fort: Benteng
           heritage: Situs Warisan
           house: Rumah
-          icon: Ikon
           manor: Tanah Bangsawan
           memorial: Memorial
           mine: Tambang
@@ -736,7 +754,6 @@ id:
           reservoir_watershed: DAS reservoir
           residential: Wilayah Permukiman
           retail: Wilayah Perdagangan
-          road: Wilayah Jalan
           village_green: Desa Hijau
           vineyard: Kebun anggur
           "yes": Lahan Guna
@@ -885,7 +902,6 @@ id:
           subdivision: Cabang
           suburb: Pinggiran kota
           town: Kota
-          unincorporated_area: Wilayah lepas
           village: Desa
           "yes": Tempat
         railway:
@@ -911,6 +927,7 @@ id:
           switch: Titik Kereta Api
           tram: Jalur Trem
           tram_stop: Perhentian Trem
+          yard: Emplasemen
         shop:
           alcohol: Pub (di Inggris)
           antiques: Toko Benda Antik
@@ -944,12 +961,10 @@ id:
           estate_agent: Agen Properti
           farm: Toko Pertanian
           fashion: Toko Mode
-          fish: Toko Ikan
           florist: Toko Bunga
           food: Toko Makanan
           funeral_directors: Penyelenggara Pemakaman
           furniture: Toko Meubel
-          gallery: Galeri
           garden_centre: Pusat Kebun
           general: Toko Umum
           gift: Toko Hadiah
@@ -966,7 +981,6 @@ id:
           laundry: Penatu
           lottery: Lotere
           mall: Mal
-          market: Pasar
           massage: Pijat
           mobile_phone: Toko Handphone
           motorcycle: Toko Sepeda Motor
@@ -978,7 +992,6 @@ id:
           paint: Toko Cat
           pawnbroker: Rumah Gadai
           pet: Toko Hewan
-          pharmacy: Apotek
           photo: Studio Foto
           seafood: Boga Bahari
           second_hand: Toko loak
@@ -1048,11 +1061,6 @@ id:
         level8: Batas Kota/Kabupaten
         level9: Batas Desa
         level10: Batas kota pinggiran
-    description:
-      title:
-        osm_nominatim: Lokasi dari <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames: Lokasi dari <a href="http://www.geonames.org/">GeoNames</a>
       types:
         cities: Kota (jamak)
         towns: Kota Kecil (jamak)
@@ -1125,8 +1133,6 @@ id:
     new:
       title_html: Laporkan %{link}
       missing_params: Tidak bisa membuat laporan baru
-      details: Silakan berikan rincian tentang masalah (wajib).
-      select: 'Pilih alasan laporan Anda:'
       disclaimer:
         intro: 'Sebelum mengirimkan laporan ke moderator situs, tolong pastikan bahwa:'
         not_just_mistake: Anda yakin bahwa masalah tersebut bukan sekadar kekhilafan
@@ -1203,7 +1209,7 @@ id:
       text: Menyumbang
     learn_more: Pelajari Lagi
     more: Selanjutnya
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} mengomentari sebuah entri catatan harian'
       hi: Halo %{to_user},
@@ -1458,23 +1464,24 @@ id:
           selama Anda menyertakan OpenStreetMap dan kontributornya. Jika Anda mengubah atau membangun
           data kami, Anda harus menyalurkan hasilnya dalam lisensi yang sama.
           <a href="http://opendatacommons.org/licenses/odbl/1.0/">Kode legal</a> berisi penjelasan hak dan kewajiban Anda.
-        intro_3_html: |-
+        intro_3_1_html: |-
           Kartografi dalam tampilan peta dan dokumentasi kami
            berlisensi di bawah <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative
           Commons Attribution-ShareAlike 2.0</a> lisensi (CC-BY-SA).
         credit_title_html: Cara memberikan kredit pada OpenStreetMap
         credit_1_html: Kami mewajibkan Anda untuk menggunakan kredit &ldquo;&copy;
           Kontributor OpenStreetMap&rdquo;.
-        credit_2_html: Anda juga harus memperjelas bahwa data tersedia di bawah Lisensi
-          Database Terbuka, dan jika menggunakan tiles peta kami, kartografi berlisensi
-          sebagai CC-BY-SA. Anda dapat melakukannya dengan menghubungkan ke <a href="http://www.openstreetmap.org/copyright">halaman
-          hak cipta</a>. Alternatifnya, dan sebagai sebuah persyaratan jika Anda mendistribusikan
+        credit_2_1_html: Anda juga harus memperjelas bahwa data tersedia di bawah
+          Lisensi Database Terbuka, dan jika menggunakan tiles peta kami, kartografi
+          berlisensi sebagai CC-BY-SA. Anda dapat melakukannya dengan menghubungkan
+          ke <a href="http://www.openstreetmap.org/copyright">halaman hak cipta</a>.
+          Alternatifnya, dan sebagai sebuah persyaratan jika Anda mendistribusikan
           OSM dalam bentuk data, Anda dapat menamakan dan menghubungkannya langsung
           pada lisensinya. Pada media yang tidak memungkinkan tautan (misalnya hasil
           cetak), kami menyarankan Anda untuk mengarahkan pembaca Anda pada openstreetmap.org
           (mungkin dengan memperluas halaman 'OpenStreetMap' secara penuh), untuk
           opendatacommons.org, dan jika relevan, untuk creativecommons.org.
-        credit_3_html: |-
+        credit_4_html: |-
           Untuk peta elektronik dapat ditelusuri, kredit harus muncul di sudut peta.
           Sebagai contoh:
         attribution_example:
@@ -1856,11 +1863,6 @@ id:
         diidentifikasi, mengatur poin dengan waktu pengambilan)
     new:
       upload_trace: Unggah Jejak GPS
-      upload_gpx: 'Unggah File GPX:'
-      description: Deskripsi
-      tags: 'Tags:'
-      tags_help: dipisahkan oleh koma
-      visibility: Visibilitas
       visibility_help: apa artinya ini?
       visibility_help_url: https://wiki.openstreetmap.org/wiki/Visibility_of_GPS_traces
       help: Bantuan
@@ -1878,20 +1880,9 @@ id:
           pertimbangkan proses ini untuk diselesaikan sebelum mengunggah lagi, sehingga
           Anda tidak memblokir antrean untuk pengguna lain.
     edit:
+      cancel: Batalkan
       title: Mengedit jejak %{name}
       heading: Mengedit dijitasi %{name}
-      filename: 'Nama File:'
-      download: unduh
-      uploaded_at: 'Diunggah:'
-      points: 'Poin/Titik:'
-      start_coord: 'Koordinat awal:'
-      map: peta
-      edit: edit
-      owner: 'Pemilik:'
-      description: 'Deskripsi:'
-      tags: 'Tags:'
-      tags_help: dipisahkan oleh koma
-      visibility: Visibilitas
       visibility_help: apa artinya ini?
     update:
       updated: Jejak diperbarui
@@ -2018,13 +2009,6 @@ id:
       delete: Menghapus klien
       confirm: Apakah Anda yakin?
       requests: 'Meminta izin berikut dari pengguna:'
-      allow_read_prefs: Baca pengaturan mereka sebagai pengguna.
-      allow_write_prefs: memodifikasi pengaturan mereka sebagai pengguna.
-      allow_write_diary: membuat entri buku harian, komentar dan membuat pertemanan.
-      allow_write_api: modifikasi peta.
-      allow_read_gpx: baca jejak GPS pribadi mereka.
-      allow_write_gpx: unggah jejak GPS.
-      allow_write_notes: memodifikasi catatan.
     index:
       title: Rincian OAuth saya
       my_tokens: Aplikasi yang telah saya setujui
@@ -2039,19 +2023,7 @@ id:
       registered_apps: 'Anda memiliki aplikasi klien terdaftar berikut:'
       register_new: Daftarkan aplikasi anda
     form:
-      name: Nama
-      required: Diperlukan
-      url: URL Aplikasi utama
-      callback_url: Panggilan kembali URL
-      support_url: URL Dukungan
       requests: 'Meminta izin berikut dari pengguna:'
-      allow_read_prefs: Baca pengaturan mereka sebagai pengguna.
-      allow_write_prefs: memodifikasi pengaturan mereka sebagai pengguna.
-      allow_write_diary: membuat entri buku harian, komentar dan buat pertemanan.
-      allow_write_api: modifikasi peta
-      allow_read_gpx: baca jejak GPS pribadi mereka.
-      allow_write_gpx: unggah jejak GPS.
-      allow_write_notes: memodifikasi catatan.
     not_found:
       sorry: Maaf, %{type} tidak dapat ditemukan.
     create:
@@ -2133,8 +2105,6 @@ id:
     reset_password:
       title: Setel ulang kata sandi
       heading: Setel ulang kata sandi untuk %{user}
-      password: 'Kata Sandi:'
-      confirm password: 'Konfirmasi Kata Sandi:'
       reset: Setel Ulang Kata Sandi
       flash changed: Kata sandi Anda telah diubah.
       flash token bad: Tidak dapat menemukan token tersebut, cek URL nya mungkin?
@@ -2151,9 +2121,6 @@ id:
           <p>Tidak seperti peta lainnya, OpenStreetMap benar-benar dibuat oleh orang-orang seperti Anda
            dan gratis bagi siapa saja untuk memperbaiki, memutakhirkan, mengunduh, dan menggunakan.</p>
           <p>Mendaftar untuk mulai memberikan kontribusi. Kami akan mengirimkan surel konfirmasi akun Anda.</p>
-      license_agreement: Ketika Anda mengonfirmasi akun Anda, Anda harus setuju dengan
-        <a href="https://www.osmfoundation.org/wiki/License/Contributor_Terms">persyaratan
-        kontributor</a>.
       email address: 'Alamat Email:'
       confirm email address: 'Konfirmasi Alamat Email:'
       not_displayed_publicly_html: Alamat Anda tidak dipajang secara umum, lihat <a
@@ -2350,7 +2317,7 @@ id:
       reconfirm_html: Jika Anda membutuhkan kami mengirimkan ulang surel konfirmasi,
         <a href="%{reconfirm}">klik di sini</a>.
     confirm_resend:
-      success: Kami telah mengirim catatan konfirmasi baru ke %{email} dan setelah
+      success_html: Kami telah mengirim catatan konfirmasi baru ke %{email} dan setelah
         Anda mengkonfirmasi akun, Anda akan dapat mulai melakukan pemetaan.<br /><br
         />Jika Anda menggunakan sistem anti spam yang mengirimkan permintaan konfirmasi
         silahkan pastikan Anda memasukkan %{sender} ke dalam daftar putih karena kami
@@ -2482,10 +2449,11 @@ id:
       revoke: Batalkan!
       flash: Blokir ini telah dibatalkan.
     helper:
-      time_future: Berakhir pada %{time}.
+      time_future_html: Berakhir pada %{time}.
       until_login: Aktif sampai pengguna melakukan log in.
-      time_future_and_until_login: Berakhir dalam %{time} dan setelah pengguna masuk.
-      time_past: Berakhir %{time} yang lalu.
+      time_future_and_until_login_html: Berakhir dalam %{time} dan setelah pengguna
+        masuk.
+      time_past_html: Berakhir %{time} yang lalu.
       block_duration:
         hours:
           one: 1 hour
@@ -2526,7 +2494,7 @@ id:
       next: Berikutnya »
       previous: « Sebelumnya
   notes:
-    mine:
+    index:
       title: Catatan dimasukkan atau dikomentari oleh %{user}
       heading: catatan oleh %{user}
       subheading_html: Catatan dimasukkan atau dikomentari oleh %{user}

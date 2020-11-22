@@ -93,6 +93,9 @@ ne:
         longitude: देशान्तर
         public: सार्वजनिक
         description: वर्णन
+        gpx_file: 'जिपिएक्स फाइल उर्ध्वभरण गर्नुहाेस्:'
+        visibility: 'दृश्यक्षमता:'
+        tagstring: ट्यागहरूः
       message:
         sender: पठाउने
         title: विषय
@@ -105,6 +108,9 @@ ne:
         description: वर्णन
         languages: भाषाहरू
         pass_crypt: पासवर्ड
+    help:
+      trace:
+        tagstring: अल्पविरामले छुट्याएको
   printable_name:
     with_version: '%{id}, v%{version}'
     with_name_html: '%{name} (%{id})'
@@ -157,9 +163,9 @@ ne:
       relation: सम्बन्धहरू (%{count})
       relation_paginated: सम्बन्धहरू (जम्मा %{count} मध्येबाट %{x}-%{y})
       comment: टिप्पणीहरू (%{count})
-      hidden_commented_by: ' %{user} द्वारा गरिएको लुकाइएको टिप्पणी <abbr title=''%{exact_time}''>%{when}
+      hidden_commented_by_html: ' %{user} द्वारा गरिएको लुकाइएको टिप्पणी <abbr title=''%{exact_time}''>%{when}
         पहिले</abbr>'
-      commented_by: '%{user}द्वारा <abbr title=''%{exact_time}''>%{when} अगाडि</abbr>
+      commented_by_html: '%{user}द्वारा <abbr title=''%{exact_time}''>%{when} अगाडि</abbr>
         गरिएको टिप्पणी'
       changesetxml: चेन्जसेट XML
       osmchangexml: osmChange XML
@@ -237,23 +243,23 @@ ne:
       open_title: 'समाधान नगरिएको टिप्पणी #%{note_name}'
       closed_title: 'समाधान गरिएको टिप्पणी #%{note_name}'
       hidden_title: 'लुकाइएको टिप्पणी #%{note_name}'
-      opened_by: '%{user}द्वारा <abbr title=''%{exact_time}''>%{when} अगाडि</abbr>
+      opened_by_html: '%{user}द्वारा <abbr title=''%{exact_time}''>%{when} अगाडि</abbr>
         सिर्जना गरिएको'
-      opened_by_anonymous: <abbr title='%{exact_time}'>%{when} अगाडि</abbr> अज्ञात
+      opened_by_anonymous_html: <abbr title='%{exact_time}'>%{when} अगाडि</abbr> अज्ञात
         व्यक्तिद्वारा सिर्जना गरिएको
-      commented_by: '%{user}द्वारा <abbr title=''%{exact_time}''>%{when} अगाडि</abbr>
+      commented_by_html: '%{user}द्वारा <abbr title=''%{exact_time}''>%{when} अगाडि</abbr>
         गरिएको टिप्पणी'
-      commented_by_anonymous: अज्ञात व्यक्तिद्वारा <abbr title='%{exact_time}'>%{when}
+      commented_by_anonymous_html: अज्ञात व्यक्तिद्वारा <abbr title='%{exact_time}'>%{when}
         अगाडि</abbr> गरिएको टिप्पणी
-      closed_by: '%{user}द्वारा <abbr title=''%{exact_time}''>%{when} अगाडि</abbr>
+      closed_by_html: '%{user}द्वारा <abbr title=''%{exact_time}''>%{when} अगाडि</abbr>
         समाधान गरिएको'
-      closed_by_anonymous: अज्ञात व्यक्तिद्वारा <abbr title='%{exact_time}'>%{when}
+      closed_by_anonymous_html: अज्ञात व्यक्तिद्वारा <abbr title='%{exact_time}'>%{when}
         अगाडि</abbr> समाधान गरिएको
-      reopened_by: '%{user}द्वारा <abbr title=''%{exact_time}''>%{when} अगाडि</abbr>
+      reopened_by_html: '%{user}द्वारा <abbr title=''%{exact_time}''>%{when} अगाडि</abbr>
         पुनःसक्रिय गरिएको'
-      reopened_by_anonymous: अज्ञात व्यक्तिद्वारा <abbr title='%{exact_time}'>%{when}
+      reopened_by_anonymous_html: अज्ञात व्यक्तिद्वारा <abbr title='%{exact_time}'>%{when}
         अगाडि</abbr> पुनःसक्रिय गरिएको
-      hidden_by: '%{user}द्वारा <abbr title=''%{exact_time}''>%{when} अगाडि</abbr>
+      hidden_by_html: '%{user}द्वारा <abbr title=''%{exact_time}''>%{when} अगाडि</abbr>
         लुकाइएको'
       report: यस टिपोटलाई उजुरी गर्नुहोस्
     query:
@@ -463,7 +469,6 @@ ne:
           motorcycle_parking: मोटर साइकल पार्किङ
           nightclub: रात्री क्लब
           nursing_home: नर्सिङ होम
-          office: कार्यलय
           parking: पार्किङ
           parking_entrance: पार्किङ प्रवेश
           pharmacy: औषधी पसल
@@ -471,20 +476,15 @@ ne:
           police: प्रहरी
           post_box: हुलाक बाक्सा
           post_office: हुलाक
-          preschool: पूर्व-स्कुल
           prison: कारागार
           pub: पब
           public_building: सार्वजनिक भवन
           recycling: पुनः प्रयोग विन्दु
           restaurant: रेस्टुरेन्ट
-          retirement_home: बृद्ध आश्रम
-          sauna: सौना
           school: विद्यालय
           shelter: आश्रय
-          shop: पसल
           shower: स्नानघर
           social_centre: सामाजिक केन्द्र
-          social_club: सामाजिक क्लब
           social_facility: सामाजिक सेवा
           studio: स्टुडियो
           swimming_pool: पौली पोखरी
@@ -499,7 +499,6 @@ ne:
           village_hall: सभा गृह
           waste_basket: फोहर टोकरी
           waste_disposal: फोहर फाल्ने ठाउँ
-          youth_centre: युवा केन्द्र
         boundary:
           administrative: प्रशासनिक सिमाना
           census: जनगणना सिमाना
@@ -561,7 +560,6 @@ ne:
           street_lamp: सडक बत्ती
           track: ट्रयाक
           traffic_signals: ट्राफिक चिह्नहरू
-          trail: गोरेटो बाटो
           "yes": सडक
         historic:
           bunker: बङ्कर
@@ -572,7 +570,6 @@ ne:
           fort: किल्ला
           heritage: सम्पादा क्षेत्र
           house: घर
-          icon: प्रतिमा
           memorial: स्मारक
           mine: खानी
           monument: सम्पदा
@@ -601,7 +598,6 @@ ne:
           reservoir: जलाशय
           residential: आवासीय क्षेत्र
           retail: खुद्रा
-          road: सडक क्षेत्र
           vineyard: अङ्गुर-बगैँचा
           "yes": भू-उपयोग
         leisure:
@@ -716,11 +712,9 @@ ne:
           estate_agent: घरजग्गा एजेन्ट
           farm: किसान पसल
           fashion: फेसन पसल
-          fish: माछा पसल
           florist: पुष्प व्यवसायी
           food: भोजनालय
           furniture: फर्निचर
-          gallery: सङ्ग्रहालय
           general: किराना पसल
           gift: उपहार पसल
           greengrocer: तरकारी पसल
@@ -730,14 +724,12 @@ ne:
           hifi: हाइ-फाइ
           jewelry: गहना पसल
           mall: सपिङ मल
-          market: बजार
           mobile_phone: मोबाइल फोन पसल
           motorcycle: मोटरसाइकल पसल
           music: संगीत पसल
           newsagent: सम्वाददाता
           optician: अप्टिसियन
           pet: पाल्तु पसल
-          pharmacy: औषधी पसल
           shoes: जुत्ता पसल
           sports: खेलकुद सामग्री पसल
           tailor: सुचीकार
@@ -778,7 +770,6 @@ ne:
         level8: सहर सीमा
         level9: गाउँ सीमा
         level10: उपनगर सीमा
-    description:
       types:
         cities: सहरहरू
         towns: नगरहरू
@@ -830,7 +821,7 @@ ne:
       text: दान गर्नुहोस्
     learn_more: थप जान्नुहोस्
     more: थप
-  notifier:
+  user_mailer:
     diary_comment_notification:
       hi: नमस्ते %{to_user},
     message_notification:
@@ -1057,11 +1048,6 @@ ne:
         title: नियमहरू !
   traces:
     new:
-      upload_gpx: 'जिपिएक्स फाइल उर्ध्वभरण गर्नुहाेस्:'
-      description: 'विवरण:'
-      tags: ट्यागहरूः
-      tags_help: अल्पविरामले छुट्याएको
-      visibility: 'दृश्यक्षमता:'
       visibility_help: यसको मतलाब के हो ?
       help: सहायता
     create:
@@ -1069,18 +1055,6 @@ ne:
     edit:
       title: ट्रेस सम्पादन गर्दै %{name}
       heading: ट्रेस सम्पादन गर्दै %{name}
-      filename: 'फाइलनाम:'
-      download: डाउनलोड
-      uploaded_at: 'आध्यवधिक गरिएको:'
-      points: 'बिन्दुहरु:'
-      start_coord: 'निर्देशंक सुरु गर्ने:'
-      map: नक्सा
-      edit: सम्पादन
-      owner: 'मालिक:'
-      description: विवरण
-      tags: ट्यागहरूः
-      tags_help: अल्पविरामले छुट्याएको
-      visibility: 'दृश्यक्षमता:'
       visibility_help: यसको मतलब के हो ?
     trace_optionals:
       tags: ट्यागहरू
@@ -1130,11 +1104,6 @@ ne:
   oauth_clients:
     show:
       confirm: निश्चित हुनुहुन्छ ?
-      allow_write_gpx: GPS Trace हरू अपलोड गर्ने
-      allow_write_notes: टिपोटहरू सम्पादन गर्नुहोस्।
-    form:
-      name: नाम
-      required: आवश्यक पर्दछ
   users:
     login:
       title: प्रवेश
@@ -1157,8 +1126,6 @@ ne:
     reset_password:
       title: प्रवेस शब्द परिवर्तन गर्ने
       heading: '%{user}को लागि प्रवेस शब्द परिवर्तन गर्ने'
-      password: 'पासवर्ड:'
-      confirm password: 'प्रवेशशव्द निश्चित गर्ने:'
       reset: नयाँ प्रवेशशव्द
       flash changed: तपाईंको प्रवेश शब्द परिवर्तन गरिएको छ।
     new:
@@ -1283,7 +1250,7 @@ ne:
       next: अर्को »
       previous: « अघिल्लो
   notes:
-    mine:
+    index:
       id: आईडी
       creator: सर्जक
       description: वर्णन

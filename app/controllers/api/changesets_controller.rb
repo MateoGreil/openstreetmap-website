@@ -2,7 +2,6 @@
 
 module Api
   class ChangesetsController < ApiController
-    layout "site"
     require "xml/libxml"
 
     before_action :authorize, :only => [:create, :update, :upload, :close, :subscribe, :unsubscribe]
@@ -22,7 +21,7 @@ module Api
     def create
       assert_method :put
 
-      cs = Changeset.from_xml(request.raw_post, true)
+      cs = Changeset.from_xml(request.raw_post, :create => true)
 
       # Assume that Changeset.from_xml has thrown an exception if there is an error parsing the xml
       cs.user = current_user

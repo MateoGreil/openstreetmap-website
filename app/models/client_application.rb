@@ -56,8 +56,7 @@ class ClientApplication < ApplicationRecord
     signature = OAuth::Signature.build(request, options, &block)
     return false unless OauthNonce.remember(signature.request.nonce, signature.request.timestamp)
 
-    value = signature.verify
-    value
+    signature.verify
   rescue OAuth::Signature::UnknownSignatureMethod
     false
   end
@@ -67,7 +66,7 @@ class ClientApplication < ApplicationRecord
   end
 
   def oauth_server
-    @oauth_server ||= OAuth::Server.new("https://" + Settings.server_url)
+    @oauth_server ||= OAuth::Server.new("https://#{Settings.server_url}")
   end
 
   def credentials

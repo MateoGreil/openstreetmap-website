@@ -3,15 +3,18 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery :with => :exception
 
+  add_flash_types :warning, :error
+
   rescue_from CanCan::AccessDenied, :with => :deny_access
   check_authorization
 
   before_action :fetch_body
   around_action :better_errors_allow_inline, :if => proc { Rails.env.development? }
 
-  attr_accessor :current_user
+  attr_accessor :current_user, :oauth_token
 
   helper_method :current_user
+  helper_method :oauth_token
   helper_method :preferred_langauges
 
   private
@@ -20,7 +23,11 @@ class ApplicationController < ActionController::Base
     if session[:user]
       self.current_user = User.where(:id => session[:user]).where("status IN ('active', 'confirmed', 'suspended')").first
 
-      if current_user.status == "suspended"
+      if session[:fingerprint] &&
+         session[:fingerprint] != current_user.fingerprint
+        reset_session
+        self.current_user = nil
+      elsif current_user.status == "suspended"
         session.delete(:user)
         session_expires_automatically
 
@@ -39,6 +46,8 @@ class ApplicationController < ActionController::Base
     elsif session[:token]
       session[:user] = current_user.id if self.current_user = User.authenticate(:token => session[:token])
     end
+
+    session[:fingerprint] = current_user.fingerprint if current_user && session[:fingerprint].nil?
   rescue StandardError => e
     logger.info("Exception authorizing user: #{e}")
     reset_session
@@ -56,7 +65,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_oauth
-    @oauth = current_user.access_token(Settings.oauth_key) if current_user && Settings.key?(:oauth_key)
+    @oauth_token = current_user.access_token(Settings.oauth_key) if current_user && Settings.key?(:oauth_key)
   end
 
   ##
@@ -65,7 +74,7 @@ class ApplicationController < ActionController::Base
     if request.cookies["_osm_session"].to_s == ""
       if params[:cookie_test].nil?
         session[:cookie_test] = true
-        redirect_to params.to_unsafe_h.merge(:cookie_test => "true")
+        redirect_to params.to_unsafe_h.merge(:only_path => true, :cookie_test => "true")
         false
       else
         flash.now[:warning] = t "application.require_cookies.cookies_needed"
@@ -75,7 +84,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_database_readable(need_api = false)
+  def check_database_readable(need_api: false)
     if Settings.status == "database_offline" || (need_api && Settings.status == "api_offline")
       if request.xhr?
         report_error "Database offline for maintenance", :service_unavailable
@@ -85,7 +94,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_database_writable(need_api = false)
+  def check_database_writable(need_api: false)
     if Settings.status == "database_offline" || Settings.status == "database_readonly" ||
        (need_api && (Settings.status == "api_offline" || Settings.status == "api_readonly"))
       if request.xhr?
@@ -111,9 +120,10 @@ class ApplicationController < ActionController::Base
   end
 
   def database_status
-    if Settings.status == "database_offline"
+    case Settings.status
+    when "database_offline"
       "offline"
-    elsif Settings.status == "database_readonly"
+    when "database_readonly"
       "readonly"
     else
       "online"
@@ -123,9 +133,10 @@ class ApplicationController < ActionController::Base
   def api_status
     status = database_status
     if status == "online"
-      if Settings.status == "api_offline"
+      case Settings.status
+      when "api_offline"
         status = "offline"
-      elsif Settings.status == "api_readonly"
+      when "api_readonly"
         status = "readonly"
       end
     end
@@ -160,7 +171,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def preferred_languages(reset = false)
+  def preferred_languages(reset: false)
     @preferred_languages = nil if reset
     @preferred_languages ||= if params[:locale]
                                Locale.list(params[:locale])
@@ -173,13 +184,13 @@ class ApplicationController < ActionController::Base
 
   helper_method :preferred_languages
 
-  def set_locale(reset = false)
+  def set_locale(reset: false)
     if current_user&.languages&.empty? && !http_accept_language.user_preferred_languages.empty?
       current_user.languages = http_accept_language.user_preferred_languages
       current_user.save
     end
 
-    I18n.locale = Locale.available.preferred(preferred_languages(reset))
+    I18n.locale = Locale.available.preferred(preferred_languages(:reset => reset))
 
     response.headers["Vary"] = "Accept-Language"
     response.headers["Content-Language"] = I18n.locale.to_s
@@ -211,31 +222,27 @@ class ApplicationController < ActionController::Base
   # asserts that the request method is the +method+ given as a parameter
   # or raises a suitable error. +method+ should be a symbol, e.g: :put or :get.
   def assert_method(method)
-    ok = request.send((method.to_s.downcase + "?").to_sym)
+    ok = request.send(:"#{method.to_s.downcase}?")
     raise OSM::APIBadMethodError, method unless ok
   end
 
   ##
   # wrap an api call in a timeout
-  def api_call_timeout
-    OSM::Timer.timeout(Settings.api_timeout, Timeout::Error) do
-      yield
-    end
+  def api_call_timeout(&block)
+    OSM::Timer.timeout(Settings.api_timeout, Timeout::Error, &block)
   rescue Timeout::Error
     raise OSM::APITimeoutError
   end
 
   ##
   # wrap a web page in a timeout
-  def web_timeout
-    OSM::Timer.timeout(Settings.web_timeout, Timeout::Error) do
-      yield
-    end
+  def web_timeout(&block)
+    OSM::Timer.timeout(Settings.web_timeout, Timeout::Error, &block)
   rescue ActionView::Template::Error => e
     e = e.cause
 
     if e.is_a?(Timeout::Error) ||
-       (e.is_a?(ActiveRecord::StatementInvalid) && e.message =~ /execution expired/)
+       (e.is_a?(ActiveRecord::StatementInvalid) && e.message.include?("execution expired"))
       render :action => "timeout"
     else
       raise
@@ -284,9 +291,10 @@ class ApplicationController < ActionController::Base
       :style_src => %w['unsafe-inline']
     )
 
-    if Settings.status == "database_offline" || Settings.status == "api_offline"
+    case Settings.status
+    when "database_offline", "api_offline"
       flash.now[:warning] = t("layouts.osm_offline")
-    elsif Settings.status == "database_readonly" || Settings.status == "api_readonly"
+    when "database_readonly", "api_readonly"
       flash.now[:warning] = t("layouts.osm_read_only")
     end
 
@@ -298,15 +306,13 @@ class ApplicationController < ActionController::Base
   end
 
   def preferred_editor
-    editor = if params[:editor]
-               params[:editor]
-             elsif current_user&.preferred_editor
-               current_user.preferred_editor
-             else
-               Settings.default_editor
-             end
-
-    editor
+    if params[:editor]
+      params[:editor]
+    elsif current_user&.preferred_editor
+      current_user.preferred_editor
+    else
+      Settings.default_editor
+    end
   end
 
   helper_method :preferred_editor
@@ -372,4 +378,19 @@ class ApplicationController < ActionController::Base
 
   # override to stop oauth plugin sending errors
   def invalid_oauth_response; end
+
+  # clean any referer parameter
+  def safe_referer(referer)
+    referer = URI.parse(referer)
+
+    if referer.scheme == "http" || referer.scheme == "https"
+      referer.scheme = nil
+      referer.host = nil
+      referer.port = nil
+    elsif referer.scheme || referer.host || referer.port
+      referer = nil
+    end
+
+    referer.to_s
+  end
 end

@@ -73,6 +73,8 @@ pa:
       way_node: ਰਾਹ ਨੋਡ
       way_tag: ਰਾਹ ਟੈਗ
     attributes:
+      client_application:
+        support_url: ਮਦਦ URL
       diary_comment:
         body: ਮੁੱਖ ਭਾਗ
       diary_entry:
@@ -93,6 +95,8 @@ pa:
         longitude: ਲੰਬਕਾਰ
         public: ਜਨਤਕ
         description: ਵੇਰਵਾ
+        visibility: 'ਦਿੱਸਣਯੋਗਤਾ:'
+        tagstring: 'ਟੈਗ:'
       message:
         sender: ਭੇਜਣ ਵਾਲਾ
         title: ਵਿਸ਼ਾ
@@ -308,7 +312,6 @@ pa:
           motorcycle_parking: ਮੋਟਰਸਾਈਕਲ ਪਾਰਕਿੰਗ
           nightclub: ਰਾਤ ਦਾ ਕਲੱਬ
           nursing_home: ਨਰਸਿੰਗ ਹੋਮ
-          office: ਦਫ਼ਤਰ
           parking: ਪਾਰਕਿੰਗ
           parking_entrance: ਪਾਰਕਿੰਗ ਪਰਵੇਸ਼
           pharmacy: ਫ਼ਾਰਮੇਸੀ
@@ -316,20 +319,15 @@ pa:
           police: ਪੁਲਿਸ
           post_box: ਡਾਕ ਬਕਸਾ
           post_office: ਡਾਕ ਘਰ
-          preschool: ਪ੍ਰੀ-ਸਕੂਲ
           prison: ਜੇਲ੍ਹ
           pub: ਪਬ
           public_building: ਜਨਤਕ ਇਮਾਰਤ
           recycling: ਰੀਸਾਈਕਲ ਬਿੰਦੂ
           restaurant: ਰੈਸਟੋਰੈਂਟ
-          retirement_home: ਸੇਵਾ-ਮੁਕਤੀ ਘਰ
-          sauna: ਸੌਨਾ
           school: ਸਕੂਲ
           shelter: ਸ਼ਰਨ
-          shop: ਹੱਟੀ
           shower: ਸ਼ਾਵਰ
           social_centre: ਸਮਾਜਕ ਕੇਂਦਰ
-          social_club: ਸਮਾਜਕ ਕਲੱਬ
           social_facility: ਸਮਾਜਕ ਸਹੂਲਤ
           studio: ਸਟੂਡੀਉ
           swimming_pool: ਤੈਰਾਕੀ ਤਲਾਅ
@@ -344,7 +342,6 @@ pa:
           village_hall: ਪਿੰਡ ਦਾ ਹਾਲ
           waste_basket: ਕੂੜਾਦਾਨ
           waste_disposal: ਕੂੜੇਦਾਨ
-          youth_centre: ਨੌਜਵਾਨ ਕੇਂਦਰ
         boundary:
           administrative: ਪ੍ਰਸ਼ਾਸਕੀ ਸਰਹੱਦ
           census: ਮਰਦਮਸ਼ੁਮਾਰੀ ਸਰਹੱਦ
@@ -409,7 +406,6 @@ pa:
           tertiary_link: ਤੀਜੇ ਪੱਧਰ ਦੀ ਸੜਕ
           track: ਟਰੈਕ
           traffic_signals: ਟਰੈਫਿਕ ਸਿਗਨਲ
-          trail: ਡੰਡੀ
           trunk: ਟਰੰਕ ਸੜਕ
           trunk_link: ਟਰੰਕ ਸੜਕ
           unclassified: ਅਵਰਗੀਕ੍ਰਿਤ ਰੋਡ
@@ -425,7 +421,6 @@ pa:
           fort: ਕਿਲ਼ਾ
           heritage: ਵਿਰਾਸਤ ਸਥਾਨ
           house: ਘਰ
-          icon: ਆਈਕਨ
           manor: ਮੈਨਰ
           memorial: ਯਾਦਗਾਰ
           mine: ਖਾਨ
@@ -458,7 +453,6 @@ pa:
           reservoir: ਸਰੋਵਰ
           residential: ਰਿਹਾਇਸ਼ੀ ਇਲਾਕਾ
           retail: ਪਰਚੂਨ
-          road: ਸੜਕ ਇਲਾਕਾ
           village_green: ਪੇਂਡੂ ਹਰਿਆਵਲ
           vineyard: ਅੰਗੂਰਾਂ ਦਾ ਬਾਗ਼
         leisure:
@@ -562,7 +556,6 @@ pa:
           subdivision: ਉਪਵਿਭਾਗ
           suburb: ਉਪਨਗਰ
           town: ਕਸਬਾ
-          unincorporated_area: ਗ਼ੈਰ-ਸੰਮਿਲਤ ਇਲਾਕਾ
           village: ਪਿੰਡ
           "yes": ਥਾੰ
         railway:
@@ -582,6 +575,7 @@ pa:
           subway_entrance: ਸਬਵੇ ਪ੍ਰਵੇਸ਼
           tram: ਟਰਾਮਵੇ
           tram_stop: ਟਰਾਮ ਅੱਡਾ
+          yard: ਰੇਲਵੇ ਯਾਰਡ
         shop:
           antiques: ਪ੍ਰਾਚੀਨ
           art: ਕਲਾ ਹੱਟੀ
@@ -613,12 +607,10 @@ pa:
           estate_agent: ਇਸਟੇਟ ਏਜੰਟ
           farm: ਫ਼ਾਰਮ ਦੁਕਾਨ
           fashion: ਫ਼ੈਸ਼ਨਾਂ ਦੀ ਹੱਟੀ
-          fish: ਮੱਛੀਆਂ ਦੀ ਦੁਕਾਨ
           florist: ਫੁੱਲਾਂ ਦੀ ਦੁਕਾਨ
           food: ਖ਼ੁਰਾਕ ਦੀ ਹੱਟੀ
           funeral_directors: ਜਨਾਜ਼ਾ ਪ੍ਰਬੰਧਕ
           furniture: ਫ਼ਰਨੀਚਰ
-          gallery: ਗੈਲਰੀ
           garden_centre: ਬਾਗ਼ਬਾਨੀ ਕੇਂਦਰ
           general: ਜਨਰਲ ਸਟੋਰ
           gift: ਤੋਹਫ਼ਿਆਂ ਦੀ ਦੁਕਾਨ
@@ -630,7 +622,6 @@ pa:
           kiosk: ਖੋਖਾ
           laundry: ਧੋਬੀਘਾਟ
           mall: ਮਾਲ
-          market: ਮੰਡੀ
           mobile_phone: ਮੋਬਾਈਲ ਫੋਨਾਂ ਦੀ ਦੁਕਾਨ
           motorcycle: ਮੋਟਰਸਾਈਕਲਾਂ ਦੀ ਦੁਕਾਨ
           music: ਸੰਗੀਤ ਦੀ ਦੁਕਾਨ
@@ -639,7 +630,6 @@ pa:
           organic: ਕਾਰਬਨੀ ਖ਼ੁਰਾਕ ਦੀ ਹੱਟੀ
           outdoor: ਮੈਦਾਨੀ ਵਸਤਾਂ ਦੀ ਹੱਟੀ
           pet: ਪਾਲਤੂ ਜਾਨਵਰਾਂ ਦੀ ਦੁਕਾਨ
-          pharmacy: ਦਵਾਖ਼ਾਨਾ
           photo: ਤਸਵੀਰਾਂ ਦੀ ਦੁਕਾਨ
           shoes: ਜੁੱਤੀਆਂ ਦੀ ਦੁਕਾਨ
           sports: ਖੇਡਾਂ ਦੀ ਦੁਕਾਨ
@@ -699,7 +689,6 @@ pa:
         level8: ਸ਼ਹਿਰ ਦੀ ਹੱਦ
         level9: ਪਿੰਡ ਦੀ ਜੂਹ
         level10: ਉਪਨਗਰ ਦੀ ਜੂਹ
-    description:
       types:
         cities: ਸ਼ਹਿਰ
         towns: ਕਸਬੇ
@@ -738,7 +727,7 @@ pa:
       text: ਦਾਨ ਦਿਉ
     learn_more: ਹੋਰ ਜਾਣੋ
     more: ਹੋਰ
-  notifier:
+  user_mailer:
     gpx_notification:
       greeting: ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ,
     signup_confirm:
@@ -964,22 +953,9 @@ pa:
         title: ਸੋਧਣ ਦੀ ਵਿਹਲ ਨਹੀਂ? ਕੋਈ ਨੋਟ ਜੋੜੋ!
   traces:
     new:
-      description: 'ਵੇਰਵਾ:'
-      tags: 'ਟੈਗ:'
-      visibility: 'ਦਿੱਸਣਯੋਗਤਾ:'
       visibility_help: ਇਹਦਾ ਕੀ ਮਤਲਬ ਹੈ?
       help: ਮਦਦ
     edit:
-      filename: 'ਫ਼ਾਈਲ ਦਾ ਨਾਂ:'
-      download: ਡਾਊਨਲੋਡ
-      uploaded_at: 'ਅੱਪਲੋਡ ਹੋਇਆ:'
-      points: 'ਬਿੰਦੂ:'
-      map: ਨਕਸ਼ਾ
-      edit: ਸੋਧੋ
-      owner: 'ਮਾਲਕ:'
-      description: 'ਵੇਰਵਾ:'
-      tags: 'ਟੈਗ:'
-      visibility: 'ਦਿੱਸਣਯੋਗਤਾ:'
       visibility_help: ਇਹਦਾ ਕੀ ਮਤਲਬ ਹੈ?
     trace_optionals:
       tags: ਟੈਗ
@@ -1035,15 +1011,9 @@ pa:
     show:
       edit: ਵੇਰਵੇ ਸੋਧੋ
       confirm: ਕੀ ਤੁਹਾਨੂੰ ਯਕੀਨ ਹੈ?
-      allow_write_api: ਨਕਸ਼ੇ 'ਚ ਫੇਰ-ਬਦਲ ਕਰੋ
-      allow_write_notes: ਟਿੱਪਣੀਆੰ ਸੋਧੋ।
     index:
       revoke: ਪਰਤਾਉ!
       register_new: ਆਪਣੀ ਅਰਜ਼ੀ ਦਾ ਇੰਦਰਾਜ ਕਰਾਓ
-    form:
-      name: ਨਾਂ
-      required: ਲੋੜੀਂਦਾ
-      support_url: ਮਦਦ URL
   users:
     login:
       title: ਦਾਖ਼ਲਾ
@@ -1068,8 +1038,6 @@ pa:
       new password button: ਪਛਾਣ ਸ਼ਬਦ ਮੁੜ-ਸੈੱਟ ਕਰੋ
     reset_password:
       title: ਪਛਾਣ ਸ਼ਬਦ ਮੁੜ-ਸੈੱਟ ਕਰੋ
-      password: 'ਪਛਾਣ-ਸ਼ਬਦ:'
-      confirm password: 'ਪਛਾਣ ਸ਼ਬਦ ਤਸਦੀਕ ਕਰੋ:'
       reset: ਪਛਾਣ ਸ਼ਬਦ ਮੁੜ-ਸੈੱਟ ਕਰੋ
       flash changed: ਤੁਹਾਡਾ ਪਛਾਣ ਸ਼ਬਦ ਬਦਲਿਆ ਜਾ ਚੁੱਕਾ ਹੈ।
     new:
@@ -1246,7 +1214,7 @@ pa:
       next: ਅਗਲਾ »
       previous: « ਪਿਛਲਾ
   notes:
-    mine:
+    index:
       creator: ਸਿਰਜਣਹਾਰ
       description: ਵੇਰਵਾ
       created_at: ਕਦੋਂ ਸਿਰਜਿਆ ਗਿਆ

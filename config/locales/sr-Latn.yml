@@ -69,6 +69,9 @@ sr-Latn:
       way_node: Čvor putanje
       way_tag: Oznaka puta
     attributes:
+      client_application:
+        callback_url: Povratna adresa
+        support_url: Adresa podrške
       diary_comment:
         body: Tekst
       diary_entry:
@@ -89,6 +92,9 @@ sr-Latn:
         longitude: Geografska dužina
         public: Javno
         description: Opis
+        gpx_file: 'Otpremi GPX datoteku:'
+        visibility: 'Vidljivost:'
+        tagstring: 'Oznake:'
       message:
         sender: Pošiljalac
         title: Naslov
@@ -101,6 +107,9 @@ sr-Latn:
         description: Opis
         languages: Jezici
         pass_crypt: Lozinka
+    help:
+      trace:
+        tagstring: razdvojeno zapetama
   printable_name:
     with_version: '%{id}, ver. %{version}'
   editor:
@@ -333,27 +342,21 @@ sr-Latn:
           marketplace: Pijaca
           nightclub: Noćni klub
           nursing_home: Starački dom
-          office: Poslovnica
           parking: Parking
           pharmacy: Apoteka
           place_of_worship: Mesto bogosluženja
           police: Policija
           post_box: Poštansko sanduče
           post_office: Pošta
-          preschool: Predškolska ustanova
           prison: Zatvor
           pub: Pab
           public_building: Ustanova
           recycling: Mesto za reciklažu
           restaurant: Restoran
-          retirement_home: Starački dom
-          sauna: Sauna
           school: Škola
           shelter: Sklonište
-          shop: Prodavnica
           shower: Tuš
           social_centre: Socijalni centar
-          social_club: Društveni klub
           studio: Studio
           swimming_pool: Bazen
           taxi: Taksi
@@ -366,7 +369,6 @@ sr-Latn:
           veterinary: Veterinarska hirurgija
           village_hall: Seoski dom
           waste_basket: Korpa za otpatke
-          youth_centre: Dom omladine
         boundary:
           administrative: Administrativna granica
           census: Popisna granica
@@ -379,6 +381,25 @@ sr-Latn:
           viaduct: Vijadukt
           "yes": Most
         building:
+          apartments: Stambeni blok
+          chapel: Kapela
+          church: Crkva
+          commercial: Poslovna zgrada
+          dormitory: Studentski dom
+          farm: Zgrada farme
+          garage: Garaža
+          hospital: Bolnica
+          hotel: Hotel
+          house: Kuća
+          industrial: Industrijska zgrada
+          office: Poslovnica
+          public: Javna zgrada
+          residential: Stambena zgrada
+          retail: Maloprodajna radnja
+          school: Škola
+          terrace: Terasa
+          train_station: Železnička stanica
+          university: Univerzitetska zgrada
           "yes": Zgrada
         highway:
           bridleway: Konjička staza
@@ -412,7 +433,6 @@ sr-Latn:
           tertiary: Lokalni put
           tertiary_link: Lokalni put
           track: Makadam
-          trail: Staza
           trunk: Magistralni put
           trunk_link: Magistralni put
           unclassified: Nekategorisani put
@@ -425,7 +445,6 @@ sr-Latn:
           church: Crkva
           fort: Utvrđivanje
           house: Kuća
-          icon: Ikona
           manor: Plemićko imanje
           memorial: Spomenik
           mine: Rudnik
@@ -463,7 +482,6 @@ sr-Latn:
           reservoir_watershed: Akumulaciona vododelnica
           residential: Stambeno područje
           retail: Maloprodaja
-          road: Putno područje
           village_green: Seosko polje
           vineyard: Vinograd
         leisure:
@@ -562,7 +580,6 @@ sr-Latn:
           subdivision: Podgrupa
           suburb: Predgrađe
           town: Varošica
-          unincorporated_area: Slobodna zemlja
           village: Selo
         railway:
           abandoned: Napuštena železnica
@@ -585,6 +602,7 @@ sr-Latn:
           switch: Skretnica
           tram: Tramvaj
           tram_stop: Tramvajsko stajalište
+          yard: Ranžirna stanica
         shop:
           alcohol: Trgovina pićem
           antiques: Antikvarnica
@@ -615,12 +633,10 @@ sr-Latn:
           estate_agent: Agent za nekretnine
           farm: Poljoprivredna apoteka
           fashion: Modna prodavnica
-          fish: Ribarnica
           florist: Cvećara
           food: Bakalnica
           funeral_directors: Pogrebno preduzeće
           furniture: Nameštaj
-          gallery: Galerija
           garden_centre: Vrtni centar
           general: Prodavnica mešovite robe
           gift: Suvenirnica
@@ -633,7 +649,6 @@ sr-Latn:
           kiosk: Kiosk
           laundry: Perionica rublja
           mall: Tržni centar
-          market: Market
           mobile_phone: Prodavnica mobilnih telefona
           motorcycle: Prodavnica motocikala
           music: Muzička prodavnica
@@ -690,10 +705,6 @@ sr-Latn:
           wadi: Suvo korito reke
           waterfall: Vodopad
           weir: Brana
-    description:
-      title:
-        osm_nominatim: Lokacija iz <a href="http://nominatim.openstreetmap.org/">Nominatima</a>
-        geonames: Lokacija iz <a href="http://www.geonames.org/">Geografskih imena</a>
       types:
         cities: Gradovi
         towns: Varošice
@@ -741,7 +752,7 @@ sr-Latn:
     make_a_donation:
       title: Podržite Openstritmap novčanim prilogom
       text: Priložite novac
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} prokomentarisa vaš unos u dnevniku'
       hi: Pozdrav, %{to_user},
@@ -902,7 +913,7 @@ sr-Latn:
             Openstritmapa, CC BY-SA&rdquo;. Ako koristite samo podatke mapa,
             navedite &ldquo;Kartografski podaci &copy; Doprinosioci Openstritmapa,
             CC BY-SA&rdquo;.
-        credit_2_html: |2-
+        credit_2_1_html: |2-
             Gde je moguće, Openstritmap bi trebalo da vodi do adrese <a
             href="http://www.openstreetmap.org/">http://www.openstreetmap.org/</a>
             i CC BY-SA do <a
@@ -1115,11 +1126,6 @@ sr-Latn:
       identifiable: Može se prepoznati (prikazano u spisku tragova kao javne, poređane
         i datirane tačke)
     new:
-      upload_gpx: 'Otpremi GPX datoteku:'
-      description: 'Opis:'
-      tags: 'Oznake:'
-      tags_help: razdvojeno zapetama
-      visibility: 'Vidljivost:'
       visibility_help: šta ovo znači?
       visibility_help_url: http://wiki.openstreetmap.org/wiki/Visibility_of_GPS_traces?uselang=sr-ec
       help: Pomoć
@@ -1134,18 +1140,6 @@ sr-Latn:
     edit:
       title: Uređivanje traga %{name}
       heading: Uređivanje traga %{name}
-      filename: 'Naziv datoteke:'
-      download: preuzmi
-      uploaded_at: 'Otpremljeno:'
-      points: 'Tačaka:'
-      start_coord: 'Početna koordinata:'
-      map: mapa
-      edit: uredi
-      owner: 'Vlasnik:'
-      description: 'Opis:'
-      tags: 'Oznake:'
-      tags_help: razdvojeno zapetama
-      visibility: 'Vidljivost:'
       visibility_help: šta ovo znači?
       visibility_help_url: http://wiki.openstreetmap.org/wiki/Visibility_of_GPS_traces?uselang=sr-ec
     trace_optionals:
@@ -1245,12 +1239,6 @@ sr-Latn:
       delete: Obriši klijent
       confirm: Jeste li sigurni?
       requests: 'Zahtevanje sledećih dozvola od korisnika:'
-      allow_read_prefs: čita korisničke postavke.
-      allow_write_prefs: menja korisničke postavke.
-      allow_write_diary: pravi unose u dnevniku, komentariše i dodaje prijatelje.
-      allow_write_api: menja mapu.
-      allow_read_gpx: čita privatne GPS tragove.
-      allow_write_gpx: otprema GPS tragove.
     index:
       title: OAuth detalji
       my_tokens: Odobreni programi
@@ -1264,18 +1252,7 @@ sr-Latn:
       registered_apps: 'Sledeći programi su upisani:'
       register_new: Upiši program
     form:
-      name: Ime
-      required: Neophodno
-      url: Adresa glavnog programa
-      callback_url: Povratna adresa
-      support_url: Adresa podrške
       requests: 'Zahtevaj sledeće dozvole od korisnika:'
-      allow_read_prefs: čitanje korisničkih postavki.
-      allow_write_prefs: menjanje korisničkih postavki.
-      allow_write_diary: pravljenje unosa u dnevniku, komentarisanje i dodavanje prijatelja.
-      allow_write_api: menjanje mape.
-      allow_read_gpx: čitanje privatnih GPS tragova.
-      allow_write_gpx: otpremanje GPS tragova.
     not_found:
       sorry: Žao nam je, %{type} nije pronađen.
     create:
@@ -1324,8 +1301,6 @@ sr-Latn:
     reset_password:
       title: Poništi lozinku
       heading: Poništavanje lozinke za %{user}
-      password: 'Lozinka:'
-      confirm password: 'Potvrdite lozinku:'
       reset: Poništi lozinku
       flash changed: Vaša lozinka je promenjena.
       flash token bad: Takav novčić nije pronađen. Proverite adresu.
@@ -1335,8 +1310,6 @@ sr-Latn:
         nalog.
       contact_webmaster_html: Kontaktirajte <a href="%{webmaster}">administratora</a>
         za otvaranje novog naloga. Obradićemo zahtev što je pre moguće.
-      license_agreement: Nakon što potvrdite nalog, moraćete da prihvatite <a href="http://www.osmfoundation.org/wiki/License/Contributor_Terms">uslove
-        uređivanja</a>.
       email address: 'E-adresa:'
       confirm email address: 'Potvrdite imejl adresu:'
       not_displayed_publicly_html: Ne prikazuje se javno (pogledajte <a href="http://wiki.openstreetmap.org/wiki/Privacy_Policy"
@@ -1501,8 +1474,8 @@ sr-Latn:
       already active: Ovaj nalog je već potvrđen.
       unknown token: Izgleda da taj novčić ne postoji.
     confirm_resend:
-      success: Poslali smo novu potvrdnu poruku na %{email}. Nakon što potvrdite svoj
-        nalog, moći ćete da počnete s mapiranjem.<br /><br />Ako koristite sistem
+      success_html: Poslali smo novu potvrdnu poruku na %{email}. Nakon što potvrdite
+        svoj nalog, moći ćete da počnete s mapiranjem.<br /><br />Ako koristite sistem
         protiv nepoželjnih poruka, dodajte %{sender} u spisak dozvoljenih adresa jer
         nismo u mogućnosti da odgovorimo na bilo koji zahtev za potvrdu.
       failure: Korisnik %{name} nije pronađen.
@@ -1614,9 +1587,9 @@ sr-Latn:
       revoke: Opozovi
       flash: Ova blokada je opozvana.
     helper:
-      time_future: Završava se u %{time}.
+      time_future_html: Završava se u %{time}.
       until_login: Aktivno sve dok se korisnik ne prijavi.
-      time_past: Završeno pre %{time}.
+      time_past_html: Završeno pre %{time}.
       block_duration:
         hours:
           one: 1 sat

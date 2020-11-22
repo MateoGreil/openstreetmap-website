@@ -30,7 +30,7 @@ br:
         create: Kas
       client_application:
         create: Marilhañ
-        update: Aozañ
+        update: Hizivaat
       redaction:
         create: Krouiñ ar skridaozadenn
         update: Enrollañ ar skridaozadenn
@@ -82,6 +82,9 @@ br:
       way_node: Skoulm an hent
       way_tag: Tikedenn an hent
     attributes:
+      client_application:
+        callback_url: URL gervel en-dro
+        support_url: URL skoazell
       diary_comment:
         body: Korf
       diary_entry:
@@ -102,11 +105,16 @@ br:
         longitude: Hedred
         public: Foran
         description: Deskrivadur
+        gpx_file: 'Kas ar restr GPX :'
+        visibility: 'Gwelusted :'
+        tagstring: 'Tikedennoù :'
       message:
         sender: Kaser
         title: Titl
         body: Korf
         recipient: Degemerer
+      report:
+        details: Roit muioc'h a vunudoù diwar-benn ar gudenn (dre ret)
       user:
         email: Postel
         active: Oberiant
@@ -114,6 +122,9 @@ br:
         description: Deskrivadur
         languages: Yezhoù
         pass_crypt: Ger-tremen
+    help:
+      trace:
+        tagstring: bevennet gant virgulennoù
   datetime:
     distance_in_words_ago:
       about_x_hours:
@@ -123,66 +134,66 @@ br:
         one: war-dro miz 'zo 'zo
         other: war-dro %{count} miz 'zo
       about_x_years:
-        one: bloaz 'zo bennak
-        two: war-dro %{count} 'vloaz zo
-        few: war-dro %{count} bloaz 'zo
-        many: war-dro %{count} bloaz 'zo
-        other: war-dro %{count} bloaz 'zo
+        one: bloaz zo bennak
+        two: war-dro %{count} vloaz zo
+        few: war-dro %{count} bloaz zo
+        many: war-dro %{count} bloaz zo
+        other: war-dro %{count} bloaz zo
       almost_x_years:
-        one: bloaz 'zo bennak
-        two: war-dro %{count} vloaz 'zo
-        few: war-dro %{count} bloaz 'zo
-        many: war-dro %{count} bloaz 'zo
-        other: war-dro %{count} bloaz 'zo
-      half_a_minute: un hanter vunutenn 'zo
+        one: bloaz zo bennak
+        two: war-dro %{count} vloaz zo
+        few: war-dro %{count} bloaz zo
+        many: war-dro %{count} bloaz zo
+        other: war-dro %{count} bloaz zo
+      half_a_minute: un hanter vunutenn zo
       less_than_x_seconds:
-        one: nebeutoc'h eget un eilenn 'zo
-        two: nebeutoc'h eget %{count} eilenn 'zo
-        few: nebeutoc'h eget %{count} eilenn 'zo
-        many: nebeutoc'h eget %{count} eilenn 'zo
-        other: nebeutoc'h eget %{count} eilenn 'zo
+        one: nebeutoc'h eget un eilenn zo
+        two: nebeutoc'h eget %{count} eilenn zo
+        few: nebeutoc'h eget %{count} eilenn zo
+        many: nebeutoc'h eget %{count} eilenn zo
+        other: nebeutoc'h eget %{count} eilenn zo
       less_than_x_minutes:
-        one: nebeutoc'h eget un nunutenn 'zo
-        two: nebeutoc'h eget %{count} vunutenn 'zo
-        few: nebeutoc'h eget %{count} munutenn 'zo
-        many: nebeutoc'h eget %{count} munutenn 'zo
-        other: nebeutoc'h eget %{count} munutenn 'zo
+        one: nebeutoc'h eget un nunutenn zo
+        two: nebeutoc'h eget %{count} vunutenn zo
+        few: nebeutoc'h eget %{count} munutenn zo
+        many: nebeutoc'h eget %{count} munutenn zo
+        other: nebeutoc'h eget %{count} munutenn zo
       over_x_years:
-        one: ouzhpenn bloaz 'zo
-        two: ouzhpenn %{count} vloaz 'zo
-        few: ouzhpenn %{count} bloaz 'zo
-        many: ouzhpenn %{count} bloaz 'zo
-        other: ouzhpenn %{count} bloaz 'zo
+        one: ouzhpenn bloaz zo
+        two: ouzhpenn %{count} vloaz zo
+        few: ouzhpenn %{count} bloaz zo
+        many: ouzhpenn %{count} bloaz zo
+        other: ouzhpenn %{count} bloaz zo
       x_seconds:
-        one: un eilenn 'zo
-        two: '%{count} eilenn ''zo'
-        few: '%{count} eilenn ''zo'
-        many: '%{count} eilenn ''zo'
-        other: '%{count} eilenn ''zo'
+        one: un eilenn zo
+        two: '%{count} eilenn zo'
+        few: '%{count} eilenn zo'
+        many: '%{count} eilenn zo'
+        other: '%{count} eilenn zo'
       x_minutes:
-        one: ur vunutenn 'zo
-        two: '%{count} vunutenn ''zo'
-        few: '%{count} munutenn ''zo'
-        many: '%{count} munutenn ''zo'
-        other: '%{count} munutenn ''zo'
+        one: ur vunutenn zo
+        two: '%{count} vunutenn zo'
+        few: '%{count} munutenn zo'
+        many: '%{count} munutenn zo'
+        other: '%{count} munutenn zo'
       x_days:
-        one: un deiz 'zo
-        two: '%{count} zeiz ''zo'
-        few: '%{count} deiz ''zo'
-        many: '%{count} deiz ''zo'
-        other: '%{count} deiz ''zo'
+        one: un deiz zo
+        two: '%{count} zeiz zo'
+        few: '%{count} deiz zo'
+        many: '%{count} deiz zo'
+        other: '%{count} deiz zo'
       x_months:
-        one: miz 'zo
-        two: '%{count} viz ''zo'
-        few: '%{count} miz ''zo'
-        many: '%{count} miz ''zo'
-        other: '%{count} miz ''zo'
+        one: miz zo
+        two: '%{count} viz zo'
+        few: '%{count} miz zo'
+        many: '%{count} miz zo'
+        other: '%{count} miz zo'
       x_years:
-        one: bloaz 'zo
+        one: bloaz zo
         two: '%{count} vloaz ''zo'
-        few: '%{count} bloaz ''zo'
-        many: '%{count} bloaz ''zo'
-        other: '%{count} bloaz ''zo'
+        few: '%{count} bloaz zo'
+        many: '%{count} bloaz zo'
+        other: '%{count} bloaz zo'
   editor:
     default: Dre ziouer (%{name} er mare-mañ)
     potlatch:
@@ -209,7 +220,7 @@ br:
   api:
     notes:
       comment:
-        opened_at_html: Bet krouet %{when} 'zo
+        opened_at_html: Bet krouet %{when} zo
         opened_at_by_html: Bet krouet %{when} gant %{user}
         commented_at_html: Hizivaet %{when}
         commented_at_by_html: Hizivaet %{when} gant %{user}
@@ -257,8 +268,8 @@ br:
       relation: Darempredoù (%{count})
       relation_paginated: Darempredoù (%{x}-%{y} diwar %{count})
       comment: Evezhiadennoù(%{count})
-      hidden_commented_by: Evezhiadenn kuzhet gant %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by: Evezhiadenn gant %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      hidden_commented_by_html: Evezhiadenn kuzhet gant %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_html: Evezhiadenn gant %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       changesetxml: Hollad cheñchamantoù XML
       osmchangexml: Cheñchoùosm XML
       feed:
@@ -339,19 +350,22 @@ br:
       open_title: 'Neket bet diskoulmet an notenn #%{note_name}'
       closed_title: 'Notenn diskoulmet #%{note_name}'
       hidden_title: 'Notenn kuzhet #%{note_name}'
-      opened_by: Krouet gant %{user} <abbr title='%{exact_time}'>%{when} 'zo</abbr>
-      opened_by_anonymous: Krouet gant un den dianav <abbr title='%{exact_time}'>%{when}
+      opened_by_html: Krouet gant %{user} <abbr title='%{exact_time}'>%{when} 'zo</abbr>
+      opened_by_anonymous_html: Krouet gant un den dianav <abbr title='%{exact_time}'>%{when}
         'zo</abbr>
-      commented_by: Evezhiadenn gant %{user} <abbr title='%{exact_time}'>%{when} 'zo</abbr>
-      commented_by_anonymous: Evezhiadenn gant un den dizanv <abbr title='%{exact_time}'>%{when}
+      commented_by_html: Evezhiadenn gant %{user} <abbr title='%{exact_time}'>%{when}
         'zo</abbr>
-      closed_by: Diskoulmet gant %{user} <abbr title='%{exact_time}'>%{when} 'zo</abbr>
-      closed_by_anonymous: Diskoulmet gant un den dizanv <abbr title='%{exact_time}'>%{when}
+      commented_by_anonymous_html: Evezhiadenn gant un den dizanv <abbr title='%{exact_time}'>%{when}
         'zo</abbr>
-      reopened_by: Adenaouet gant %{user} <abbr title='%{exact_time}'>%{when} 'zo</abbr>
-      reopened_by_anonymous: Adenaouet gant un den dizanv <abbr title='%{exact_time}'>%{when}
+      closed_by_html: Diskoulmet gant %{user} <abbr title='%{exact_time}'>%{when}
         'zo</abbr>
-      hidden_by: Kuzhet gant %{user} <abbr title='%{exact_time}'>%{when} 'zo</abbr>
+      closed_by_anonymous_html: Diskoulmet gant un den dizanv <abbr title='%{exact_time}'>%{when}
+        'zo</abbr>
+      reopened_by_html: Adenaouet gant %{user} <abbr title='%{exact_time}'>%{when}
+        'zo</abbr>
+      reopened_by_anonymous_html: Adenaouet gant un den dizanv <abbr title='%{exact_time}'>%{when}
+        'zo</abbr>
+      hidden_by_html: Kuzhet gant %{user} <abbr title='%{exact_time}'>%{when} 'zo</abbr>
       report: Signaliñ an notenn-mañ
     query:
       title: Arc'hweladurioù enklask
@@ -579,7 +593,6 @@ br:
           motorcycle_parking: Parklec'h evit marc'hoù-tan
           nightclub: Klub-noz
           nursing_home: Ti-medisin ar retredidi
-          office: Burev
           parking: Parklec'h
           parking_entrance: Mont tre ur parklec'h
           parking_space: Plas parkañ
@@ -588,20 +601,15 @@ br:
           police: Polis
           post_box: Boest-lizheroù
           post_office: Ti-post
-          preschool: Rakskol
           prison: Toull-bac'h
           pub: Tavarn
           public_building: Savadur foran
           recycling: Lec'h adaozañ
           restaurant: Preti
-          retirement_home: Ti-retredidi
-          sauna: Saona
           school: Skol
           shelter: Gwasked
-          shop: Stal
           shower: Strinkadenn
           social_centre: Kreizenn sokial
-          social_club: Klub sokial
           social_facility: Servij sokial
           studio: Studio
           swimming_pool: Poull-neuial
@@ -617,7 +625,6 @@ br:
           waste_basket: Pod-lastez
           waste_disposal: Skarzhañ al lastez
           water_point: Lec'h dour
-          youth_centre: Kreizenn evit ar re yaouank
         boundary:
           administrative: Bevennoù melestradurel
           census: ↓Bevenn stadeg
@@ -631,6 +638,25 @@ br:
           viaduct: Karrbont
           "yes": Pont
         building:
+          apartments: Kendi
+          chapel: Chapel
+          church: Iliz
+          commercial: Savadur kenwerzhel
+          dormitory: Kouskva
+          farm: Ti feurm
+          garage: Karrdi
+          hospital: Savadur ospital
+          hotel: Leti
+          house: Ti
+          industrial: Savadur greantel
+          office: Savadur burevioù
+          public: Savadur foran
+          residential: Savadur annez
+          retail: Stal
+          school: Savadur skol
+          terrace: Savenn
+          train_station: Porzh-houarn
+          university: Savadur Skol-Veur
           "yes": Savadur
         craft:
           brewery: Breserezh
@@ -692,7 +718,6 @@ br:
           tertiary_link: Hent trede renk
           track: Roudenn
           traffic_signals: Gouleier
-          trail: Roudenn
           trunk: Hent-tizh
           trunk_link: Hent-tizh
           turning_loop: Kammdro dizehan
@@ -711,7 +736,6 @@ br:
           fort: Kreñv
           heritage: Lec'hienn ar glad
           house: Ti
-          icon: Arlun
           manor: Maner
           memorial: Kounlec'h
           mine: Mengleuz
@@ -756,7 +780,6 @@ br:
           reservoir_watershed: ↓Mirlec'h dour
           residential: Takad annez
           retail: Kenwerzhioù
-          road: Takad hent
           village_green: Takad natur foran
           vineyard: Gwinieg
           "yes": Implij an douaroù
@@ -913,7 +936,6 @@ br:
           subdivision: Isrann
           suburb: Karter
           town: Kêr
-          unincorporated_area: Takad diaoz
           village: Kêriadenn
           "yes": Lec'h
         railway:
@@ -939,6 +961,7 @@ br:
           switch: Hentoù-houarn heñchañ
           tram: Tramgarr
           tram_stop: Arsav tramgarr
+          yard: Gar-dibab
         shop:
           alcohol: Gwezher alkool
           antiques: Hendraezoù
@@ -972,12 +995,10 @@ br:
           estate_agent: Kourater tiez
           farm: Stal evit al labour-douar
           fashion: Stal gizioù
-          fish: Stal besked
           florist: Bokedour
           food: Stal voued
           funeral_directors: Kañvlidoù
           furniture: Stal arrebeuri
-          gallery: Skeudennaoueg
           garden_centre: Stal liorzhañ
           general: Stal hollek
           gift: Stal profoù
@@ -994,7 +1015,6 @@ br:
           laundry: Kanndi
           lottery: Lotiri
           mall: Palier kenwerzh
-          market: Marc'had
           massage: Kemenadenn
           mobile_phone: Stal pellgomzerioù hezoug
           motorcycle: Stal marc'hoù-tan
@@ -1006,7 +1026,6 @@ br:
           paint: Palier livadurioù
           pawnbroker: Prester ouzh gouestl
           pet: Stal loened
-          pharmacy: Apotikerezh
           photo: Stal luc'hskeudenniñ
           seafood: Boued-mor
           second_hand: Stal traoù eildorn
@@ -1077,11 +1096,6 @@ br:
         level8: Bevenn kêr
         level9: Bevenn ar gêriadenn
         level10: Bevenn ar bannlev
-    description:
-      title:
-        osm_nominatim: Lec'hiadur adalek <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames: Lec'hiadur diwar <a href="http://www.geonames.org/">GeoNames</a>
       types:
         cities: Keodedoù
         towns: Kêrioù
@@ -1159,8 +1173,6 @@ br:
     new:
       title_html: Danevell %{link}
       missing_params: N'haller ket krouiñ un danevell nevez
-      details: Roit muioc'h a vunudoù diwar-benn ar gudenn (dre ret)
-      select: 'Dibab un abeg evit ho tanevell :'
       disclaimer:
         intro: 'A-raok kas ho tanevell da habaskaerien al lec''hienn, bezit sur e:'
         not_just_mistake: Sur oc'h n'eo ket ar gudenn-se ur fazi hepken.
@@ -1243,7 +1255,7 @@ br:
       text: Ober un donezon
     learn_more: Gouzout hiroc'h
     more: Muioc'h
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} en deus lezet un addispleg war hoc''h enmoned
         en deizlevr'
@@ -1498,13 +1510,13 @@ br:
           Ma kemmit pe ma implijit hor c'hartennoù pe hor roadennoù e labourioù all,ne
           c'hallit ket skignañ ar re-se dindan un aotre-implijout all. En \n<a href=\"https://opendatacommons.org/licenses/odbl/1.0/\">legal\ncode</a>
           e kavot munudoù ho kwirioù hag ho teverioù."
-        intro_3_html: "Emañ tammoù hor c'hartennoù hag hon teulioù dindan an aotre-implijout
+        intro_3_1_html: "Emañ tammoù hor c'hartennoù hag hon teulioù dindan an aotre-implijout
           <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">Creative \nCommons
           Attribution-ShareAlike 2.0</a> license (CC-BY-SA)."
         credit_title_html: Penaos reiñ kred da OpenStreetMap
         credit_1_html: Goulenn a reomp diganeoc'h lakaat en ho kred ar meneg &ldquo;&copy;
           kenlabourerien OpenStreetMap&rdquo;.
-        credit_2_html: |-
+        credit_2_1_html: |-
           Pa vez posupl e tle OpenStreetMap bezañ ur gourliamm war-du <a
             href="http://www.openstreetmap.org/">http://www.openstreetmap.org/</a>
             ha CC BY-SA war-du <a
@@ -1514,7 +1526,7 @@ br:
             www.openstreetmap.org (marteze en ur astenn
             &lsquo;OpenStreetMap&rsquo; ar chomlec'h klok) ha da
             www.creativecommons.org.
-        credit_3_html: |-
+        credit_4_html: |-
           Evit ur gartenn elektronek a c'haller merdeiñ enni e tlefe ar c'hred dont war wel e korn ar gartenn.
           Da skouer :
         attribution_example:
@@ -1896,11 +1908,6 @@ br:
         urzhiet gant an deiziadoù)
     new:
       upload_trace: Kas roudoù GPS
-      upload_gpx: 'Kas ar restr GPX :'
-      description: 'Deskrivadur :'
-      tags: 'Tikedennoù :'
-      tags_help: bevennet gant virgulennoù
-      visibility: 'Gwelusted :'
       visibility_help: Petra a dalvez ?
       visibility_help_url: https://wiki.openstreetmap.org/wiki/FR:Visibilit%C3%A9_des_traces_GPS
       help: Skoazell
@@ -1918,18 +1925,6 @@ br:
     edit:
       title: Oc'h aozañ ar roud %{name}
       heading: Oc'h aozañ ar roud %{name}
-      filename: 'Anv ar restr :'
-      download: pellgargañ
-      uploaded_at: 'Kaset da :'
-      points: 'Poentoù :'
-      start_coord: 'Daveennoù orin :'
-      map: kartenn
-      edit: aozañ
-      owner: 'Perc''henn :'
-      description: 'Deskrivadur :'
-      tags: 'Tikedennoù :'
-      tags_help: bevennet gant virgulennoù
-      visibility: 'Gwelusted :'
       visibility_help: Petra a dalvez an dra-mañ ?
     update:
       updated: Roudennoù hizivaet
@@ -2061,13 +2056,6 @@ br:
       delete: Diverkañ an arval
       confirm: Ha sur oc'h ?
       requests: 'O c''houlenn an aotreoù-mañ digant an implijer :'
-      allow_read_prefs: lenn e benndibaboù implijer.
-      allow_write_prefs: kemmañ o fenndibaboù implijerien.
-      allow_write_diary: krouit enmonedoù en deizlevr, addisplegoù ha kavit mignoned.
-      allow_write_api: kemmañ ar gartenn.
-      allow_read_gpx: lenn o roudoù GPS prevez.
-      allow_write_gpx: kas roudoù GPS.
-      allow_write_notes: kemmañ notennoù
     index:
       title: Ma munudoù OAuth
       my_tokens: Ma arloadoù aotreet
@@ -2083,19 +2071,7 @@ br:
       registered_apps: 'Marilhet eo an arloadoù arvalien-mañ ganeoc''h :'
       register_new: Marilhañ hoc'h arload
     form:
-      name: Anv
-      required: Rekis
-      url: URL pennañ an arload
-      callback_url: URL gervel en-dro
-      support_url: URL skoazell
       requests: 'Goulenn an aotreoù-mañ digant an implijer :'
-      allow_read_prefs: lenn e benndibaboù implijer.
-      allow_write_prefs: kemmañ e benndibaboù implijer.
-      allow_write_diary: krouit enmonedoù en deizlevr, addisplegoù, ha kavit mignoned.
-      allow_write_api: kemmañ ar gartenn.
-      allow_read_gpx: lenn o roudoù GPS prevez.
-      allow_write_gpx: kas roudoù GPS.
-      allow_write_notes: kemmañ notennoù
     not_found:
       sorry: Ho tigarez, an %{type}-mañ n'eo ket bet kavet.
     create:
@@ -2117,7 +2093,7 @@ br:
       register now: En em enskrivañ bremañ
       with username: 'Ur gont OpenStreetMap hoc''h eus dija ? Digorit un dalc''h en
         ur verkañ hoc''h anv implijer hag ho ker-tremen :'
-      with external: 'Peotramant, implijit un tredeour evit kevreañ :'
+      with external: 'Mod all, implijit un tredeour evit kevreañ :'
       new to osm: Nevez war OpenStreetMap ?
       to make changes: Evit kemmañ roadennoù OpenStreetMap e rankit kaout ur gont.
       create account minute: Krouiñ ur gont. Ne bad nemet ur vunutenn.
@@ -2176,8 +2152,6 @@ br:
     reset_password:
       title: Adderaouekaat ar ger-tremen
       heading: Adderaouekaat ar ger-tremen evit %{user}
-      password: 'Ger-tremen :'
-      confirm password: 'Kadarnaat ar ger-tremen :'
       reset: Adderaouekaat ar ger-tremen
       flash changed: Cheñchet eo bet ho ker-tremen.
       flash token bad: N'eo ket bet kavet ar jedouer-se, gwiriañ an URL marteze ?
@@ -2192,8 +2166,6 @@ br:
         html: |-
           <p>E kemm gant kartennoù all, OpenStreetMap zo krouet penn-da-benn gant tud eveldoc'h. Forzh piv a c'hall dresañ, hizivaat, pellgargañ hag implijout anezhi.</p>
           <p>Lakait hoc'h anv evit kregiñ da genlabourat. Kas a raimp ur postel deoc'h da gadarnaat ho kont.</p>
-      license_agreement: Pa gadarnaot ho kont e tleot asantiñ da <a href="https://www.osmfoundation.org/wiki/License/Contributor_Terms">ziferadennoù
-        ar c'henlabourer</a>.
       email address: 'Chomlec''h postel :'
       confirm email address: 'Kadarnaat ar chomlec''h postel :'
       not_displayed_publicly_html: N'eo ket diskwelet ho chomlec'h d'an holl (gwelet
@@ -2206,7 +2178,7 @@ br:
       external auth: 'Dilesadur trede :'
       password: 'Ger-tremen :'
       confirm password: 'Kadarnaat ar ger-tremen :'
-      use external auth: 'Peotramant, implijit un tredeour evit kevreañ :'
+      use external auth: 'Mod all, implijit un tredeour evit kevreañ :'
       auth no password: Gant dilesadur un tredeour n'eus ket ezhomm d'ober gant ur
         ger-tremen, met evit binvioù ouzhpenn pe evit ur servijer e c'haller bepred
         goulenn unan diganeco'h.
@@ -2395,7 +2367,7 @@ br:
       reconfirm_html: M'ho peus ezhomm da adkas ar postel kadarnaat, <a href="%{reconfirm}">klikit
         amañ</a>.
     confirm_resend:
-      success: Kaset hon eus ur postel kadarnaat da %{email}. Kerkent ha kadarnaet
+      success_html: Kaset hon eus ur postel kadarnaat da %{email}. Kerkent ha kadarnaet
         ho kont e c'hallot kregiñ da gartennañ.<br /><br />Ma implijit ur reizhiad
         enep-strob hag a gas goulennoù kadarnaat, lakait %{sender} en ho listenn wenn,
         mar plij, rak n'omp ket evit respont d'ar posteloù-se.
@@ -2531,11 +2503,11 @@ br:
       revoke: Disteuler !
       flash: Torret eo bet ar stankadur-mañ.
     helper:
-      time_future: Echuiñ a ray a-benn %{time}.
+      time_future_html: Echuiñ a ray a-benn %{time}.
       until_login: Oberiant betek ma kevre an implijer.
-      time_future_and_until_login: Echuiñ a ra a-benn %{time} hag ur wech kevreet
+      time_future_and_until_login_html: Echuiñ a ra a-benn %{time} hag ur wech kevreet
         an implijer.
-      time_past: Echuet da %{time}.
+      time_past_html: Echuet da %{time}.
       block_duration:
         hours:
           one: 1 eurvezh
@@ -2600,7 +2572,7 @@ br:
       next: ↓War-lerc'h »
       previous: ↓« Kent
   notes:
-    mine:
+    index:
       title: Notennoù kaset pe addispleget gant %{user}
       heading: notennoù %{user}
       subheading_html: Notennoù kaset pe addispleget gant %{user}

@@ -5,6 +5,7 @@
 # Author: David1010
 # Author: MIKHEIL
 # Author: Temuri rajavi
+# Author: Გიო ოქრო
 ---
 ka:
   time:
@@ -83,6 +84,7 @@ ka:
         longitude: გრძედი
         public: საჯარო
         description: აღწერა
+        visibility: 'ხილვადობა:'
       message:
         sender: გამგზავნი
         title: თემა
@@ -95,6 +97,9 @@ ka:
         description: აღწერა
         languages: ენები
         pass_crypt: პაროლი
+    help:
+      trace:
+        tagstring: მძიმის შემდეგ
   editor:
     default: უპირობოდ (ამჟამად %{name})
     potlatch:
@@ -146,9 +151,10 @@ ka:
       relation: ურთიერთობები (%{count})
       relation_paginated: ურთიერთობები (%{x}-%{y} %{count}-დან)
       comment: კომენტარები (%{count})
-      hidden_commented_by: დამალული კომენტარები %{user}-სგან <abbr title='%{exact_time}'>%{when}
+      hidden_commented_by_html: დამალული კომენტარები %{user}-სგან <abbr title='%{exact_time}'>%{when}
         წინ</abbr>
-      commented_by: კომენატარი %{user}-სგან <abbr title='%{exact_time}'>%{when} წინ</abbr>
+      commented_by_html: კომენატარი %{user}-სგან <abbr title='%{exact_time}'>%{when}
+        წინ</abbr>
       changesetxml: ცვლილებების პაკეტის XML
       osmchangexml: osmChange XML
       feed:
@@ -360,7 +366,6 @@ ka:
           monastery: მონასტერი
           nightclub: ღამის კლუბი
           nursing_home: მოხუცებულთა თავშესაფარი
-          office: ოფისი
           parking: ავტოსადგომი
           parking_entrance: სადგომის შესასვლელი
           pharmacy: აფთიაქი
@@ -368,20 +373,15 @@ ka:
           police: პოლიცია
           post_box: საფოსტო ყუთი
           post_office: ფოსტა
-          preschool: სკოლამდელი დაწესებულება
           prison: ციხე
           pub: პაბი
           public_building: საჯარო შენობა
           recycling: ნაგავსაყრელი
           restaurant: რესტორანი
-          retirement_home: მოხუცებულთა თავშესაფარი
-          sauna: საუნა
           school: სკოლა
           shelter: თავშესაფარი
-          shop: მაღაზია
           shower: შხაპი
           social_centre: საზოგადოებრივი ცენტრი
-          social_club: საზოგადოებრივი თავშეყრის ადგილი
           studio: სტუდია
           swimming_pool: საცურაო აუზი
           taxi: ტაქსი
@@ -393,7 +393,6 @@ ka:
           vending_machine: სავაჭრო ავტომატი
           veterinary: ვეტერინარული კლინიკა
           waste_basket: ნაგვის ურნა
-          youth_centre: ახალგაზრდული ცენტრი
         boundary:
           administrative: ადმინისტრაციული საზღვარი
           census: აღწერის რაიონის საზღვარი
@@ -406,6 +405,25 @@ ka:
           viaduct: ვიადუკი
           "yes": ხიდი
         building:
+          apartments: მრავალბინიანი კორპუსი
+          chapel: სამლოცველო
+          church: ეკლესია
+          commercial: კომერციული შენობა
+          dormitory: საერთო საცხოვრებელი
+          farm: ფერმა
+          garage: ავტოფარეხი
+          hospital: საავადმყოფოს შენობა
+          hotel: სასტუმრო
+          house: სახლი
+          industrial: სამრეწველო ნაგებობა
+          office: საოფისე ნაგებობა
+          public: საზოგადოებრივი შენობა
+          residential: საცხოვრებელი სახლი
+          retail: გასაყიდი ნაგებობა
+          school: სკოლა
+          terrace: ტერასა
+          train_station: რკინიგზის სადგური
+          university: უნივერსიტეტი
           "yes": შენობა
         craft:
           brewery: ლუდსახარში
@@ -454,7 +472,6 @@ ka:
           tertiary_link: მესამე კლასის გზა
           track: ბილიკი
           traffic_signals: შუქნიშანი
-          trail: ბილიკი
           unclassified: ადგილობრივი გზა
           "yes": გზა
         historic:
@@ -470,7 +487,6 @@ ka:
           fort: ფორტი
           heritage: კულტურული მემკვიდრეობის ობიექტი
           house: სახლი
-          icon: ხატულა
           manor: მამული
           memorial: მემორიალი
           mine: მაღარო
@@ -615,7 +631,6 @@ ka:
           subdivision: ქვედანაყოფი
           suburb: გარეუბანი
           town: დაბა
-          unincorporated_area: თავისუფალი ზონა
           village: სოფელი
         railway:
           abandoned: მიტოვებული რკინიგზა
@@ -636,6 +651,7 @@ ka:
           switch: სარკინიგზო ისარი
           tram: ტრამვაი
           tram_stop: ტრამვაის გაჩერება
+          yard: რკინიგზის დეპო
         shop:
           antiques: ანტიკვარიატი
           art: სამხატვრო სალონი
@@ -660,12 +676,10 @@ ka:
           electronics: ელექტროტექნიკის მაღაზია
           estate_agent: უძრავი ქონების აგენტი
           fashion: მოდური ტანსაცმლის მაღაზია
-          fish: თევზების მაღაზია
           florist: ყვავილების მაღაზია
           food: საკვების მაღაზია
           funeral_directors: დამკრძალავი ბიურო
           furniture: ავეჯი
-          gallery: გალერეა
           gift: საჩუქრების მაღაზია
           greengrocer: ხილ-ბოსტნეულის მაღაზია
           hairdresser: საპარიკმახერო
@@ -673,7 +687,6 @@ ka:
           kiosk: ჯიხური
           laundry: სამრეცხაო
           mall: მოლი
-          market: ბაზარი
           mobile_phone: მობილური ტელეფონების მაღაზია
           motorcycle: მოტოციკლეტების მაღაზია
           music: მუსიკალური მაღაზია
@@ -681,7 +694,6 @@ ka:
           optician: ოპტიკა
           organic: ორგანული საკვების მაღაზია
           pet: ზოომაღაზია
-          pharmacy: აფთიაქი
           photo: ფოტომაღაზია
           second_hand: მეორადების მაღაზია
           shoes: ფეხსაცმლის მაღაზია
@@ -730,11 +742,6 @@ ka:
         level8: ქალაქის საზღვარი
         level9: სოფლის საზღვარი
         level10: გარეუბნის საზღვარი
-    description:
-      title:
-        osm_nominatim: მდებარეობა <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>-დან
-        geonames: მდებარეობა <a href="http://www.geonames.org/">GeoNames</a>-დან
       types:
         cities: ქალაქები
         towns: დაბები
@@ -767,7 +774,8 @@ ka:
     foundation_title: ფონდი OpenStreetMap
     make_a_donation:
       text: პროექტის დახმარება
-  notifier:
+    more: მეტი
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap]-ის მომხმარებელმა %{user} თქვენს დღიურში დატოვა კომენტარი'
       hi: გამარჯობა %{to_user},
@@ -968,23 +976,9 @@ ka:
       url: URL
   traces:
     new:
-      description: 'აღწერა:'
-      tags_help: მძიმის შემდეგ
-      visibility: 'ხილვადობა:'
       visibility_help: ეს რას ნიშნავს?
       help: დახმარება
     edit:
-      filename: 'ფაილის სახელი:'
-      download: გადმოწერა
-      uploaded_at: 'ატვირთულია:'
-      points: 'წერტილი:'
-      start_coord: 'საწყისი კოორდინატი:'
-      map: რუკა
-      edit: რედაქტირება
-      owner: 'მფლობელი:'
-      description: 'აღწერა:'
-      tags_help: მძიმის შემდეგ
-      visibility: 'ხილვადობა:'
       visibility_help: ეს რას ნიშნავს?
     show:
       pending: დამუშავება
@@ -1021,14 +1015,9 @@ ka:
     show:
       edit: დეტალების რედაქტირება
       confirm: დარწმუნებული ხართ?
-      allow_write_api: რუკის შეცვლა.
     index:
       application: აპლიკაციის სახელი
       revoke: განბლოკვა!
-    form:
-      name: სახელი
-      required: სავალდებულოა
-      allow_write_api: რუკის რედაქტირება.
   users:
     login:
       title: შესვლა
@@ -1053,8 +1042,6 @@ ka:
       heading: დაგავიწყდათ პაროლი?
       email address: 'ელ. ფოსტის მისამართი:'
     reset_password:
-      password: 'პაროლი:'
-      confirm password: 'პაროლის დადასტურება:'
       flash changed: თქვენი პაროლი შეიცვალა.
     new:
       title: რეგისტრაცია
@@ -1171,9 +1158,9 @@ ka:
       revoke: განბლოკვა!
       flash: ეს ბლოკირება მოიხსნა.
     helper:
-      time_future: მთავრდება %{time}–ში.
+      time_future_html: მთავრდება %{time}–ში.
       until_login: აქტიურია მანამდე, სანამ მომხმარებელი არ შევა სისტემაში.
-      time_past: დასრულდა %{time} წინ.
+      time_past_html: დასრულდა %{time} წინ.
       block_duration:
         hours:
           one: 1 საათი
@@ -1213,7 +1200,7 @@ ka:
       next: შემდეგი »
       previous: « წინა
   notes:
-    mine:
+    index:
       creator: შემქმნელი
       description: აღწერა
   javascripts:

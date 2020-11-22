@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Require rails
-gem "rails", "6.0.3.1"
+gem "rails", "6.0.3.4"
 
 # Require things which have moved to gems in ruby 1.9
 gem "bigdecimal", "~> 1.1.0", :platforms => :ruby_19
@@ -41,20 +41,21 @@ gem "image_optim_rails"
 
 # Load rails plugins
 gem "actionpack-page_caching", ">= 1.2.0"
-gem "active_record_union"
 gem "activerecord-import"
-gem "bootstrap", "~> 4.3.1"
+gem "active_record_union"
+gem "bootstrap", "~> 4.5.0"
+gem "bootstrap_form", "~> 4.0"
 gem "cancancan"
 gem "composite_primary_keys", "~> 12.0.0"
 gem "config"
 gem "delayed_job_active_record"
 gem "dynamic_form"
-gem "http_accept_language", "~> 2.0.0"
+gem "http_accept_language", "~> 2.1.1"
 gem "i18n-js", ">= 3.0.0"
 gem "oauth-plugin", ">= 0.5.1"
 gem "openstreetmap-deadlock_retry", ">= 1.3.0", :require => "deadlock_retry"
 gem "rack-cors"
-gem "rails-i18n", "~> 4.0.0"
+gem "rails-i18n", "~> 6.0.0"
 gem "rinku", ">= 2.0.6", :require => "rails_rinku"
 gem "strong_migrations"
 gem "validates_email_format_of", ">= 1.5.1"
@@ -138,12 +139,13 @@ end
 
 # Gems needed for running tests
 group :test do
+  gem "brakeman"
   gem "capybara", ">= 2.15"
   gem "coveralls", :require => false
   gem "erb_lint", :require => false
   gem "factory_bot_rails"
   gem "minitest", "~> 5.1"
-  gem "puma", "~> 3.11"
+  gem "puma", "~> 5.0"
   gem "rails-controller-testing"
   gem "rubocop"
   gem "rubocop-minitest"

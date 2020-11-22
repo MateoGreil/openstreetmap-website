@@ -2256,6 +2256,13 @@ CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON public.active_storage_b
 
 
 --
+-- Name: index_changeset_comments_on_changeset_id_and_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_changeset_comments_on_changeset_id_and_created_at ON public.changeset_comments USING btree (changeset_id, created_at);
+
+
+--
 -- Name: index_changeset_comments_on_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3138,6 +3145,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190702193519'),
 ('20190716173946'),
 ('20191120140058'),
+('20201006213836'),
+('20201006220807'),
 ('21'),
 ('22'),
 ('23'),

@@ -93,11 +93,14 @@ fit:
         longitude: Pituuspiiri
         public: Julkinen
         description: Kuvvaus
+        gpx_file: 'Ylöslattaa GPX-fiili:'
       message:
         sender: Lähättäjä
         title: Aihe
         body: Viesti
         recipient: Vastaanottaja
+      report:
+        details: Kuvaile prupleemaa (pakollinen)
       user:
         email: E-posti
         active: Aktivoitu
@@ -214,8 +217,8 @@ fit:
       relation: Relaatiot (%{count})
       relation_paginated: Relaatiot (%{x}-%{y} / %{count})
       comment: Kommentit (%{count})
-      hidden_commented_by: Käyttäjän %{user} piilotettu kommentti <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by: Kommentti käyttäjältä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      hidden_commented_by_html: Käyttäjän %{user} piilotettu kommentti <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_html: Kommentti käyttäjältä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       changesetxml: Muutoskokoelman XML
       osmchangexml: osmChange XML
       feed:
@@ -294,15 +297,15 @@ fit:
       open_title: 'Ratkaisematon karttailmotus #%{note_name}'
       closed_title: 'Ratkaistu karttailmotus #%{note_name}'
       hidden_title: 'Piilotettu karttailmotus #%{note_name}'
-      opened_by: Lähättänyt käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      opened_by_anonymous: Luonut tuntematon käyttäjä <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by: Kommentti käyttäjältä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_anonymous: Kommentti tuntemattomalta käyttäjältä <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by: Ratkaissut käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_anonymous: Ratkaissut tuntematon käyttäjä <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by: Aukassu uuesti käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by_anonymous: Aukassu uuesti tuntematon käyttäjä <abbr title='%{exact_time}'>%{when}</abbr>
-      hidden_by: Piilottanut käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      opened_by_html: Lähättänyt käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      opened_by_anonymous_html: Luonut tuntematon käyttäjä <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_html: Kommentti käyttäjältä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_anonymous_html: Kommentti tuntemattomalta käyttäjältä <abbr title='%{exact_time}'>%{when}</abbr>
+      closed_by_html: Ratkaissut käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      closed_by_anonymous_html: Ratkaissut tuntematon käyttäjä <abbr title='%{exact_time}'>%{when}</abbr>
+      reopened_by_html: Aukassu uuesti käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      reopened_by_anonymous_html: Aukassu uuesti tuntematon käyttäjä <abbr title='%{exact_time}'>%{when}</abbr>
+      hidden_by_html: Piilottanut käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       report: Ilmianna karttailmotus
     query:
       title: Ominaisuuskysely
@@ -489,8 +492,6 @@ fit:
           post_box: Kirjeloota
           prison: Fankila
           restaurant: Restayrangi
-          retirement_home: Vanhuuskoti
-          sauna: Sauna
           school: Skoulu
           toilets: Tualetit
           university: Yniversiteetti
@@ -507,11 +508,6 @@ fit:
         tourism:
           museum: Myseymmi
           zoo: Elläintarha
-    description:
-      title:
-        osm_nominatim: Sijainti <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatimista</a>
-        geonames: Sijainti palvelusta <a href="http://www.geonames.org/">GeoNames</a>
       types:
         cities: Kaupunkit
         towns: Kylät
@@ -586,8 +582,6 @@ fit:
     new:
       title_html: Ilmianna %{link}
       missing_params: Ilmotuksen luominen epäonnistui
-      details: Kuvaile prupleemaa (pakollinen)
-      select: 'Valitte ilmiannon syy:'
       categories:
         diary_entry:
           other_label: Muu
@@ -627,7 +621,7 @@ fit:
     community: Föreeninki
     learn_more: Lue lissää
     more: Lissää
-  notifier:
+  user_mailer:
     diary_comment_notification:
       hi: Hei %{to_user},
     message_notification:
@@ -811,20 +805,20 @@ fit:
           Jos karttoja tai tietoja muutethaan tai kehitethään, niitä saa levithää
           vain samalla lisensilä.\n<a href=\"https://opendatacommons.org/licenses/odbl/1.0/\">Lakitekstissä</a>
           mainitaan levittäjän oikeudet ja velvollisuudet."
-        intro_3_html: |-
+        intro_3_1_html: |-
           Kartta-aineisto ja dokumentaatio oon lisensoitu <a href="https://creativecommons.org/licenses/by-sa/2.0/deed.fi">Creative
           Commons Nimeä-Jaa samoin 2.0</a> -lisensillä (CC-BY-SA).
         credit_title_html: OpenStreetMapin mainitseminen
         credit_1_html: OpenStreetMapin sisältöä levitettäessä oon mainittava teksti
           &quot;&copy; OpenStreetMapin tekijät&quot; tai sen engelskankielinen vastine
           &quot;&copy; OpenStreetMap contributors&quot;.
-        credit_2_html: "Levittäjän tulee tehdä selväksi, ette aineisto oon saatavilla
+        credit_2_1_html: "Levittäjän tulee tehdä selväksi, ette aineisto oon saatavilla
           Open Database -lisensillä\nja kartta-aineisto CC-BY-SA-lisensillä. Tämä
           voidaan tehdä sijoittamalla sivule länkki\n<a href=\"https://www.openstreetmap.org/copyright\">tälle
           tekijänoikeussivule</a>. \nJos länkkien käyttö ei ole mahollista (esimerkiksi
           paperille printattu aineisto),\nsuosittelemme ohjaamaan lukijat atresseihin
           www.openstreetmap.org, opendatacommons.org ja tarvittaessa myös creativecommons.org."
-        credit_3_html: 'Sivustolle upotetun interaktiivisen karttaikkunan tulee sisältää
+        credit_4_html: 'Sivustolle upotetun interaktiivisen karttaikkunan tulee sisältää
           tekijän nimi kartan alaosassa:'
         attribution_example:
           alt: Esimerkki siitä, miten nimetä OpenStreetMap nettisivula
@@ -911,15 +905,9 @@ fit:
   traces:
     new:
       upload_trace: Ylöslattaa GPS-jälki
-      upload_gpx: 'Ylöslattaa GPX-fiili:'
-      description: 'Kuvvaus:'
       help: Apua
     edit:
       title: Mookathaan jälkeä %{name}
-      filename: 'Fiilinimi:'
-      uploaded_at: 'Ylösladattu:'
-      edit: mookkaa
-      description: 'Kuvvaus:'
     show:
       filename: 'Fiilinimi:'
       download: lattaa
@@ -951,10 +939,6 @@ fit:
       edit: Mookkaa yksityiskohtia
       delete: Ota poies kynti
       confirm: Oletko varma?
-    form:
-      name: Nimi
-      allow_read_prefs: käyttäjäinställninkien näkeminen.
-      allow_write_prefs: käyttäjäinställninkien muuttaminen.
   users:
     login:
       title: Lokkaussivu
@@ -984,9 +968,6 @@ fit:
       heading: Unohditko salasanasi?
       email address: 'E-postiatressi:'
       new password button: Lähätä salasanan palautusohjeet
-    reset_password:
-      password: 'Salasana:'
-      confirm password: 'Vahvista salasana:'
     new:
       title: Luo konttu
       about:
@@ -1062,7 +1043,7 @@ fit:
       next: Seuraava »
       previous: « Eelinen
   notes:
-    mine:
+    index:
       description: Kuvvaus
   javascripts:
     close: Sulje

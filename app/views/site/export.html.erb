@@ -1,11 +1,8 @@
 <% set_title(t(".title")) %>
 
-<h2>
-  <a class="geolink" href="<%= root_path %>"><span class="icon close"></span></a>
-  <%= t ".title" %>
-</h2>
+<%= render "sidebar_header", :title => t(".title") %>
 
-<%= form_tag({ :controller => "export", :action => "finish" }, { :class => "export_form" }) do %>
+<%= form_tag({ :controller => "export", :action => "finish" }, { :class => "export_form standard-form" }) do %>
   <%= hidden_field_tag "format", "osm" %>
 
   <div class='export_area_inputs'>
@@ -24,7 +21,7 @@
   <p><%= t ".export_details_html" %></p>
 
   <div id="export_osm_too_large">
-    <p class="warning">
+    <p class="alert alert-warning">
       <%= t ".too_large.body" %>
     </p>
   </div>

@@ -84,9 +84,7 @@ class OldWay < ApplicationRecord
     @tags ||= Hash[old_tags.collect { |t| [t.k, t.v] }]
   end
 
-  attr_writer :nds
-
-  attr_writer :tags
+  attr_writer :nds, :tags
 
   def to_xml_node(changeset_cache = {}, user_display_name_cache = {})
     el = XML::Node.new "way"
@@ -126,12 +124,10 @@ class OldWay < ApplicationRecord
       curnode = Node.find(n)
       id = n
       reuse = curnode.visible
-      if oldnode.lat != curnode.lat || oldnode.lon != curnode.lon || oldnode.tags != curnode.tags
-        # node has changed: if it's in other ways, give it a new id
-        if curnode.ways - [way_id]
-          id = -1
-          reuse = false
-        end
+      # if node has changed and it's in other ways, give it a new id
+      if !curnode.ways.all?(way_id) && (oldnode.lat != curnode.lat || oldnode.lon != curnode.lon || oldnode.tags != curnode.tags)
+        id = -1
+        reuse = false
       end
       points << [oldnode.lon, oldnode.lat, id, curnode.version, oldnode.tags_as_hash, reuse]
     end

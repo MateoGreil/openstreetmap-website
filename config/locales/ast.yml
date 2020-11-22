@@ -25,7 +25,7 @@ ast:
         create: Unviar
       client_application:
         create: Rexistrar
-        update: Editar
+        update: Anovar
       redaction:
         create: Crear redaición
         update: Guardar redaición
@@ -78,6 +78,9 @@ ast:
       way_node: Nuedu de vía
       way_tag: Etiqueta de vía
     attributes:
+      client_application:
+        callback_url: URL de retornu
+        support_url: URL d'encontu
       diary_comment:
         body: Cuerpu
       diary_entry:
@@ -98,11 +101,16 @@ ast:
         longitude: Llonxitú
         public: Públicu
         description: Descripción
+        gpx_file: 'Xubir un ficheru GPX:'
+        visibility: 'Visibilidá:'
+        tagstring: 'Etiquetes:'
       message:
         sender: Remitente
         title: Asuntu
         body: Cuerpu
         recipient: Destinatariu
+      report:
+        details: Por favor, apurre más detalles sobro'l problema (obligatoriu).
       user:
         email: Corréu
         active: Activu
@@ -110,6 +118,9 @@ ast:
         description: Descripción
         languages: Llingües
         pass_crypt: Contraseña
+    help:
+      trace:
+        tagstring: llendáu con comes
   datetime:
     distance_in_words_ago:
       about_x_hours:
@@ -223,8 +234,8 @@ ast:
       relation: Rellaciones (%{count})
       relation_paginated: Rellaciones (%{x}-%{y} de %{count})
       comment: Comentarios (%{count})
-      hidden_commented_by: Comentariu tapecíu de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by: Comentariu de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      hidden_commented_by_html: Comentariu tapecíu de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_html: Comentariu de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       changesetxml: Conxuntu de cambeos XML
       osmchangexml: osmChange XML
       feed:
@@ -304,15 +315,15 @@ ast:
       open_title: 'Nota ensin resolver #%{note_name}'
       closed_title: 'Nota resuelta #%{note_name}'
       hidden_title: 'Nota tapecida #%{note_name}'
-      opened_by: Creáu por %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      opened_by_anonymous: Creáu por un anónimu <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by: Comentariu de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_anonymous: Comentariu d'un anónimu <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by: Resuelto por %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_anonymous: Resuelto por un anónimu <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by: Reactivao por %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by_anonymous: Reactivao por un anónimu <abbr title='%{exact_time}'>%{when}</abbr>
-      hidden_by: Tapecío por %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      opened_by_html: Creáu por %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      opened_by_anonymous_html: Creáu por un anónimu <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_html: Comentariu de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_anonymous_html: Comentariu d'un anónimu <abbr title='%{exact_time}'>%{when}</abbr>
+      closed_by_html: Resuelto por %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      closed_by_anonymous_html: Resuelto por un anónimu <abbr title='%{exact_time}'>%{when}</abbr>
+      reopened_by_html: Reactivao por %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      reopened_by_anonymous_html: Reactivao por un anónimu <abbr title='%{exact_time}'>%{when}</abbr>
+      hidden_by_html: Tapecío por %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       report: Informar d'esta nota
     query:
       title: Consultar entidaes
@@ -539,7 +550,6 @@ ast:
           motorcycle_parking: Aparcamientu pa motocicletes
           nightclub: Sala de fiestes
           nursing_home: Residencia asistida
-          office: Oficina
           parking: Aparcamientu
           parking_entrance: Entrada d'aparcamientu
           parking_space: Plaza d'aparcamientu
@@ -548,20 +558,15 @@ ast:
           police: Policía
           post_box: Buzón
           post_office: Oficina de correos
-          preschool: Preescolar
           prison: Cárcel
           pub: Pub
           public_building: Edificiu públicu
           recycling: Puntu llimpiu
           restaurant: Restorán
-          retirement_home: Residencia de xubilaos
-          sauna: Sauna
           school: Escuela
           shelter: Abellugu
-          shop: Tienda
           shower: Ducha
           social_centre: Centru social
-          social_club: Club social
           social_facility: Instalación social
           studio: Estudiu
           swimming_pool: Piscina
@@ -577,7 +582,6 @@ ast:
           waste_basket: Papelera
           waste_disposal: Contenedor pa basories
           water_point: Toma d'agua
-          youth_centre: Centru de mocedá
         boundary:
           administrative: Llende alministrativa
           census: Llende censal
@@ -591,6 +595,25 @@ ast:
           viaduct: Viaductu
           "yes": Ponte
         building:
+          apartments: Bloque d'apartamentos
+          chapel: Capiella
+          church: Ilesia
+          commercial: Edificiu comercial
+          dormitory: Dormitoriu
+          farm: Casería
+          garage: Garaxe
+          hospital: Hospital
+          hotel: Hotel
+          house: Casa
+          industrial: Edificiu industrial
+          office: Edificiu d'oficines
+          public: Edificiu públicu
+          residential: Edificiu residencial
+          retail: Edificiu comercial
+          school: Edificiu escolar
+          terrace: Terraza
+          train_station: Estación de tren
+          university: Edificiu universitariu
           "yes": Edificiu
         craft:
           brewery: Fábrica de cerveza
@@ -652,7 +675,6 @@ ast:
           tertiary_link: Estrada terciaria
           track: Pista
           traffic_signals: Señales de tráficu
-          trail: Senderu
           trunk: Estrada nacional
           trunk_link: Estrada nacional
           turning_loop: Carril pa dar vuelta
@@ -671,7 +693,6 @@ ast:
           fort: Fuerte
           heritage: Patrimoniu de la Humanidá
           house: Casa
-          icon: Iconu
           manor: Casona
           memorial: Memorial
           mine: Mina
@@ -716,7 +737,6 @@ ast:
           reservoir_watershed: Cuenca del banzáu
           residential: Área residencial
           retail: Área comercial
-          road: Zona d'estrada
           village_green: Prau municipal
           vineyard: Viñéu
           "yes": Usu del terrén
@@ -873,7 +893,6 @@ ast:
           subdivision: Subdivisión
           suburb: Suburbiu
           town: Villa
-          unincorporated_area: Área ensin incorporar
           village: Pueblu
           "yes": Llugar
         railway:
@@ -899,6 +918,7 @@ ast:
           switch: Aguya de ferrocarril
           tram: Tranvía
           tram_stop: Parada de tranvía
+          yard: Apartaderu de clasificación
         shop:
           alcohol: Venta de llicores
           antiques: Antigüedaes
@@ -932,12 +952,10 @@ ast:
           estate_agent: Axencia inmobiliaria
           farm: Tienda de casería
           fashion: Tienda de modes
-          fish: Pescadería
           florist: Floristería
           food: Comestibles
           funeral_directors: Servicios funerarios
           furniture: Muebles
-          gallery: Galería d'arte
           garden_centre: Xardinería
           general: Mercancía xeneral
           gift: Tienda de regalos
@@ -954,7 +972,6 @@ ast:
           laundry: Llavandería
           lottery: Llotería
           mall: Centru comercial
-          market: Mercáu
           massage: Masaxe
           mobile_phone: Tienda de telefonía móvil
           motorcycle: Venta de motos
@@ -966,7 +983,6 @@ ast:
           paint: Tienda de pinturea
           pawnbroker: Casa d'empeños
           pet: Tienda d'animales
-          pharmacy: Farmacia
           photo: Fotografía
           seafood: Mariscos
           second_hand: Tienda d'oxetos usaos
@@ -1037,11 +1053,6 @@ ast:
         level8: Frontera de ciudá
         level9: Frontera de villa
         level10: Frontera de barriu
-    description:
-      title:
-        osm_nominatim: Llugar según <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames: Llugar según <a href="http://www.geonames.org/">GeoNames</a>
       types:
         cities: Ciudaes
         towns: Villes
@@ -1119,8 +1130,6 @@ ast:
     new:
       title_html: Informe %{link}
       missing_params: Nun puede crease un informe nuevu
-      details: Por favor, apurre más detalles sobro'l problema (obligatoriu).
-      select: 'Escueye un motivu pal to informe:'
       disclaimer:
         intro: 'Antes d''unviar l''informe a los moderadores del sitiu, asegúrate
           de que:'
@@ -1203,7 +1212,7 @@ ast:
       text: Fai un donativu
     learn_more: Más información
     more: Más
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} comentó n''una entrada del diariu'
       hi: Bones %{to_user},
@@ -1457,15 +1466,17 @@ ast:
           collaboradores. Si camudes o crees conteníu sobre los nuesos datos, namái
           podrás distribuir el resultáu baxo la mesma llicencia. El <a href="https://opendatacommons.org/licenses/odbl/1.0/">códigu
           llegal</a> completu t'esplica los tos drechos y obligaciones.
-        intro_3_html: La cartografía de los mosaicos del mapa y la nuesa documentación,
-          tán llicenciaos baxo la llicencia <a href="https://creativecommons.org/licenses/by-sa/2.0/">Creative
-          Commons Reconocimientu-CompartirIgual 2.0</a> (CC BY-SA).
+        intro_3_1_html: La nuesa documentación úfrese baxo la llicencia <a href="https://creativecommons.org/licenses/by-sa/2.0/">Creative
+          Commons Reconocimientu-CompartirIgual 2.0</a> (CC BY-SA 2.0).
         credit_title_html: Cómo dar reconocimientu a OpenStreetMap
         credit_1_html: Riquimos qu'uses el créditu &ldquo;&copy; Collaboradores d'OpenStreetMap&rdquo;.
-        credit_2_html: |-
+        credit_2_1_html: |-
           Tamién tienes de dexar claro que los datos tan disponibles baxo la llicencia Open Database License (ODbL), y si utilices los nuesos mosaicos de mapa, que la cartografía tien llicencia CC BY-SA. Puedes facelo enllazando a <a href="https://www.openstreetmap.org/copyright">esta páxina de drechos d'autor</a>.
           Alternativamente, y como requisitu si distribues OSM en forma de datos, pues nomar y enllazar direutamente a les llicencies. En medios onde los enllaces nun seyan posibles (por exemplu, obres imprentaes), suxerímoste dirixir a los llectores a openstreetmap.org (espandiendo 'OpenStreetMap' a esta dirección completa, seique), a opendatacommons.org y, si ye'l casu, a creativecommons.org.
-        credit_3_html: |-
+        credit_3_1_html: |-
+          Los mosaicos del mapa del &ldquo;estilu estándar&rdquo; de www.openstreetmap.org son una Obra Producida de la Fundación OpenStreetMap usando datos d'OpenStreetMap baxo llicencia Open Database License. Si tas usando estos mosaicos, usa la siguiente atribución:
+          &ldquo;Mapa base y datos d'OpenStreetMap y de la Fundación OpenStreetMap&rdquo;.
+        credit_4_html: |-
           Nun mapa electrónicu navegable, los créditos tendríen d'apaecer na esquina del mapa.
           Por casu:
         attribution_example:
@@ -1852,11 +1863,6 @@ ast:
         puntos axeitaos con marques d'hora)
     new:
       upload_trace: Xubir traza GPS
-      upload_gpx: 'Xubir un ficheru GPX:'
-      description: 'Descripción:'
-      tags: 'Etiquetes:'
-      tags_help: llendáu con comes
-      visibility: 'Visibilidá:'
       visibility_help: ¿qué ye esto?
       visibility_help_url: https://wiki.openstreetmap.org/wiki/Visibility_of_GPS_traces
       help: Ayuda
@@ -1877,18 +1883,6 @@ ast:
     edit:
       title: Editando la traza %{name}
       heading: Editando la traza %{name}
-      filename: 'Nome del ficheru:'
-      download: descargar
-      uploaded_at: 'Xubida:'
-      points: 'Puntos:'
-      start_coord: 'Coordenada d''aniciu:'
-      map: mapa
-      edit: editar
-      owner: 'Propietariu:'
-      description: 'Descripción:'
-      tags: 'Etiquetes:'
-      tags_help: llendáu con comes
-      visibility: 'Visibilidá:'
       visibility_help: ¿qué ye esto?
     update:
       updated: Xubióse la traza
@@ -2023,13 +2017,6 @@ ast:
       delete: Desaniciar cliente
       confirm: ¿Tas seguru?
       requests: 'Pidir los permisos darréu al usuariu:'
-      allow_read_prefs: lleer les preferencies d'usuariu.
-      allow_write_prefs: camudar les preferencies d'usuariu.
-      allow_write_diary: crear entraes del diariu, comentarios y facer amigos.
-      allow_write_api: camudar el mapa.
-      allow_read_gpx: lleer les sos traces GPS privaes.
-      allow_write_gpx: xubir traces GPS.
-      allow_write_notes: camudar notes.
     index:
       title: Los mios detalles d'OAuth
       my_tokens: Les mios aplicaciones autorizaes
@@ -2045,19 +2032,7 @@ ast:
       registered_apps: 'Tienes rexistraes les aplicaciones cliente darréu:'
       register_new: Rexistra la to aplicación
     form:
-      name: Nome
-      required: Requeríu
-      url: URL principal de l'aplicación
-      callback_url: URL de retornu
-      support_url: URL d'encontu
       requests: 'Pidir los permisos darréu al usuariu:'
-      allow_read_prefs: lleer les preferencies d'usuariu.
-      allow_write_prefs: camudar les preferencies d'usuariu.
-      allow_write_diary: crear entraes del diariu, comentarios y facer amigos.
-      allow_write_api: camudar el mapa.
-      allow_read_gpx: lleer les sos traces GPS privaes.
-      allow_write_gpx: xubir traces GPS.
-      allow_write_notes: camudar notes.
     not_found:
       sorry: Lo sentimos, esi %{type} nun se pudo alcontrar.
     create:
@@ -2137,8 +2112,6 @@ ast:
     reset_password:
       title: Reestablecer contraseña
       heading: Reestablecer la contraseña de %{user}
-      password: 'Contraseña:'
-      confirm password: 'Confirma la contraseña:'
       reset: Reaniciar contraseña
       flash changed: Cambióse la contraseña
       flash token bad: Nun s'alcontró esi token, ¿tendríes de comprobar la URL, seique?
@@ -2155,8 +2128,6 @@ ast:
           <p>De mou distintu a otros mapes, OpenStreetMap ta creáu completamente por persones
           como tu, y cualquiera tien llibertá pa igualu, anovalu, descargalu y usalu.</p>
           <p>Date d'alta pa empezar a collaborar. Unviaremoste un corréu pa confirmar la cuenta.</p>
-      license_agreement: Cuando confirmes la to cuenta tendrás d'aceutar los <a href="https://www.osmfoundation.org/wiki/License/Contributor_Terms">términos
-        de collaboración</a>.
       email address: 'Direición de corréu electrónicu:'
       confirm email address: 'Confirmar direición de corréu:'
       not_displayed_publicly_html: La to direición nun s'amuesa en público, ver la
@@ -2359,11 +2330,11 @@ ast:
       reconfirm_html: Si necesites que volvamos a unviate'l corréu de confirmación,
         <a href="%{reconfirm}">calca equí</a>.
     confirm_resend:
-      success: Venimos d'unviar un nuevu corréu de confirmación a %{email} y darréu
-        de confirmar la to cuenta tarás preparáu pa mapear. <br /><br />Si uses un
-        sistema escontra'l corréu puxarra qu'unvia solicitúes de confirmación, asegúrate
-        d'amestar %{sender} na llista blanca de remitentes seguros, porque nós nun
-        podemos responder solicitúes de confirmación.
+      success_html: Venimos d'unviar un nuevu corréu de confirmación a %{email} y
+        darréu de confirmar la to cuenta tarás preparáu pa mapear. <br /><br />Si
+        uses un sistema escontra'l corréu puxarra qu'unvia solicitúes de confirmación,
+        asegúrate d'amestar %{sender} na llista blanca de remitentes seguros, porque
+        nós nun podemos responder solicitúes de confirmación.
       failure: Nun s'alcontró l'usuariu %{name}.
     confirm_email:
       heading: Confirmar el cambiu de direición de corréu electrónicu
@@ -2495,11 +2466,11 @@ ast:
       revoke: ¡Desaniciar!
       flash: Esti bloquéu se desanició.
     helper:
-      time_future: Fina en %{time}.
+      time_future_html: Fina en %{time}.
       until_login: Activu fasta que'l usuariu anicie sesión.
-      time_future_and_until_login: Acaba en %{time} y después de que l'usuariu anicie
-        sesión.
-      time_past: Finó %{time}.
+      time_future_and_until_login_html: Acaba en %{time} y después de que l'usuariu
+        anicie sesión.
+      time_past_html: Finó %{time}.
       block_duration:
         hours:
           one: 1 hora
@@ -2552,7 +2523,7 @@ ast:
       next: Siguiente »
       previous: « Anterior
   notes:
-    mine:
+    index:
       title: Notes unviaes o comentaes por %{user}
       heading: notes de %{user}
       subheading_html: Notes unviaes o comentaes por %{user}
@@ -2606,6 +2577,7 @@ ast:
         cycle_map: Mapa ciclista
         transport_map: Mapa de tresportes
         hot: Humanitariu
+        opnvkarte: ÖPNVKarte
       layers:
         header: Capes del mapa
         notes: Notes de mapa
@@ -2619,6 +2591,7 @@ ast:
         la API</a>
       thunderforest: Mosaicu cortesía de <a href='%{thunderforest_url}' target='_blank'>Andy
         Allan</a>
+      opnvkarte: Mosaicos por cortesía de <a href='%{memomaps_url}' target='_blank'>MeMoMaps</a>
       hotosm: Estilu del mosaicu por <a href='%{hotosm_url}' target='_blank'>Equipu
         Humanitariu d'OpenStreetMap</a> agospiáu por <a href='%{osmfrance_url}' target='_blank'>OpenStreetMap
         Francia</a>

@@ -70,6 +70,9 @@ aln:
       way_node: Nyja Way
       way_tag: Rruga Tag
     attributes:
+      client_application:
+        callback_url: Callback URL
+        support_url: Asistenca URL
       diary_comment:
         body: Organ
       diary_entry:
@@ -90,6 +93,9 @@ aln:
         longitude: Gjatësi
         public: Publik
         description: Përshkrim
+        gpx_file: Ngarko një skedar GPX
+        visibility: Dukshmënia
+        tagstring: Etiketat
       message:
         sender: Dërguesi
         title: Titulli
@@ -102,6 +108,9 @@ aln:
         description: Përshkrimi
         languages: Gjuhët
         pass_crypt: Fjalëkalimi
+    help:
+      trace:
+        tagstring: Presje e kufizume
   browse:
     changeset:
       title: Ndryshim
@@ -284,25 +293,19 @@ aln:
           marketplace: Treg
           nightclub: Night Club
           nursing_home: shtëpi pleqsh
-          office: Zyrë
           parking: Parking
           pharmacy: Barnatore
           place_of_worship: Vendi i Adhurimi
           police: Polici
           post_box: Postbox
           post_office: Zyra Postare
-          preschool: Para-shkollor
           prison: Burg
           pub: Pijetore
           public_building: Publike Ndërtimi
           recycling: Pika riciklimit
           restaurant: Restorant
-          retirement_home: Daljes në pension Home
-          sauna: Saunë
           school: Shkoll
           shelter: Strehim
-          shop: Shitore
-          social_club: klub shoqërore
           studio: Studio
           taxi: Taxi
           telephone: Telefon Publik
@@ -314,10 +317,28 @@ aln:
           veterinary: Kirurgji Veterinare
           village_hall: Fshati Hall
           waste_basket: Mbeturinat Shporta
-          youth_centre: Qendër Rinore
         boundary:
           administrative: Administrative kufitare
         building:
+          apartments: Apartament Blloku
+          chapel: Kishëz
+          church: Kishë
+          commercial: Komercial Ndërtimi
+          dormitory: Konvikt
+          farm: Farm Ndërtimi
+          garage: Garazh
+          hospital: Spitali Ndërtimi
+          hotel: Hotel
+          house: Shpi
+          industrial: ndërtesë industriale
+          office: Zyra për ndërtim
+          public: Publike Ndërtimi
+          residential: godinë banimi
+          retail: Shitje me pakicë për ndërtim
+          school: Shkolla Ndërtimi
+          terrace: Tarracë
+          train_station: Stacion hekurudhor
+          university: Universiteti për ndërtim
           "yes": Ndërtesë
         highway:
           bridleway: Rruge pa osfallt
@@ -347,7 +368,6 @@ aln:
           steps: Hapat
           tertiary: Rruge tericiere
           track: Udhë
-          trail: Shteg
           trunk: rrugën kryesore
           trunk_link: rrugën kryesore
           unclassified: Paklasifikuara Road
@@ -359,7 +379,6 @@ aln:
           castle: Kala
           church: Kisha
           house: Shpi
-          icon: Ikonë
           manor: Pronë e madhe
           memorial: Përkujtim
           mine: Imi
@@ -468,7 +487,6 @@ aln:
           subdivision: Nenndamje
           suburb: Periferi
           town: Veni
-          unincorporated_area: Zone e painkorpuruar
           village: Fshati
         railway:
           abandoned: Braktisur hekurudhave
@@ -490,6 +508,7 @@ aln:
           switch: Hekurudhave Pikët
           tram: Tramvajëve
           tram_stop: Tramvaj Stop
+          yard: depo stacioni hekurudhor
         shop:
           alcohol: kiosk
           art: Shitore e kafshëve
@@ -519,12 +538,10 @@ aln:
           estate_agent: agjent immobile
           farm: fermë dyqan
           fashion: Moda Shop
-          fish: Shitore e Peshqve
           florist: Luleshitës
           food: Shitore Ushqimore
           funeral_directors: drejtor funeral
           furniture: Mobilje
-          gallery: Galeri
           garden_centre: Kopshti Qendra
           general: Përgjithshëm Shitore
           gift: Shitore e Dhuratave
@@ -537,7 +554,6 @@ aln:
           kiosk: kiosk
           laundry: Lavanderi
           mall: Shëtitore
-          market: Treg
           mobile_phone: Shop Mobile Phone
           motorcycle: Shitore e Motorrave
           music: dyqan muzikë
@@ -591,11 +607,6 @@ aln:
           wadi: luginë
           waterfall: Ujëvarë
           weir: Pendë
-    description:
-      title:
-        osm_nominatim: Lokacioni prej <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames: Lokacioni prej <a href="http://www.geonames.org/">GeoNames</a>
       types:
         cities: Qytetet
         towns: Qytetet
@@ -629,7 +640,7 @@ aln:
     make_a_donation:
       title: OpenStreetMap Mbështetje me një donacion monetar
       text: Bëni një donacion
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} ka komentu në shënimin tond të ditarit'
       hi: Tung %{to_user},
@@ -786,7 +797,7 @@ aln:
             kontribuesit, CC BY-SA ". Nëse jeni duke përdorur të dhëna vetëm në hartë,
             ne kerkojme "Organizimi i të dhënave © kontribuesit OpenStreetMap,
             CC BY-SA ".
-        credit_2_html: |-
+        credit_2_1_html: |-
           Ku të jetë e mundur, duhet të jetë OpenStreetMap hyperlinked në <a
             href = "http://www.openstreetmap.org/"> http://www.openstreetmap.org/ </ a>
             dhe CC BY-SA për <a
@@ -960,11 +971,6 @@ aln:
       identifiable: E identifikueshme (shfaqet në listën e të dhanave, pikat i urdhëron
         me orë)
     new:
-      upload_gpx: Ngarko një skedar GPX
-      description: Përshkrimi
-      tags: Etiketat
-      tags_help: Presje e kufizume
-      visibility: Dukshmënia
       visibility_help: çka do me than kjo?
       help: Ndihma
     create:
@@ -977,18 +983,6 @@ aln:
     edit:
       title: Duke ndryshue të dhanen %{name}
       heading: Ndrysho të dhanën %{name}
-      filename: 'Emni i fajllit:'
-      download: shkarko
-      uploaded_at: 'Të ngarkume:'
-      points: 'Pikët:'
-      start_coord: 'Fillo kordinatën:'
-      map: harta
-      edit: ndryshoje
-      owner: 'Pronari:'
-      description: 'Përshkrimi:'
-      tags: 'Etiketat:'
-      tags_help: Presje e kufizume
-      visibility: 'Dukshmënia:'
       visibility_help: Çka do me than kjo?
     trace_optionals:
       tags: Etiketat
@@ -1080,12 +1074,6 @@ aln:
         mënyrë SSL.
       edit: Edit Details
       requests: 'Kërkuar të drejtat e mëposhtme nga përdoruesit:'
-      allow_read_prefs: lexoni preferencat e tyre të përdoruesit.
-      allow_write_prefs: ndryshuar parapëlqimet e tyre të përdoruesit.
-      allow_write_diary: krijojnë të hyra ditar, komentet dhe të bëni miq të rinj.
-      allow_write_api: modifikimin e hartes.
-      allow_read_gpx: lexo privat GPS gjurmë e tyre.
-      allow_write_gpx: GPS upload gjurmë.
     index:
       title: Detajet e mia OAuth
       my_tokens: Aplikimet e mia i Autorizuar
@@ -1100,18 +1088,7 @@ aln:
       registered_apps: 'Ju keni aplikimet e mëposhtme klientit të regjistruar:'
       register_new: Regjistroje aplikacionin tond
     form:
-      name: Emni
-      required: E kërkume
-      url: URL Kryesore Aplikimi
-      callback_url: Callback URL
-      support_url: Asistenca URL
       requests: 'Kërkesë të drejtat e mëposhtme nga përdoruesit:'
-      allow_read_prefs: lexoni preferencat e tyre të përdoruesit.
-      allow_write_prefs: ndryshuar parapëlqimet e tyre të përdoruesit.
-      allow_write_diary: krijojnë të hyra ditar, komentet dhe të bëni miq të rinj.
-      allow_write_api: ndryshoje hartën.
-      allow_read_gpx: lexo privat GPS gjurmë e tyre.
-      allow_write_gpx: GPS upload gjurmë.
     not_found:
       sorry: Na vjen keq, se %{type} nuk mund të gjendet.
     create:
@@ -1149,8 +1126,6 @@ aln:
     reset_password:
       title: Ricakto fjalëkalimin
       heading: Ricakto fjalëkalimin për %{user}
-      password: 'Fjalëkalimi:'
-      confirm password: 'Konfirmo Fjalëkalimin:'
       reset: Ricakto Fjalëkalimin
       flash changed: Fjalëkalimi juaj u ndryshua.
       flash token bad: Sun e gjetëm qat token, kontrolloje URL?
@@ -1160,8 +1135,6 @@ aln:
       contact_webmaster_html: Ju lutna kontaktoni <a href="%{webmaster}">webmaster</a>
         per më caktu ni akount që të ju krijohet - na do të merremi me kërkesën sa
         ma shpejt që tjet e mundshme.
-      license_agreement: Kur e konfirmoni llogarinë tuaj ju duhet ti pranoni <a href="http://www.osmfoundation.org/wiki/License/Contributor_Terms">kushtet
-        e kontributit</a>.
       email address: 'Email Adresa:'
       confirm email address: 'Konfirmo Adresën e Emailit:'
       not_displayed_publicly_html: Nuk u shfaq publikisht (kshyre <a href="http://wiki.openstreetmap.org/wiki/Privacy_Policy"
@@ -1407,9 +1380,9 @@ aln:
       revoke: Tërheq!
       flash: Ky bllok është revokuar.
     helper:
-      time_future: Përfundon në %{time}.
+      time_future_html: Përfundon në %{time}.
       until_login: Aktiv deri kur përdoruesi shkrimet in
-      time_past: Përfundoi %{time} më parë.
+      time_past_html: Përfundoi %{time} më parë.
       block_duration:
         hours:
           one: 1 orë

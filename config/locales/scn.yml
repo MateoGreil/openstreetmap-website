@@ -68,6 +68,9 @@ scn:
       way_node: Gruppu dû caminu
       way_tag: Etichetta dû caminu
     attributes:
+      client_application:
+        callback_url: URL di callback
+        support_url: URL di l'assistenza
       diary_comment:
         body: Corpu
       diary_entry:
@@ -88,6 +91,9 @@ scn:
         longitude: Luncitùdini
         public: Pùbblicu
         description: Discrizzioni
+        gpx_file: 'Carricari lu file GPX:'
+        visibility: 'Visibbilità:'
+        tagstring: 'Etichetti:'
       message:
         sender: Mittenti
         title: Oggettu
@@ -100,6 +106,9 @@ scn:
         description: Discrizzioni
         languages: Lingui
         pass_crypt: Palora d'òrdini
+    help:
+      trace:
+        tagstring: spartuti câ vìrgula
   editor:
     default: Pridifinutu (com'a ora %{name})
     potlatch:
@@ -165,9 +174,9 @@ scn:
       relation: Rilazzioni (%{count})
       relation_paginated: Rilazzioni (%{x}-%{y} di %{count})
       comment: Cummenti (%{count})
-      hidden_commented_by: Cummentu ammucciatu di %{user} <abbr title='%{exact_time}'>%{when}
+      hidden_commented_by_html: Cummentu ammucciatu di %{user} <abbr title='%{exact_time}'>%{when}
         fa</abbr>
-      commented_by: Cummentu di %{user} <abbr title='%{exact_time}'>%{when} fa</abbr>
+      commented_by_html: Cummentu di %{user} <abbr title='%{exact_time}'>%{when} fa</abbr>
       changesetxml: XML dû gruppu di canciamenti
       osmchangexml: XML osmChange
       feed:
@@ -243,19 +252,20 @@ scn:
       open_title: 'Nota nun arrisurvuta #%{note_name}'
       closed_title: 'Nota arrisurvuta #%{note_name}'
       hidden_title: 'Nota ammucciata #%{note_name}'
-      opened_by: Criata di %{user} <abbr title='%{exact_time}'>%{when} fa</abbr>
-      opened_by_anonymous: Criata di n'anònimu <abbr title='%{exact_time}'>%{when}
+      opened_by_html: Criata di %{user} <abbr title='%{exact_time}'>%{when} fa</abbr>
+      opened_by_anonymous_html: Criata di n'anònimu <abbr title='%{exact_time}'>%{when}
         fa</abbr>
-      commented_by: Cummentu di %{user} <abbr title='%{exact_time}'>%{when} fa</abbr>
-      commented_by_anonymous: Cummentu di n'anònimu <abbr title='%{exact_time}'>%{when}
+      commented_by_html: Cummentu di %{user} <abbr title='%{exact_time}'>%{when} fa</abbr>
+      commented_by_anonymous_html: Cummentu di n'anònimu <abbr title='%{exact_time}'>%{when}
         fa</abbr>
-      closed_by: Arrisurvuta di %{user} <abbr title='%{exact_time}'>%{when} fa</abbr>
-      closed_by_anonymous: Arrisurvuta di n'anònimu <abbr title='%{exact_time}'>%{when}
+      closed_by_html: Arrisurvuta di %{user} <abbr title='%{exact_time}'>%{when} fa</abbr>
+      closed_by_anonymous_html: Arrisurvuta di n'anònimu <abbr title='%{exact_time}'>%{when}
         fa</abbr>
-      reopened_by: Arrigraputa di %{user} <abbr title='%{exact_time}'>%{when} fa</abbr>
-      reopened_by_anonymous: Arrigraputa di n'anònimu <abbr title='%{exact_time}'>%{when}
+      reopened_by_html: Arrigraputa di %{user} <abbr title='%{exact_time}'>%{when}
         fa</abbr>
-      hidden_by: Ammucciata di %{user} <abbr title='%{exact_time}'>%{when} fa</abbr>
+      reopened_by_anonymous_html: Arrigraputa di n'anònimu <abbr title='%{exact_time}'>%{when}
+        fa</abbr>
+      hidden_by_html: Ammucciata di %{user} <abbr title='%{exact_time}'>%{when} fa</abbr>
     query:
       title: Arricerca di l'elimenti
       introduction: Clicca supra â cartina pi circari l'elimenti vicini.
@@ -464,7 +474,6 @@ scn:
           motorcycle_parking: Pusteggiu dî muturi
           nightclub: Night Club
           nursing_home: Casa di riposu
-          office: Uffizziu
           parking: Pusteggiu
           parking_entrance: Trasuta dû pusteggiu
           pharmacy: Farmacìa
@@ -472,20 +481,15 @@ scn:
           police: Guardia
           post_box: Buca dâ posta
           post_office: Uffizziu pustali
-          preschool: Asilu
           prison: Càrciri
           pub: Pub
           public_building: Edificiu pùbblicu
           recycling: Ìsula eculòggica
           restaurant: Risturanti
-          retirement_home: Casa di riposu
-          sauna: Sàuna
           school: Scola
           shelter: Pinnata
-          shop: Nigozziu
           shower: Doccia
           social_centre: Centru suciali
-          social_club: Cìrculu
           social_facility: Sirvizzî suciali
           studio: Studiu di riggistrazzioni
           swimming_pool: Piscina
@@ -500,7 +504,6 @@ scn:
           village_hall: Municipiu
           waste_basket: Biduni dâ munnizza
           waste_disposal: Cassuni dâ munnizza
-          youth_centre: Centru giuvinili
         boundary:
           administrative: Cunfini amministrativu
           census: Cunfini cinzuariu
@@ -567,7 +570,6 @@ scn:
           tertiary_link: Strata tirziaria
           track: Trazzera
           traffic_signals: Simàfuru
-          trail: Caminu
           trunk: Supirstrata
           trunk_link: Supirstrata
           unclassified: Strata senza classificazzioni
@@ -585,7 +587,6 @@ scn:
           fort: Forti
           heritage: Situ di ntiressi stòricu-culturali
           house: Casa stòrica
-          icon: Cona
           manor: Casa patrunali
           memorial: Munumentu â mimoria
           mine: Minera
@@ -628,7 +629,6 @@ scn:
           reservoir_watershed: Gebbia
           residential: Zona risidinziali
           retail: Putìa
-          road: Ària dâ strata
           village_green: Parcu urbanu
           vineyard: Vigna
           "yes": Usu dâ terra
@@ -747,7 +747,6 @@ scn:
           subdivision: Suttadivisioni
           suburb: Quarteri
           town: Citatedda
-          unincorporated_area: Ària nun ncurpurata
           village: Paisi
           "yes": Locu
         railway:
@@ -805,12 +804,10 @@ scn:
           estate_agent: Agginzìa mmubbiliari
           farm: Putìa dû viddanu
           fashion: Boutique
-          fish: Piscarìa
           florist: Ciuraru
           food: Putìa dû manciari
           funeral_directors: Casciamurtaru
           furniture: Putìa dî mòbbili
-          gallery: Jallarìa d'arti
           garden_centre: Putìa dû jardinaggiu
           general: Putìa
           gift: Artìculi di rijalu
@@ -823,7 +820,6 @@ scn:
           kiosk: Cioscu
           laundry: Lavannarìa
           mall: Centru cummirciali
-          market: Mircatu
           mobile_phone: Nigozziu di tilifunini
           motorcycle: Nigozziu di muturi
           music: Nigozziu di mùsica
@@ -832,7 +828,6 @@ scn:
           organic: Manciari biulòggicu
           outdoor: Nigozziu d'artìculi pi sport â campìa
           pet: Nigozziu di l'armali
-          pharmacy: Farmacìa
           photo: Artìculi di futugrafìa
           second_hand: Artìculi di secunna manu
           shoes: Scarparu
@@ -896,11 +891,6 @@ scn:
         level8: Cunfini di cumuni
         level9: Cunfini di villaggiu
         level10: Cunfini di quarteri
-    description:
-      title:
-        osm_nominatim: Lucalizzazzioni di <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames: Lucalizzazzioni di <a href="http://www.geonames.org/">GeoNames</a>
       types:
         cities: Cità
         towns: Paisi
@@ -954,7 +944,7 @@ scn:
       text: Fai na dunazzioni
     learn_more: Sapìrinni cchiossai
     more: Àutri cosi
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} cummintau na vuci dû tò diariu'
       hi: Salutamu %{to_user},
@@ -1200,13 +1190,13 @@ scn:
         intro_2_html: |-
           Sî lìbbiru di cupiari, diffùnniri, trasmèttiri e adattari li nostri dati, fintantu chi l'attribbuisci a OpenStreetMap e ê sò cuntribbutura. Si canci li dati o l'adòpiri comu puntu di partenza, poi distribbuiri lu travagghiu risurtanti sulamenti sutta â stissa licenza. Lu <a href="http://opendatacommons.org/licenses/odbl/1.0/">còdici ligali
           code</a> cumpletu spiega quali sunnu li tò dritti e li tò rispunzabbilità.
-        intro_3_html: |-
+        intro_3_1_html: |-
           La cartugrafìa ntê mattunelli dâ nostra cartina, e la nostra ducumintazzioni, sunnu sutta â licenza <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative
           Commons Attribution-ShareAlike 2.0</a> (CC BY-SA).
         credit_title_html: Comu s'attribbuisci a OpenStreetMap
         credit_1_html: Addumannamu chi s'usa l'attribbuzzioni &laquo;&copy; li cuntribbutura
           d'OpenStreetMap&raquo;.
-        credit_2_html: "S'havi a rènniri chiaru ca li dati sunnu misi a dispusizzioni
+        credit_2_1_html: "S'havi a rènniri chiaru ca li dati sunnu misi a dispusizzioni
           sutta dâ Open\nDatabase License, e si s’adòpiranu li mattunelli dâ nostra
           cartina, chi la cartugrafìa è sutta dâ licenza CC BY-SA. Sta cosa si pò
           fari mittennu nu culligamentu a \n<a href=\"http://www.openstreetmap.org/copyright\">sta
@@ -1217,7 +1207,7 @@ scn:
           li littura direttamenti unni openstreetmap.org (macari espannennu \n‘OpenStreetMap’
           a stu nnirizzu cumpletu), unni opendatacommons.org, e, quann'è oppurtunu,
           unni\n creativecommons.org."
-        credit_3_html: |-
+        credit_4_html: |-
           Nta na cartina elittrònica navigàbbili, l’attribbuzzioni avissi a spuntari nta l'àngulu dâ cartina.
           P'esempiu:
         attribution_example:
@@ -1582,11 +1572,6 @@ scn:
       identifiable: Idintificàbbili (ammustratu ntâ lista dî tracciati e comu idintificàbbili,
         punti ordinati e cu marchi timpurali)
     new:
-      upload_gpx: 'Carricari lu file GPX:'
-      description: 'Discrizzioni:'
-      tags: 'Etichetti:'
-      tags_help: spartuti câ vìrgula
-      visibility: 'Visibbilità:'
       visibility_help: chi voli diri?
       help: Guida
     create:
@@ -1604,18 +1589,6 @@ scn:
     edit:
       title: Canciamentu dû tracciatu %{name}
       heading: Canciamentu dû tracciatu %{name}
-      filename: 'Nomu dû file:'
-      download: scàrrica
-      uploaded_at: 'Carricatu lu:'
-      points: 'Punti:'
-      start_coord: 'Coordinata di principiu:'
-      map: mappa
-      edit: cancia
-      owner: 'Prupitariu:'
-      description: 'Discrizzioni:'
-      tags: 'Etichetti:'
-      tags_help: spartuti câ vìrgula
-      visibility: 'Visibbilità:'
       visibility_help: chi voli diri?
     trace_optionals:
       tags: Etichetti
@@ -1736,13 +1709,6 @@ scn:
       delete: Cancella stu clienti
       confirm: Sî sicuru?
       requests: 'Addumanna a l''utenti sti pirmissi:'
-      allow_read_prefs: lèggiri li sò mpustazzioni di l'utenti.
-      allow_write_prefs: canciari li sò mpustazzioni di l'utenti.
-      allow_write_diary: criari vuci dû diariu e cummenti, e fari amici.
-      allow_write_api: canciari la carta.
-      allow_read_gpx: lèggiri li sò tracciati GPS privati.
-      allow_write_gpx: carricari li tracciati GPS.
-      allow_write_notes: canciari li noti.
     index:
       title: Li mè dittagghî OAuth
       my_tokens: Li mè applicazzioni auturizzati
@@ -1757,19 +1723,7 @@ scn:
       registered_apps: 'Hai riggistrati st''applicazzioni clienti:'
       register_new: Riggistra la tò applicazzioni
     form:
-      name: Nomu
-      required: Obbligatoriu
-      url: URL principali di l'applicazzioni
-      callback_url: URL di callback
-      support_url: URL di l'assistenza
       requests: 'Addumanna a l''utenti sti pirmissi:'
-      allow_read_prefs: lèggiri li sò mpustazzioni di l'utenti.
-      allow_write_prefs: canciari li sò mpustazzioni di l'utenti.
-      allow_write_diary: criari vuci dû diariu e cummenti, e fari amici.
-      allow_write_api: canciari la carta.
-      allow_read_gpx: lèggiri li sò tracciati GPS privati.
-      allow_write_gpx: carricari li tracciati GPS.
-      allow_write_notes: canciari li noti.
     not_found:
       sorry: Purtroppu ddu %{type} nun si potti attruvari.
     create:
@@ -1845,8 +1799,6 @@ scn:
     reset_password:
       title: Azzera la palora d'òrdini
       heading: Azziramentu dâ palora d'òrdini di %{user}
-      password: 'Palora d''òrdini:'
-      confirm password: 'Cunferma la palora d''òrdini:'
       reset: Azzera la palora d'òrdini
       flash changed: La tò palora d'òrdini fu canciata.
       flash token bad: Stu còdici nun s'attrova, pirchì nun cuntrolli l'URL?
@@ -1863,8 +1815,6 @@ scn:
           <p>A diffirenza d'àutri cartini, OpenStreetMap è criata cumpletamenti di genti comu a tìa,
           e tutti sunnu lìbbiri di cunzàrila, aggiurnàrila, scarricàrila e adupiràrila.</p>
           <p>Scrìviti p'accuminzari a dari lu tò cuntribbutu. Ti mannamu nu missaggiu di posta elittrònica pi cunfirmari lu tò cuntu.</p>
-      license_agreement: Quannu cunfermi lu tò cuntu hai a accittari li <a href="http://www.osmfoundation.org/wiki/License/Contributor_Terms">cunnizzioni
-        di cuntribbuzzioni</a>.
       email address: 'Nnirizzu di posta elittrònica:'
       confirm email address: 'Cunferma lu nnirizzu di posta elittrònica:'
       not_displayed_publicly_html: Nun veni ammustratu pubblicamenti (talìa <a href="http://wiki.openstreetmap.org/wiki/Privacy_Policy"
@@ -2051,9 +2001,9 @@ scn:
       reconfirm_html: Si voi chi ti mannamu n'àutra vota lu missaggiu di cunferma,
         <a href="%{reconfirm}">clicca ccà</a>.
     confirm_resend:
-      success: Ti mannammu n'àutru missaggiu di cunferma unni %{email}, e lu forti
-        chi cunfermi lu tò cuntu poi accuminzari a mappari.<br /><br />S'adòpiri nu
-        sistema anti-spam chi manna addumannati di cunferma, pi favuri hai a mèttiri
+      success_html: Ti mannammu n'àutru missaggiu di cunferma unni %{email}, e lu
+        forti chi cunfermi lu tò cuntu poi accuminzari a mappari.<br /><br />S'adòpiri
+        nu sistema anti-spam chi manna addumannati di cunferma, pi favuri hai a mèttiri
         lu nnirizzu %{sender} ntâ lista janca, pirchì nuàutri nun putemu arrispùnniri
         a nudda addumannata di cunferma.
       failure: Utenti %{name} nun attruvatu.
@@ -2175,9 +2125,9 @@ scn:
       revoke: Rèvuca!
       flash: Stu bloccu fu arrivucatu.
     helper:
-      time_future: Finisci tra %{time}
+      time_future_html: Finisci tra %{time}
       until_login: Attivatu nfina a quannu l'utenti trasi.
-      time_past: Finìu %{time} fa.
+      time_past_html: Finìu %{time} fa.
       block_duration:
         hours:
           one: 1 ura
@@ -2218,7 +2168,7 @@ scn:
       next: Appressu »
       previous: « Arreri
   notes:
-    mine:
+    index:
       title: Noti scritti o cummintati di l'utenti %{user}
       heading: Noti di %{user}
       subheading_html: Noti scritti o cummintati di l'utenti %{user}

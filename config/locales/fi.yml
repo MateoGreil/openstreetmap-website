@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: 01miki10
 # Author: Abijeet Patro
+# Author: Actuallyisjoha
 # Author: Alluk.
 # Author: Antsa
 # Author: BriskyBlizzard
@@ -47,6 +48,8 @@ fi:
       friendly: '%e. %Bta %Y klo %H.%M'
       blog: '%e. %Bta %Y'
   helpers:
+    file:
+      prompt: Valitse tiedosto
     submit:
       diary_comment:
         create: Tallenna
@@ -59,12 +62,12 @@ fi:
         create: Lähetä
       client_application:
         create: Rekisteröidy
-        update: Muokkaa
+        update: Päivitä
       redaction:
         create: Luo redaktio
         update: Tallenna redaktio
       trace:
-        create: Lähetä
+        create: Lataa
         update: Tallenna muutokset
       user_block:
         create: Luo esto
@@ -111,6 +114,9 @@ fi:
       way_node: Viivan piste
       way_tag: Viivan tagi
     attributes:
+      client_application:
+        callback_url: Takaisinsoiton verkko-osoite
+        support_url: Tuen osoite (URL)
       diary_comment:
         body: Leipäteksti
       diary_entry:
@@ -125,17 +131,22 @@ fi:
       trace:
         user: Käyttäjä
         visible: Näkyvissä
-        name: Nimi
+        name: Tiedostonimi
         size: Koko
         latitude: Leveyspiiri
         longitude: Pituuspiiri
         public: Julkinen
         description: Kuvaus
+        gpx_file: Tallenna GPX-tiedosto
+        visibility: Näkyvyys
+        tagstring: Ominaisuustiedot
       message:
         sender: Lähettäjä
         title: Aihe
         body: Viesti
         recipient: Vastaanottaja
+      report:
+        details: Kuvaile ongelmaa (pakollinen)
       user:
         email: Sähköpostiosoite
         active: Aktivoitu
@@ -143,6 +154,10 @@ fi:
         description: Kuvaus
         languages: Kielet
         pass_crypt: Salasana
+        pass_crypt_confirmation: Vahvista salasana
+    help:
+      trace:
+        tagstring: pilkuilla eroteltu lista
   datetime:
     distance_in_words_ago:
       about_x_hours:
@@ -258,14 +273,14 @@ fi:
       relation: Relaatiot (%{count})
       relation_paginated: Relaatiot (%{x}-%{y} / %{count})
       comment: Kommentit (%{count})
-      hidden_commented_by: Käyttäjän %{user} piilotettu kommentti <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by: Kommentti käyttäjältä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      hidden_commented_by_html: Käyttäjän %{user} piilotettu kommentti <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_html: Kommentti käyttäjältä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       changesetxml: Muutoskokoelman XML
       osmchangexml: osmChange XML
       feed:
         title: Muutoskokoelma %{id}
         title_comment: Muutoskokoelma %{id} - %{comment}
-      join_discussion: Kirjaudu sisään, jos haluat osallistua keskusteluun
+      join_discussion: Kirjaudu sisään osallistuaksesi keskusteluun
       discussion: Keskustelu
       still_open: Muutoskokoelma on edelleen avoimena - keskustelu avataan heti kun
         muutoskokoelma on suljettu.
@@ -293,7 +308,7 @@ fi:
       entry_html: Relaatio %{relation_name}
       entry_role_html: Relaatio %{relation_name} (rooli %{relation_role})
     not_found:
-      sorry: 'Pahoittelemme, %{type} #%{id} ei ole olemassa.'
+      sorry: 'Pahoittelemme, %{type} #%{id} ei pystytty löytämään.'
       type:
         node: Pistettä
         way: Polkua
@@ -301,7 +316,7 @@ fi:
         changeset: muutoskokoelma
         note: merkintä
     timeout:
-      sorry: Tietojen hakeminen (kohde %{type}:%{id}) kesti liian kauan.
+      sorry: Pahoittelut, tietojen hakeminen (kohde %{type}:%{id}) kesti liian kauan.
       type:
         node: piste
         way: polku
@@ -338,19 +353,19 @@ fi:
       open_title: 'Ratkaisematon karttailmoitus #%{note_name}'
       closed_title: 'Ratkaistu karttailmoitus #%{note_name}'
       hidden_title: 'Piilotettu karttailmoitus #%{note_name}'
-      opened_by: Lähettänyt käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      opened_by_anonymous: Luonut tuntematon käyttäjä <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by: Kommentti käyttäjältä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_anonymous: Kommentti tuntemattomalta käyttäjältä <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by: Ratkaissut käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_anonymous: Ratkaissut tuntematon käyttäjä <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by: Avannut uudelleen käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by_anonymous: Avannut uudelleen tuntematon käyttäjä <abbr title='%{exact_time}'>%{when}</abbr>
-      hidden_by: Piilottanut käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      opened_by_html: Lähettänyt käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      opened_by_anonymous_html: Luonut tuntematon käyttäjä <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_html: Kommentti käyttäjältä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_anonymous_html: Kommentti tuntemattomalta käyttäjältä <abbr title='%{exact_time}'>%{when}</abbr>
+      closed_by_html: Ratkaissut käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      closed_by_anonymous_html: Ratkaissut tuntematon käyttäjä <abbr title='%{exact_time}'>%{when}</abbr>
+      reopened_by_html: Avannut uudelleen käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      reopened_by_anonymous_html: Avannut uudelleen tuntematon käyttäjä <abbr title='%{exact_time}'>%{when}</abbr>
+      hidden_by_html: Piilottanut käyttäjä %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       report: Ilmianna karttailmoitus
     query:
       title: Ominaisuuskysely
-      introduction: Näytä luettelo lähistön karttakohteista napsauttamalla karttaa.
+      introduction: Napsauta karttaa löytääksesi lähistön karttakohteita.
       nearby: Lähistön karttakohteet
       enclosing: Ympäröivät karttakohteet
   changesets:
@@ -414,6 +429,7 @@ fi:
       in_language_title: Päiväkirjamerkinnät kielellä %{language}
       new: Lisää päiväkirjamerkintä
       new_title: Kirjoita uusi merkintä käyttäjän päiväkirjaani
+      my_diary: Päiväkirjani
       no_entries: Päiväkirjassa ei ole merkintöjä.
       recent_entries: Uusimmat päiväkirjamerkinnät
       older_entries: Vanhempia...
@@ -435,7 +451,7 @@ fi:
     diary_entry:
       posted_by_html: Käyttäjä %{link_user} kirjoitti tämän %{created} kielellä %{language_link}
       comment_link: Kommentoi tätä kirjoitusta
-      reply_link: Vastaa tähän kirjoitukseen viestillä
+      reply_link: Lähetä viesti tekijälle
       comment_count:
         one: 1 kommentti
         zero: Ei kommentteja
@@ -565,14 +581,16 @@ fi:
           hospital: Sairaala
           hunting_stand: Metsästyslava
           ice_cream: Jäätelö
+          internet_cafe: Internet-kahvila
           kindergarten: Päiväkoti
+          language_school: Kielikoulu
           library: Kirjasto
           marketplace: Tori
           monastery: Luostari
           motorcycle_parking: Moottoripyöräpysäköinti
+          music_school: Musiikkikoulu
           nightclub: Yökerho
           nursing_home: Hoitokoti
-          office: Toimisto
           parking: Parkkipaikka
           parking_entrance: Pysäköintialueen sisäänkäynti
           parking_space: Parkkipaikka
@@ -581,20 +599,15 @@ fi:
           police: Poliisi
           post_box: Kirjelaatikko
           post_office: Postitoimisto
-          preschool: Esikoulu
           prison: Vankila
           pub: Pubi
           public_building: Julkinen rakennus
           recycling: Kierrätyspaikka
           restaurant: Ravintola
-          retirement_home: Vanhainkoti
-          sauna: Sauna
           school: Koulu
           shelter: Katos
-          shop: Kauppa
           shower: Suihku
           social_centre: Sosiaalikeskus
-          social_club: Sosiaalinen kerho
           social_facility: Sosiaalilaitos
           studio: Studio
           swimming_pool: Uima-allas
@@ -610,7 +623,6 @@ fi:
           waste_basket: Roskakori
           waste_disposal: Jätehuolto
           water_point: vesipiste
-          youth_centre: Nuorisokeskus
         boundary:
           administrative: Hallinnollinen raja
           census: Väestönlaskenta-alueen raja
@@ -624,7 +636,32 @@ fi:
           viaduct: Maasilta
           "yes": Silta
         building:
+          apartments: Talo
+          chapel: Kappeli
+          church: Kirkkorakennus
+          commercial: Liikerakennus
+          dormitory: Asuntola
+          farm: Maalaistalo
+          garage: Autotalli
+          greenhouse: Kasvihuone
+          hospital: Sairaalarakennus
+          hotel: Hotellirakennus
+          house: Talo
+          houseboat: Asuntovene
+          industrial: Teollisuusrakennus
+          office: Toimistorakennus
+          public: Julkinen rakennus
+          residential: Asuinrakennus
+          retail: Liikerakennus
+          roof: Katto
+          school: Koulurakennus
+          terrace: Terassi
+          train_station: Rautatieasema
+          university: Yliopistorakennus
+          warehouse: Varasto
           "yes": Rakennus
+        club:
+          "yes": Klubi
         craft:
           brewery: Panimo
           carpenter: Puuseppä
@@ -685,7 +722,6 @@ fi:
           tertiary_link: Yhdystie
           track: Metsätie
           traffic_signals: Liikennevalot
-          trail: Vaelluspolku
           trunk: Valtatie
           trunk_link: Valtatie
           turning_loop: Kääntöpaikka
@@ -704,12 +740,12 @@ fi:
           fort: Linnake
           heritage: Perintökohde
           house: Talo
-          icon: Ikoni
           manor: Kartano
           memorial: Muistomerkki
           mine: Kaivos
           mine_shaft: kaivostunneli
           monument: Muistomerkki
+          railway: Historiallinen rautatie
           roman_road: Roomalainen tie
           ruins: Rauniot
           stone: Kivi
@@ -749,7 +785,6 @@ fi:
           reservoir_watershed: Tekoaltaan vedenjakaja
           residential: Asuinalue
           retail: Vähittäiskauppa
-          road: Tiealue
           village_green: Puisto
           vineyard: Viinitarha
           "yes": Maankäyttö
@@ -809,6 +844,7 @@ fi:
           silo: Siilo
           storage_tank: Varastosäiliö
           surveillance: vartiointi
+          telescope: Teleskooppi
           tower: Torni
           wastewater_plant: Jätevesilaitos
           watermill: Vesimylly
@@ -906,7 +942,6 @@ fi:
           subdivision: Naapurusto
           suburb: Lähiö
           town: Kaupunki
-          unincorporated_area: Ei-liitetty alue
           village: Kylä
           "yes": Paikka
         railway:
@@ -932,6 +967,7 @@ fi:
           switch: Ratavaihde
           tram: Raitiotie
           tram_stop: Raitiovaunupysäkki
+          yard: Ratapiha
         shop:
           alcohol: Alkoholikauppa
           antiques: Antiikkia
@@ -949,8 +985,11 @@ fi:
           car_repair: Autokorjaamo
           carpet: Mattokauppa
           charity: Hyväntekeväisyyskauppa
+          cheese: Juustokauppa
           chemist: Apteekki
+          chocolate: Suklaa
           clothes: Vaatekauppa
+          coffee: Kahvila
           computer: Tietokonekauppa
           confectionery: Makeiskauppa
           convenience: Lähikauppa
@@ -965,12 +1004,11 @@ fi:
           estate_agent: Kiinteistönvälittäjä
           farm: Maatalouskauppa
           fashion: Muotikauppa
-          fish: Kalakauppa
+          fishing: Kalastustarvikekauppa
           florist: Kukkakauppa
           food: Ruokakauppa
           funeral_directors: Hautausurakoitsija
           furniture: Huonekaluliike
-          gallery: Galleria
           garden_centre: Puutarhakeskus
           general: Sekatavarakauppa
           gift: Lahjakauppa
@@ -978,8 +1016,10 @@ fi:
           grocery: Ruokakauppa
           hairdresser: Kampaamo
           hardware: Rautakauppa
+          herbalist: Luontaistuotekauppias
           hifi: Elektroniikkakauppa
           houseware: Taloustavaraliike
+          ice_cream: Jäätelökauppa
           interior_decoration: Kodinsisustus
           jewelry: Korukauppa
           kiosk: Kioski
@@ -987,7 +1027,6 @@ fi:
           laundry: Pesula
           lottery: Lotto
           mall: Ostoskeskus
-          market: Tori
           massage: hieronta
           mobile_phone: Matkapuhelinkauppa
           motorcycle: Moottoripyöräkauppa
@@ -999,7 +1038,6 @@ fi:
           paint: Maalikauppa
           pawnbroker: Panttilainaamo
           pet: Eläinkauppa
-          pharmacy: Apteekki
           photo: Valokuvausliike
           seafood: Meriruoka
           second_hand: Osto- ja myyntiliike
@@ -1008,6 +1046,7 @@ fi:
           stationery: Paperikauppa
           supermarket: Supermarketti
           tailor: Räätäli
+          tea: Teekauppa
           ticket: Lippupiste
           tobacco: Tupakkakauppa
           toys: Lelukauppa
@@ -1016,6 +1055,7 @@ fi:
           vacant: Avoin kauppa
           variety_store: Tavaratalo
           video: Videokauppa
+          video_games: Videopelikauppa
           wine: Viinikauppa
           "yes": Kauppa
         tourism:
@@ -1070,11 +1110,6 @@ fi:
         level8: Kunnan raja
         level9: Kylän raja
         level10: Asuinalueen raja
-    description:
-      title:
-        osm_nominatim: Sijainti <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatimista</a>
-        geonames: Sijainti palvelusta <a href="http://www.geonames.org/">GeoNames</a>
       types:
         cities: Kaupungit
         towns: Kylät
@@ -1152,8 +1187,6 @@ fi:
     new:
       title_html: Ilmianna %{link}
       missing_params: Ilmoituksen luominen epäonnistui
-      details: Kuvaile ongelmaa (pakollinen)
-      select: 'Valitse ilmiannon syy:'
       disclaimer:
         intro: 'Varmista ennen ilmiantoa seuraavat asiat:'
         not_just_mistake: Ongelma ei ole vain väärinkäsitys
@@ -1234,19 +1267,19 @@ fi:
       text: Lahjoita
     learn_more: Lisätietoja
     more: Lisää
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} on lisännyt kommentin päiväkirjamerkintääsi'
       hi: Hei %{to_user}!
       header: '%{from_user} kommentoi kirjoittamaasi päiväkirjamerkintää OpenStreetMapissa
         otsikolla %{subject}:'
       footer: Lue kommentti sivulla %{readurl}. Jatkokommentin voi lähettää sivulla
-        %{commenturl} tai vastausviestin sivulla %{replyurl}.
+        %{commenturl} tai lähettää viestin tekijälle sivulla %{replyurl}.
     message_notification:
       hi: Hei %{to_user}!
       header: '%{from_user} on lähettänyt sinulle viestin OpenStreetMapissa otsikkolla
         %{subject}:'
-      footer_html: Lue viesti osoitteessa %{readurl} ja vastaa siihen osoitteessa
+      footer_html: Lue viesti osoitteessa %{readurl} ja lähetä viesti tekijälle osoitteessa
         %{replyurl}.
     friendship_notification:
       hi: Hei %{to_user}!
@@ -1267,8 +1300,10 @@ fi:
         more_info_2: 'ne löytyvät osoitteesta:'
       success:
         subject: '[OpenStreetMap] GPX-tuonti onnistui'
-        loaded_successfully: '%{trace_points} pistettä ladattu onnistuneesti mahdollisista
-          %{possible_points} pisteestä.'
+        loaded_successfully:
+          one: '%{trace_points} pistettä mahdollisesta 1 pisteestä ladattu onnistuneesti.'
+          other: ' {trace_points} pistettä  mahdollisista %{possible_points} ladattu
+            onnistuneesti pisteestä.'
     signup_confirm:
       subject: '[OpenStreetMap] Tervetuloa OpenStreetMapiin'
       greeting: Hei!
@@ -1448,6 +1483,11 @@ fi:
       legal_1_html: |-
         Tämä sivusto ja monet siihen liittyvät palvelut ovat muodollisesti <a href='https://osmfoundation.org/'>OpenStreetMap-säätiön</a> (OSMF) hallinnoimia OSM-yhteisön puolesta. Kaikkien OSMF:n hallinnoimien palveluiden käyttöön sovelletaan <a href="https://wiki.openstreetmap.org/wiki/Acceptable_Use_Policy">
         sallitun käytön käytäntöjä</a>, <a href="https://wiki.osmfoundation.org/wiki/Terms_of_Use">käyttöehtoja</a> ja <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy">tietosuojakäytäntöä</a> (molemmat sisällöt saatavilla vain englanniksi).
+      legal_2_html: |-
+        <a href='https://osmfoundation.org/Contact'>Ota yhteyttä OSMF</a>:ään
+        jos sinulla on lisensointi-, tekijänoikeus- tai muita kysymyksiä.
+        <br>
+        OpenStreetMap, suurennuslasilogo ja State of the Map ovat <a href="https://wiki.osmfoundation.org/wiki/Trademark_Policy">OSMF:n rekisteröityjä tavaramerkkejä</a>.
       partners_title: Kumppanit
     copyright:
       foreign:
@@ -1473,20 +1513,25 @@ fi:
           Jos karttoja tai tietoja muutetaan tai kehitetään, niitä saa levittää vain
           samalla lisenssillä.\n<a href=\"https://opendatacommons.org/licenses/odbl/1.0/\">Lakitekstissä</a>
           mainitaan levittäjän oikeudet ja velvollisuudet."
-        intro_3_html: |-
-          Kartta-aineisto ja dokumentaatio on lisensoitu <a href="https://creativecommons.org/licenses/by-sa/2.0/deed.fi">Creative
-          Commons Nimeä-Jaa samoin 2.0</a> -lisenssillä (CC-BY-SA).
+        intro_3_1_html: |-
+          Dokumentaatio on lisensoitu <a href="https://creativecommons.org/licenses/by-sa/2.0/deed.fi">Creative
+          Commons Nimeä-JaaSamoin 2.0</a> -lisenssillä (CC-BY-SA 2.0).
         credit_title_html: OpenStreetMapin mainitseminen
         credit_1_html: OpenStreetMapin sisältöä levitettäessä on mainittava teksti
           &quot;&copy; OpenStreetMapin tekijät&quot; tai sen englanninkielinen vastine
           &quot;&copy; OpenStreetMap contributors&quot;.
-        credit_2_html: "Levittäjän tulee tehdä selväksi, että aineisto on saatavilla
+        credit_2_1_html: "Levittäjän tulee tehdä selväksi, että aineisto on saatavilla
           Open Database -lisenssillä\nja kartta-aineisto CC-BY-SA-lisenssillä. Tämä
           voidaan tehdä sijoittamalla sivulle linkki\n<a href=\"https://www.openstreetmap.org/copyright\">tälle
           tekijänoikeussivulle</a>. \nJos linkkien käyttö ei ole mahdollista (esimerkiksi
           paperille tulostettu aineisto),\nsuosittelemme ohjaamaan lukijat osoitteisiin
           www.openstreetmap.org, opendatacommons.org ja tarvittaessa myös creativecommons.org."
-        credit_3_html: 'Sivustolle upotetun interaktiivisen karttaikkunan tulee sisältää
+        credit_3_1_html: "&ldquo;Standardityylin&rdquo; karttalaatat osoitteessa www.openstreetmap.org
+          ovat OpenStreetMap Foundationin työtä käyttäen OpenStreetMapin datan Open
+          Database-lisenssin alaisuudessa. Jos käytät näitä karttalaattoja, käytä
+          seuraavaa lainausta: \n&ldquo;Pohjakartta ja data OpenStreetMapista ja OpenStreetMap
+          Foundationilta&rdquo;."
+        credit_4_html: 'Sivustolle upotetun interaktiivisen karttaikkunan tulee sisältää
           tekijän nimi kartan alaosassa:'
         attribution_example:
           alt: Esimerkki siitä, miten nimetä OpenStreetMap nettisivulla
@@ -1862,11 +1907,6 @@ fi:
         järjestettynä aikaleimoineen)
     new:
       upload_trace: Tallenna GPS-jälki
-      upload_gpx: 'Tallenna GPX-tiedosto:'
-      description: 'Kuvaus:'
-      tags: 'Ominaisuustiedot:'
-      tags_help: pilkuilla eroteltu lista
-      visibility: 'Näkyvyys:'
       visibility_help: Mitä tämä tarkoittaa?
       visibility_help_url: https://wiki.openstreetmap.org/wiki/Fi:GPS-j%C3%A4lkien_julkisuus
       help: Ohje
@@ -1888,20 +1928,9 @@ fi:
           kuin lähetät lisää jälkiä. Näin muidenkin käyttäjien lähettämät jäljet pääsevät
           aiemmin tietokantaan.
     edit:
+      cancel: Peruuta
       title: Muokataan jälkeä %{name}
       heading: Jäljen %{name} muokkaus
-      filename: 'Tiedostonimi:'
-      download: lataa
-      uploaded_at: 'Lähetetty:'
-      points: 'Pisteet:'
-      start_coord: 'Alun koordinaatit:'
-      map: kartta
-      edit: muokkaa
-      owner: 'Käyttäjä:'
-      description: 'Kuvaus:'
-      tags: 'Ominaisuustiedot:'
-      tags_help: pilkuilla eroteltu lista
-      visibility: 'Näkyvyys:'
       visibility_help: Mitä tämä tarkoittaa?
     update:
       updated: Jälki päivitetty
@@ -1916,6 +1945,7 @@ fi:
       uploaded: 'Lähetetty:'
       points: 'Pisteitä:'
       start_coordinates: 'Alkupisteen koordinaatit:'
+      coordinates_html: '%{latitude}; %{longitude}'
       map: kartalla
       edit: muokkaa
       owner: 'Käyttäjä:'
@@ -2033,13 +2063,6 @@ fi:
       delete: Poista asiakas
       confirm: Oletko varma?
       requests: 'Pyydetään seuraavia oikeuksia käyttäjältä:'
-      allow_read_prefs: lukea heidän käyttäjäasetuksiaan
-      allow_write_prefs: muokata heidän käyttäjäasetuksiaan
-      allow_write_diary: kirjoita päiväkirjamerkintöjä, kommentoi ja löydä ystäviä.
-      allow_write_api: muokata karttaa
-      allow_read_gpx: lukea heidän yksityisiä GPS-jälkiään
-      allow_write_gpx: tallentaa GPS-jälkiä
-      allow_write_notes: Muokkaa muistiinpanoja.
     index:
       title: Omat OAuth-tietoni
       my_tokens: Valtuutetut sovellukset
@@ -2055,19 +2078,7 @@ fi:
       registered_apps: 'Seuraavat sovellukset käyttävät käyttäjätunnustasi:'
       register_new: Rekisteröi sovelluksesi
     form:
-      name: Nimi
-      required: vaadittu
-      url: Sovelluksen osoite (URL)
-      callback_url: Takaisinsoiton verkko-osoite
-      support_url: Tuen osoite (URL)
       requests: 'Sovellus pyytää käyttäjältä seuraavia tietoja:'
-      allow_read_prefs: käyttäjäasetusten näkeminen.
-      allow_write_prefs: käyttäjäasetusten muuttaminen.
-      allow_write_diary: päiväkirjamerkintöjen luominen ja kommentointi sekä kaveripyynnöt.
-      allow_write_api: kartan muokkaaminen.
-      allow_read_gpx: yksityisten GPS-jälkien näkeminen.
-      allow_write_gpx: GPS-jälkien tallentaminen.
-      allow_write_notes: Muokkaa muistiinpanoja.
     not_found:
       sorry: Valitettavasti tyyppiä %{type} ei löydy.
     create:
@@ -2144,8 +2155,6 @@ fi:
     reset_password:
       title: Salasanan vaihto
       heading: Vaihda käyttäjän %{user} salasana
-      password: 'Salasana:'
-      confirm password: 'Vahvista salasana:'
       reset: Vaihda salasana
       flash changed: Salasanasi on vaihdettu.
       flash token bad: Tuntematon tunniste. Tarkista että URL on sama kuin postissasi.
@@ -2161,7 +2170,6 @@ fi:
         html: |-
           <p>Toisin kuin muut karttapalvelut, OpenStreetMap on täysin yhteisön eli vapaaehtoisten ihmisten luoma. Palvelun käyttö ja muokkaaminen on täysin ilmaista ja vapaata.</p>
           <p>Aloita kartan kehittäminen rekisteröitymällä. Tämän jälkeen vahvista käyttäjätunnus napsauttamalla linkkiä sähköpostitse lähetettävässä aktivointiviestissä.</p>
-      license_agreement: Kun vahvistat tilisi, sinun on sitouduttava <a href="https://www.osmfoundation.org/wiki/License/Contributor_Terms">osallistumisehtoihin</a>.
       email address: 'Sähköpostiosoite:'
       confirm email address: 'Sähköpostiosoite uudelleen:'
       not_displayed_publicly_html: Osoitettasi ei esitetä julkisesti. Lisätietoja
@@ -2362,7 +2370,7 @@ fi:
       reconfirm_html: Tarvittaessa voimme lähettää uuden vahvistusviestin, <a href="%{reconfirm}">napsauta
         tästä</a>.
     confirm_resend:
-      success: Olemme lähettäneet aktivointilinkin sisältävän viestin osoitteeseen
+      success_html: Olemme lähettäneet aktivointilinkin sisältävän viestin osoitteeseen
         %{email}. Vahvistettuasi käyttäjätunnuksesi voit aloittaa kartoittamisen.<br
         /><br />Jos käytät vahvistusviestejä lähettävää roskapostinesto-ohjelmaa,
         lisää %{sender} sallittujen osoitteiden listalle, sillä emme voi vastata vahvistuspyyntöihin.
@@ -2490,11 +2498,11 @@ fi:
       revoke: Poista!
       flash: Tämä esto on poistettu
     helper:
-      time_future: Päättyy %{time} kuluttua.
+      time_future_html: Päättyy %{time} kuluttua.
       until_login: Aktiivinen kunnes käyttäjä kirjautuu sisään.
-      time_future_and_until_login: Päättyy %{time} kuluttua ja käyttäjän kirjauduttua
+      time_future_and_until_login_html: Päättyy %{time} kuluttua ja käyttäjän kirjauduttua
         sisään.
-      time_past: Päättyi %{time}.
+      time_past_html: Päättyi %{time}.
       block_duration:
         hours:
           one: 1 tunti
@@ -2547,7 +2555,7 @@ fi:
       next: Seuraava »
       previous: « Edellinen
   notes:
-    mine:
+    index:
       title: Käyttäjän %{user} kommentoimat ja luomat huomautukset
       heading: Käyttäjän %{user} karttailmoitukset
       subheading_html: Käyttäjän %{user} kommentoimat ja luomat karttailmoitukset
@@ -2601,6 +2609,7 @@ fi:
         cycle_map: Pyöräilykartta
         transport_map: Joukkoliikenne
         hot: Humanitaarinen
+        opnvkarte: ÖPNVKarte
       layers:
         header: Karttanäkymä
         notes: Karttailmoitukset
@@ -2612,6 +2621,11 @@ fi:
       donate_link_text: <a class='donate-attr' href='%{donate_url}'>Tee lahjoitus</a>
       terms: <a href='%{terms_url}' target='_blank'>Sivuston ja sovellusrajapinnan
         ehdot</a>
+      thunderforest: Laattojen tekijä <a href='%{thunderforest_url}' target='_blank'>Andy
+        Allan</a>
+      hotosm: Laattojen tyylin on tehnyt <a href='%{hotosm_url}' target='_blank'>Humanitarian
+        OpenStreetMap Team</a> ja hostannut <a href='%{osmfrance_url}' target='_blank'>OpenStreetMap
+        France</a>
     site:
       edit_tooltip: Muokkaa karttaa
       edit_disabled_tooltip: Lähennä karttaa ennen muokkaamisen aloittamista

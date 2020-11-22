@@ -82,6 +82,9 @@ te:
         description: వివరణ
         languages: భాషలు
         pass_crypt: సంకేతపదం
+    help:
+      trace:
+        tagstring: కామాలతో వేరుపరచినవి
   editor:
     default: అప్రమేయం (ప్రస్తుతం %{name})
   api:
@@ -91,7 +94,7 @@ te:
         full: పూర్తి గమనిక
   browse:
     created: 'సృష్టించబడినది:'
-    closed: 'మూసివేయబడింది:'
+    closed: ముగించబడింది
     created_html: <abbr title='%{title}'>%{time} కిందట</abbr> సృష్టించబడింది
     closed_html: <abbr title='%{title}'>%{time} కిందట</abbr> మూసివేయబడింది
     created_by_html: <abbr title='%{title}'>%{time} కిందట</abbr>, %{user} చే సృష్టించబడింది
@@ -111,7 +114,8 @@ te:
       relation: సంబంధాలు (%{count})
       relation_paginated: '%{count} లో %{x}-%{y} యొక్క సంబంధాలు'
       comment: వ్యాఖ్యలు (%{count})
-      commented_by: '%{user} నుండి వ్యాఖ్య <abbr title=''%{exact_time}''>%{when} క్రితం</abbr>'
+      commented_by_html: '%{user} నుండి వ్యాఖ్య <abbr title=''%{exact_time}''>%{when}
+        క్రితం</abbr>'
       discussion: చర్చ
     node:
       title_html: 'బిందువు: %{name}'
@@ -287,7 +291,6 @@ te:
           ice_cream: ఐస్ క్రీం
           library: గ్రంథాలయం
           marketplace: సంత
-          office: కార్యాలయం
           parking: పార్కింగు
           pharmacy: మందుల దుకాణం
           place_of_worship: పూజా స్థలం
@@ -296,7 +299,6 @@ te:
           post_office: తపాలా కార్యాలయం
           prison: జైలు
           school: బడి
-          shop: దుకాణం
           swimming_pool: ఈత కొలను
           taxi: టాక్సీ
           telephone: ప్రజా టెలీఫోను
@@ -304,7 +306,6 @@ te:
           toilets: మరుగుదొడ్లు
           university: విశ్వవిద్యాలయం
           waste_basket: చెత్త బుట్ట
-          youth_centre: యువజన కేంద్రం
         boundary:
           administrative: పరిపాలనా సరిహద్దు
           national_park: జాతీయ ఉద్యానవనం
@@ -312,6 +313,7 @@ te:
         bridge:
           "yes": వంతెన
         building:
+          church: చర్చి
           "yes": భవనం
         craft:
           painter: పెయింటర్
@@ -341,7 +343,6 @@ te:
           citywalls: నగర గోడలు
           fort: కోట
           house: ఇల్లు
-          icon: ప్రతీక
           memorial: జ్ఞాపిక
           mine: గని
           monument: స్మారకం
@@ -432,7 +433,6 @@ te:
           butcher: కసాయి
           jewelry: నగల దుకాణం
           laundry: చాకలి
-          market: అంగడి
           tailor: దర్జీ
           toys: బొమ్మల అంగడి
           "yes": దుకాణం
@@ -457,7 +457,6 @@ te:
         level5: ప్రాంతపు సరిహద్దు
         level8: నగర సరిహద్దు
         level9: గ్రామ పొలిమెర
-    description:
       types:
         cities: నగరాలు
         towns: పట్టణాలు
@@ -499,7 +498,7 @@ te:
       text: విరాళమివ్వండి
     learn_more: మరింత తెలుసుకోండి
     more: మరిన్ని
-  notifier:
+  user_mailer:
     diary_comment_notification:
       hi: హలో %{to_user},
     message_notification:
@@ -592,7 +591,7 @@ te:
       close: మూసివేయి
     search:
       search: వెతుకు
-      where_am_i: నేను ఎక్కడ ఉన్నాను?
+      where_am_i: ఇది ఎక్కడ ఉంది?
       submit_text: వెళ్ళు
     key:
       table:
@@ -650,19 +649,10 @@ te:
         title: సరిదిద్దేంత సమయం లేదా? ఒక గమనికను చేర్చండి!
   traces:
     new:
-      description: 'వివరణ:'
-      tags_help: కామాలతో వేరుపరచినవి
       visibility_help: దీని అర్థమేమిటి?
       help: సహాయం
     edit:
-      filename: 'ఫైలుపేరు:'
-      download: దింపుకోలు
-      points: 'బిందువులు:'
-      edit: మార్చు
-      owner: 'యజమాని:'
-      description: 'వివరణ:'
-      tags_help: కామాలతో వేరుపరచిన
-      visibility: 'దృశ్యత:'
+      cancel: రద్దుచేయి
       visibility_help: దీని అర్థం ఏమిటి?
     show:
       filename: 'ఫైలుపేరు:'
@@ -680,9 +670,6 @@ te:
       edit: వివరాలను మార్చు
     index:
       application: ఉపకరణపు పేరు
-    form:
-      name: పేరు
-      required: తప్పనిసరి
   users:
     login:
       title: ప్రవేశం
@@ -706,8 +693,6 @@ te:
       email address: 'ఈమెయిల్ చిరునామా:'
       notice email cannot find: క్షమించండి, ఆ ఈమెయిలు చిరునామా దొరకలేదు.
     reset_password:
-      password: 'సంకేతపదం:'
-      confirm password: 'సంకేతపదాన్ని నిర్ధారించండి:'
       flash changed: మీ సంకేతపదాన్ని మార్చాం.
     new:
       title: నమోదవ్వండి
@@ -837,8 +822,8 @@ te:
     revoke:
       confirm: మీరు నిజంగానే ఈ నిరోధాన్ని ఎత్తివేయాలనుకుంటున్నారా?
     helper:
-      time_future: '%{time}లో ముగుస్తుంది.'
-      time_past: '%{time} క్రితం ముగిసింది.'
+      time_future_html: '%{time}లో ముగుస్తుంది.'
+      time_past_html: '%{time} క్రితం ముగిసింది.'
       block_duration:
         hours:
           one: 1 గంట
@@ -861,7 +846,7 @@ te:
       next: తదుపరి »
       previous: « మునుపటి
   notes:
-    mine:
+    index:
       heading: '%{user} గమనికలు'
       description: వివరణ
       last_changed: చివరి మార్పు
@@ -889,8 +874,8 @@ te:
     changesets:
       show:
         comment: వ్యాఖ్య
-        subscribe: చందాచేరు
-        unsubscribe: చందావిరమించు
+        subscribe: గమనింపులలో చేర్చు
+        unsubscribe: గమనింపులనుండి తొలగించు
         hide_comment: దాచు
         unhide_comment: చూపించు
     notes:

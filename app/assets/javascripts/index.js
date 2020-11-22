@@ -1,6 +1,6 @@
 //= require_self
 //= require leaflet.sidebar
-//= require leaflet.locate
+//= require leaflet.locatecontrol/src/L.Control.Locate
 //= require leaflet.layers
 //= require leaflet.key
 //= require leaflet.note
@@ -20,17 +20,16 @@
 //= require index/changeset
 //= require index/query
 //= require router
-//= require querystring
+//= require qs/dist/qs
 
 $(document).ready(function () {
-  var querystring = require("querystring-component");
-
   var loaderTimeout;
 
   var map = new L.OSM.Map("map", {
     zoomControl: false,
     layerControl: false,
-    contextmenu: true
+    contextmenu: true,
+    worldCopyJump: true
   });
 
   OSM.loadSidebarContent = function (path, callback) {
@@ -197,7 +196,7 @@ $(document).ready(function () {
     $(".welcome").addClass("visible");
   }
 
-  $(".welcome .close-wrap").on("click", function () {
+  $(".welcome .close").on("click", function () {
     $(".welcome").removeClass("visible");
     $.cookie("_osm_welcome", "hide", { expires: expiry, path: "/" });
   });
@@ -263,7 +262,7 @@ $(document).ready(function () {
     var iframe = $("<iframe>")
       .hide()
       .appendTo("body")
-      .attr("src", url + querystring.stringify(query))
+      .attr("src", url + Qs.stringify(query))
       .on("load", function () {
         $(this).remove();
         loaded = true;
@@ -308,7 +307,7 @@ $(document).ready(function () {
     };
 
     page.load = function () {
-      var params = querystring.parse(location.search.substring(1));
+      var params = Qs.parse(location.search.substring(1));
       if (params.query) {
         $("#sidebar .search_form input[name=query]").value(params.query);
       }

@@ -116,10 +116,10 @@ L.OSM.layers = function (options) {
 
       $("<p>")
         .text(I18n.t("javascripts.map.layers.overlays"))
-        .attr("class", "deemphasize")
+        .attr("class", "text-muted")
         .appendTo(overlaySection);
 
-      var overlays = $("<ul class='list-unstyled'>")
+      var overlays = $("<ul class='list-unstyled standard-form'>")
         .appendTo(overlaySection);
 
       var addOverlay = function (layer, name, maxArea) {

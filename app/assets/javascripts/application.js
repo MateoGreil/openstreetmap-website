@@ -1,12 +1,12 @@
 //= require jquery3
 //= require jquery_ujs
 //= require jquery.timers
-//= require jquery.cookie
+//= require jquery.cookie/jquery.cookie
 //= require jquery.throttle-debounce
 //= require popper
 //= require bootstrap-sprockets
 //= require osm
-//= require leaflet
+//= require leaflet/dist/leaflet-src
 //= require leaflet.osm
 //= require leaflet.map
 //= require leaflet.zoom
@@ -15,7 +15,9 @@
 //= require oauth
 //= require piwik
 //= require richtext
-//= require querystring
+//= require qs/dist/qs
+//= require bs-custom-file-input
+//= require bs-custom-file-input-init
 
 /*
  * Called as the user scrolls/zooms around to manipulate hrefs of the
@@ -23,9 +25,8 @@
  */
 window.updateLinks = function (loc, zoom, layers, object) {
   $(".geolink").each(function (index, link) {
-    var querystring = require("querystring-component"),
-        href = link.href.split(/[?#]/)[0],
-        args = querystring.parse(link.search.substring(1)),
+    var href = link.href.split(/[?#]/)[0],
+        args = Qs.parse(link.search.substring(1)),
         editlink = $(link).hasClass("editlink");
 
     delete args.node;
@@ -37,7 +38,7 @@ window.updateLinks = function (loc, zoom, layers, object) {
       args[object.type] = object.id;
     }
 
-    var query = querystring.stringify(args);
+    var query = Qs.stringify(args);
     if (query) href += "?" + query;
 
     args = {
@@ -81,11 +82,11 @@ $(document).ready(function () {
     var windowWidth = $(window).width();
 
     if (windowWidth < compactWidth) {
-      $("body").removeClass("compact").addClass("small");
+      $("body").removeClass("compact-nav").addClass("small-nav");
     } else if (windowWidth < headerWidth) {
-      $("body").addClass("compact").removeClass("small");
+      $("body").addClass("compact-nav").removeClass("small-nav");
     } else {
-      $("body").removeClass("compact").removeClass("small");
+      $("body").removeClass("compact-nav").removeClass("small-nav");
     }
   }
 
@@ -100,13 +101,13 @@ $(document).ready(function () {
       headerWidth = headerWidth + $(e).outerWidth();
     });
 
-    $("body").addClass("compact");
+    $("body").addClass("compact-nav");
 
     $("header").children(":visible").each(function (i, e) {
       compactWidth = compactWidth + $(e).outerWidth();
     });
 
-    $("body").removeClass("compact");
+    $("body").removeClass("compact-nav");
 
     updateHeader();
 

@@ -20,22 +20,22 @@ of packages required before you can get the various gems installed.
 
 ## Minimum requirements
 
-* Ruby 2.5+
+* Ruby 2.7+
 * PostgreSQL 9.1+
 * ImageMagick
 * Bundler (see note below about [developer Ruby setup](#rbenv))
 * Javascript Runtime
 
-These can be installed on Ubuntu 18.04 or later with:
+These can be installed on Ubuntu 20.04 or later with:
 
 ```
 sudo apt-get update
-sudo apt-get install ruby2.5 libruby2.5 ruby2.5-dev bundler \
+sudo apt-get install ruby2.7 libruby2.7 ruby2.7-dev bundler \
                      libmagickwand-dev libxml2-dev libxslt1-dev nodejs \
                      apache2 apache2-dev build-essential git-core firefox-geckodriver \
                      postgresql postgresql-contrib libpq-dev libsasl2-dev \
-                     imagemagick libffi-dev libgd-dev libarchive-dev libbz2-dev
-sudo gem2.5 install bundler
+                     imagemagick libffi-dev libgd-dev libarchive-dev libbz2-dev yarnpkg
+sudo gem2.7 install bundler
 ```
 
 ### Alternative platforms
@@ -287,7 +287,7 @@ For simplicity, this document explains how to install all the website dependenci
 
 If you choose to install Ruby and Bundler via `rbenv`, then you do not need to install the system libraries for Ruby:
 
-* For Ubuntu, you do not need to install the following packages: `ruby2.5 libruby2.5 ruby2.5-dev bundler`,
+* For Ubuntu, you do not need to install the following packages: `ruby2.7 libruby2.7 ruby2.7-dev bundler`,
 * For Fedora, you do not need to install the following packages: `ruby ruby-devel rubygem-rdoc rubygem-bundler rubygems`
 * For MacOSX, you do not need to `brew install ruby` - but make sure you've installed a version of Ruby using `rbenv` before running `gem install bundler`!
 

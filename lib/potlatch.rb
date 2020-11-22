@@ -62,7 +62,7 @@ module Potlatch
 
     # Envelope data into AMF writeable form
     def self.putdata(index, n)
-      d = encodestring(index + "/onResult")
+      d = encodestring("#{index}/onResult")
       d += encodestring("null")
       d += [-1].pack("N")
       d += encodevalue(n)
@@ -144,7 +144,7 @@ module Potlatch
 
       # Output response header
       a, b = bodies.divmod(256)
-      yield 0.chr + 0.chr + 0.chr + 0.chr + a.chr + b.chr
+      yield 0.chr * 4 + a.chr + b.chr
 
       # Process the bodies
       bodies.times do                     # Read each body
@@ -180,13 +180,13 @@ module Potlatch
       #  StringIO.open(txt) do |file|
       File.open(Rails.root.join("config/potlatch/presets.txt")) do |file|
         file.each_line do |line|
-          t = line.chomp
-          if t =~ %r{(\w+)/(\w+)}
+          case line.chomp
+          when %r{(\w+)/(\w+)}
             presettype = Regexp.last_match(1)
             presetcategory = Regexp.last_match(2)
             presetmenus[presettype].push(presetcategory)
             presetnames[presettype][presetcategory] = ["(no preset)"]
-          elsif t =~ /^([\w\s]+):\s?(.+)$/
+          when /^([\w\s]+):\s?(.+)$/
             pre = Regexp.last_match(1)
             kv = Regexp.last_match(2)
             presetnames[presettype][presetcategory].push(pre)

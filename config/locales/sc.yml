@@ -85,6 +85,8 @@ sc:
         longitude: Longitùdine
         public: Pùblicu
         description: Descritzione
+        visibility: 'Visibilidade:'
+        tagstring: 'Etichetas:'
       message:
         title: Ogetu
         body: Corpus
@@ -281,7 +283,6 @@ sc:
           motorcycle_parking: Parchègiu pro Mototzicletas
           nightclub: Locale noturnu
           nursing_home: Domo de cura
-          office: Ufìtziu
           parking: Parchègiu
           parking_entrance: Intrada de su Parchègiu
           parking_space: Parchègiu
@@ -294,11 +295,8 @@ sc:
           public_building: Telèfonu Pùblicu
           recycling: Puntu de Retziclàgiu
           restaurant: Ristorante
-          retirement_home: Residèntzia Geriàtrica
-          sauna: Sàuna
           school: Iscola
           shelter: Imbaru
-          shop: Butega
           shower: Dòtzia
           social_centre: Tzentru Sotziale
           social_facility: Istrutura pro servìtzios sotziales
@@ -316,7 +314,6 @@ sc:
           waste_basket: Cuntenidore de Arga
           waste_disposal: Cuntenidore de Arga
           water_point: Puntu de abba
-          youth_centre: Tzentru Giovanile
         boundary:
           administrative: Lìmite Amministrativu
           national_park: Parcu Natzionale
@@ -395,7 +392,6 @@ sc:
           fort: Forte
           heritage: Patrimoniu de s'umanidade
           house: Domo
-          icon: Icona
           manor: Villa
           memorial: Memoriale
           monument: Monumentu
@@ -617,7 +613,6 @@ sc:
           food: Alimentares
           funeral_directors: Pompas fùnebres
           furniture: Mòbiles
-          gallery: Galleria
           general: Empòriu
           gift: Butega de donos
           hairdresser: Pilucheri
@@ -626,14 +621,12 @@ sc:
           laundry: Samunadòrgiu
           lottery: Loteria
           mall: Tzentru cummertziale
-          market: Mercadu
           massage: Messàgiu
           motorcycle: Butega de mototzicletas
           newsagent: Agentzia de imprenta
           optician: Òticu
           paint: Butega de Pinturas
           pawnbroker: Monte de piedade
-          pharmacy: Apotecaria
           photo: Fotògrafu
           second_hand: Ogetos de segunda manu
           supermarket: Supermercadu
@@ -673,7 +666,6 @@ sc:
           stream: Traghinu/Trainu
           waterfall: Istrampu
           weir: Nassàrgiu
-    description:
       types:
         cities: Tzitades
         towns: Tzitadinas
@@ -719,7 +711,7 @@ sc:
     foundation: Fundatzione
     learn_more: Leghe àteru
     more: Àteru
-  notifier:
+  user_mailer:
     diary_comment_notification:
       hi: Salude %{to_user},
       header: '%{from_user} at cummentadu s''intrada cuotidiana de OpenStreetMap cun
@@ -910,24 +902,12 @@ sc:
         title: No Time To Edit? Annanghe una nota!
   traces:
     new:
-      description: 'Descritzione:'
-      tags: 'Etichetas:'
-      visibility: 'Visibilidade:'
       visibility_help: ite cheret nàrrere?
       help: Agiudu
     create:
       upload_failed: Sorry, the GPX upload failed. An administrator has been alerted
         to the error. Torra·bi a proare.
     edit:
-      filename: 'Nùmene documentu:'
-      download: iscàrriga
-      points: 'Puntos:'
-      map: mapa
-      edit: modìfica
-      owner: 'Mere:'
-      description: 'Descritzione:'
-      tags: 'Etichetas:'
-      visibility: 'Visibilidade:'
       visibility_help: ite cheret nàrrere?
     trace_optionals:
       tags: Etichetas
@@ -947,9 +927,6 @@ sc:
       edit: modìfica
       by: De
       map: mapa
-  oauth_clients:
-    form:
-      name: Nùmene
   users:
     login:
       title: Intra
@@ -999,7 +976,7 @@ sc:
       next: Imbeniente »
       previous: « Pretzedente
   notes:
-    mine:
+    index:
       creator: Creadore
       description: Descritzione
   javascripts:

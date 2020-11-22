@@ -17,6 +17,7 @@
 # Author: Ruila
 # Author: SpeedyGonsales
 # Author: Teoo3
+# Author: Upwinxp
 # Author: Сербијана
 ---
 hr:
@@ -24,18 +25,21 @@ hr:
     formats:
       friendly: '%e %B %Y u %H:%M'
   helpers:
+    file:
+      prompt: Izaberi datoteku
     submit:
       diary_comment:
         create: Spremi
       diary_entry:
         create: Objavi
+        update: Ažuriraj
       issue_comment:
         create: Dodaj komentar
       message:
         create: Pošalji
       client_application:
         create: Registriraj
-        update: Uredi
+        update: Ažuriraj
       trace:
         create: Pošalji
         update: 'Snimi promjene:'
@@ -78,6 +82,11 @@ hr:
       way_node: Točka puta
       way_tag: Oznaka puta
     attributes:
+      client_application:
+        name: Naziv (obvezno)
+        callback_url: Callback URL
+        support_url: Podrška URL
+        allow_write_notes: izmijeni bilješke
       diary_comment:
         body: Tijelo
       diary_entry:
@@ -92,12 +101,15 @@ hr:
       trace:
         user: Korisnik
         visible: Vidljivo
-        name: Ime
+        name: Ime datoteke
         size: Veličina
         latitude: Geografska širina (Latitude)
         longitude: Geografska dužina (Longitude)
         public: Javno
         description: Opis
+        gpx_file: Prenesi GPX datoteku
+        visibility: Vidljivost
+        tagstring: Oznake
       message:
         sender: Pošiljatelj
         title: Naslov
@@ -110,6 +122,9 @@ hr:
         description: Opis
         languages: Jezici
         pass_crypt: Lozinka
+    help:
+      trace:
+        tagstring: odvojeno zarezom
   datetime:
     distance_in_words_ago:
       half_a_minute: prije pola minute
@@ -176,9 +191,9 @@ hr:
       relation: Relacije (%{count})
       relation_paginated: Relacije(%{x}-%{y} od %{count})
       comment: Komentari (%{count})
-      hidden_commented_by: Komentar skriven od %{user} <abbr title="%{exact_time}">
+      hidden_commented_by_html: Komentar skriven od %{user} <abbr title="%{exact_time}">
         u %{when}</abbr>
-      commented_by: Komentirao/la %{user} <abbr title='%{exact_time}'> u %{when}</abbr>
+      commented_by_html: Komentirao/la %{user} <abbr title='%{exact_time}'> u %{when}</abbr>
       changesetxml: XLM Set promjena
       osmchangexml: osmChange XML
       feed:
@@ -253,17 +268,19 @@ hr:
       open_title: Neriješena bilješka broj %{note_name}
       closed_title: Riješena bilješka broj %{note_name}
       hidden_title: Skrivena bilješka broj %{note_name}
-      opened_by: Zabilježio/la %{user} <abbr title='%{exact_time}'> u %{when}</abbr>
-      opened_by_anonymous: Zabilježeno anonimno <abbr title='%{exact_time}'> u %{when}</abbr>
-      commented_by: Komentirao/la %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_anonymous: Komentirano anonimno <abbr title='%{exact_time}'> u
-        %{when}</abbr>
-      closed_by: Riješio/la %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_anonymous: Riješeno anonimno <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by: Ponovno aktivirao/la %{user} <abbr title='%{exact_time}'> u %{when}</abbr>
-      reopened_by_anonymous: Ponovno aktivirano anonimno <abbr title='%{exact_time}'>
+      opened_by_html: Zabilježio/la %{user} <abbr title='%{exact_time}'> u %{when}</abbr>
+      opened_by_anonymous_html: Zabilježeno anonimno <abbr title='%{exact_time}'>
         u %{when}</abbr>
-      hidden_by: Sakrio/la %{user} <abbr title='%{exact_time}'> u %{when}</abbr>
+      commented_by_html: Komentirao/la %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_anonymous_html: Komentirano anonimno <abbr title='%{exact_time}'>
+        u %{when}</abbr>
+      closed_by_html: Riješio/la %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      closed_by_anonymous_html: Riješeno anonimno <abbr title='%{exact_time}'>%{when}</abbr>
+      reopened_by_html: Ponovno aktivirao/la %{user} <abbr title='%{exact_time}'>
+        u %{when}</abbr>
+      reopened_by_anonymous_html: Ponovno aktivirano anonimno <abbr title='%{exact_time}'>
+        u %{when}</abbr>
+      hidden_by_html: Sakrio/la %{user} <abbr title='%{exact_time}'> u %{when}</abbr>
     query:
       title: Provjeri elemente karte
       introduction: Klikni na kartu za pronalazak okolnih elemenata karte.
@@ -345,7 +362,7 @@ hr:
     diary_entry:
       posted_by_html: 'Postano od %{link_user} u %{created} na jeziku: %{language_link}'
       comment_link: Komentiraj ovaj zapis
-      reply_link: Odgovori na ovaj zapis
+      reply_link: Pošalji poruku autoru
       comment_count:
         zero: Nema komentara
         one: '%{count} komentar'
@@ -417,6 +434,7 @@ hr:
           taxiway: Rulnica
           terminal: Terminal
         amenity:
+          animal_boarding: Hotel za kućne ljubimce
           animal_shelter: Sklonište za životinje
           arts_centre: Umjetnički centar
           atm: Bankomat
@@ -466,9 +484,9 @@ hr:
           marketplace: Tržnica
           monastery: Samostan
           motorcycle_parking: Parking za motocikle
+          music_school: Muzička škola
           nightclub: Noćni klub
           nursing_home: Starački dom
-          office: Kancelarija
           parking: Parking
           parking_entrance: Ulaz na parking
           pharmacy: Ljekarna
@@ -476,20 +494,15 @@ hr:
           police: Policija
           post_box: Poštanski sandučić
           post_office: Pošta
-          preschool: Predškolska ustanova
           prison: Zatvor
           pub: Pub
           public_building: Ustanova
           recycling: Reciklažna točka
           restaurant: Restoran
-          retirement_home: Dom za starije osobe
-          sauna: Sauna
           school: Škola
           shelter: Sklonište
-          shop: Trgovina
           shower: Tuš
           social_centre: Društveni centar
-          social_club: Društveni klub
           social_facility: Društvena ustanova
           studio: Studio
           swimming_pool: Bazen
@@ -504,7 +517,6 @@ hr:
           village_hall: Seoski Dom
           waste_basket: Kanta za otpatke
           waste_disposal: Kontejner za smeće
-          youth_centre: Centar za mladež
         boundary:
           administrative: Administrativna granica
           census: Statističke granice
@@ -517,6 +529,27 @@ hr:
           viaduct: Vijadukt
           "yes": Most
         building:
+          apartments: Stambeni blok
+          chapel: Kapelica
+          church: Crkva
+          commercial: Poslovna zgrada
+          construction: Zgrada u izgradnji
+          dormitory: Studentski dom
+          farm: Farma (zgrada)
+          garage: Garaža
+          hospital: Bolnica
+          hotel: Hotel
+          house: Kuća
+          industrial: Industrijska zgrada
+          manufacture: Tvornička zgrada
+          office: Uredska zgrada
+          public: Javna zgrada
+          residential: Stambena zgrada
+          retail: Maloprodajna zgrada
+          school: Školska zgrada
+          terrace: Terasa
+          train_station: Željeznički kolodvor
+          university: Zgrada Sveučilišta
           "yes": Zgrada
         craft:
           brewery: Pivovara
@@ -571,7 +604,6 @@ hr:
           tertiary_link: Lokalna cesta
           track: Makadam
           traffic_signals: Semafori
-          trail: Staza
           trunk: Cesta rezervirana za motorna vozila
           trunk_link: Cesta rezrevirana za mot. voz. - prilazna cesta
           unclassified: Nerazvrstana cesta
@@ -588,11 +620,11 @@ hr:
           citywalls: Gradske zidine
           fort: Tvrđava
           house: Kuća
-          icon: Ikona
           manor: Zamak
           memorial: Spomenik
           mine: Rudnik
           monument: Spomenik
+          railway: Povijesna željeznica
           roman_road: Rimska cesta
           ruins: Ruševine
           stone: Kamen
@@ -732,7 +764,6 @@ hr:
           subdivision: Podgrupa
           suburb: Predgrađe
           town: grad
-          unincorporated_area: Slobodna zemlja
           village: Selo
           "yes": Mjesto
         railway:
@@ -758,6 +789,7 @@ hr:
           switch: Skretnica
           tram: Tramvaj
           tram_stop: Tramvajska stanica
+          yard: Ranžirni kolodvor
         shop:
           alcohol: Trgovina pićem
           antiques: Antikviteti
@@ -787,15 +819,15 @@ hr:
           doityourself: Uradi sam
           dry_cleaning: Kemijska čistionica
           electronics: Trgovina elektronikom
+          erotic: Erotska trgovina
           estate_agent: Agencija za nekretnine
+          fabric: Trgovina tkaninama
           farm: Poljo-apoteka
           fashion: Modna trgovina
-          fish: Ribarnica
           florist: Cvjećarnica
           food: Trgovina prehranom
           funeral_directors: Pogrebno poduzeće
           furniture: Namještaj
-          gallery: Galerija
           garden_centre: Vrtni centar
           general: Trgovina mješovitom robom
           gift: Poklon trgovina
@@ -808,7 +840,6 @@ hr:
           kiosk: Kiosk
           laundry: Praonica rublja
           mall: Trgovački centar
-          market: Tržnica
           mobile_phone: Trgovina mobitelima
           motorcycle: Moto Shop
           music: Trgovina glazbom
@@ -817,13 +848,13 @@ hr:
           organic: Trgovina zdrave hrane
           outdoor: Trgovina za slobodno vrijeme
           pet: Trgovina za kućne ljubimce
-          pharmacy: Ljekarna
           photo: Fotograf
           shoes: Trgovina obućom
           sports: Trgovina sportskom opremom
           stationery: Papirnica
           supermarket: Supermarket
           tailor: Krojač
+          tea: Trgovina čajem
           toys: Trgovina igračkama
           travel_agency: Putnička agencija
           video: Videoteka
@@ -877,11 +908,6 @@ hr:
         level8: Granica grada
         level9: Granica sela
         level10: Granica predgrađa
-    description:
-      title:
-        osm_nominatim: Lokacija sa stranice <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames: Lokacija sa <a href="http://www.geonames.org/">GeoNames-a</a>
       types:
         cities: Gradovi
         towns: Manji gradovi
@@ -931,14 +957,14 @@ hr:
       text: Donirajte
     learn_more: Saznaj više
     more: Više
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} je komentirao tvoj unos u dnevnik'
       hi: Bok %{to_user},
       header: '%{from_user} je komentirao tvoj nedavni OpenStreetMap unos u dnevnik
         s predmetom %{subject}:'
       footer: Možeš pročitati komentare na %{readurl} i komentirati na %{commenturl}
-        ili odgovoriti na %{replyurl}
+        ili odgovoriti autoru na %{replyurl}
     message_notification:
       hi: Bok %{to_user},
       header: '%{from_user} ti je poslao poruku preko OpenStreetMap sa predmetom %{subject}:'
@@ -1123,14 +1149,13 @@ hr:
           izvor. Ako izmijenite ili nadogradite naše podatke, možete distribuirati
           rezultate samo pod istom licencom. Puni <a href="http://opendatacommons.org/licenses/odbl/1.0/">pravni
           tekst</a> objašnjava vaša prava i odgovornosti.
-        intro_3_html: Kartografija koja je prisutna u našim sličicama karte i naša
-          dokumentacija je pod <a href="http://creativecommons.org/licenses/by-sa/2.0/">Imenovanje-Dijeli
-          pod istim uvjetima 2.0</a> licencijom (CC BY-SA).
+        intro_3_1_html: Naša dokumentacija licencirana je pod <a href="http://creativecommons.org/licenses/by-sa/2.0/">Imenovanje-Dijeli
+          pod istim uvjetima 2.0</a> licencijom (CC BY-SA 2.0).
         credit_title_html: Kako navoditi OpenStreetMap kao izvor
         credit_1_html: |-
           Zahtjevamo da istaknete zasluge &ldquo;&copy; OpenStreetMap
           contributors&rdquo;.
-        credit_2_html: |-
+        credit_2_1_html: |-
           Također morate jasno naznačiti da su podaci dostupni po licenci Open Database Licence i, ako koristite naše sličice karte, naznačiti da je kartografija licencirana pod CC BY-SA. Možete to učiniti postavljanjem poveznice na <a href="http://www.openstreetmap.org/copyright">ovu stranicu sa autorskim pravima</a>.
           Alternativno, a kao nužna potreba ako distribuirate OSM samo u obliku podataka, možete postaviti poveznicu izravno na tekst licence/a. Ako oblik medija ne omogućuje korištenje poveznica (npr. printani radovi), predlažemo da uputite Vaše čitatelje na openstreetmap.org (označava točno adresu web stranice umjesto samo ime projekta - 'OpenStreetMap'), na opendatacommons.org i ako je potrebno na creativecommons.org.
         attribution_example:
@@ -1255,10 +1280,11 @@ hr:
         url: http://wiki.openstreetmap.org/
         title: wiki.openstreetmap.org
     sidebar:
-      search_results: Rezultazi traženja
+      search_results: Rezultati traženja
       close: Zatvori
     search:
       search: Traži
+      get_directions: Nabavi upute
       get_directions_title: Nađi upute između dvije točke
       from: Od
       to: Do
@@ -1370,11 +1396,6 @@ hr:
         posložene točke sa vremenskom oznakom)
     new:
       upload_trace: Pošalji GNSS trag
-      upload_gpx: 'Učitaj GPX datoteku:'
-      description: 'Opis:'
-      tags: 'Oznake:'
-      tags_help: odvojeno zarezom
-      visibility: 'Vidljivost:'
       visibility_help: što ovo znači?
       help: Pomoć
     create:
@@ -1390,20 +1411,9 @@ hr:
           ti tragovi učitaju prije nego počneš slati nove, tako da ne blokiraš učitavanje
           drugih korisnika.
     edit:
+      cancel: Otkaži
       title: Uređivanje traga %{name}
       heading: Uređivanje trase %{name}
-      filename: 'Ime datoteke:'
-      download: preuzmi
-      uploaded_at: 'Poslano:'
-      points: 'Točaka:'
-      start_coord: 'Početna koordinata:'
-      map: karta
-      edit: uredi
-      owner: 'Vlasnik:'
-      description: 'Opis:'
-      tags: 'Oznake:'
-      tags_help: odvojeno zarezima
-      visibility: 'Vidljivost:'
       visibility_help: Što ovo znači?
     trace_optionals:
       tags: Oznake
@@ -1507,13 +1517,6 @@ hr:
       edit: Uredi detalje
       confirm: Jesi li siguran/na?
       requests: 'Zahtjevam sijedeće dozvole od korisnika:'
-      allow_read_prefs: pročitaj njihove korisničke postavke
-      allow_write_prefs: izmjeni njihove korisničke postavke
-      allow_write_diary: Napravi zapise u dnevnik, komentiraj i sprijatelji se.
-      allow_write_api: Izmjeni kartu.
-      allow_read_gpx: čitaj njihove privatne GNSS tragove.
-      allow_write_gpx: postavi GNSS tragove.
-      allow_write_notes: izmijeni bilješke.
     index:
       title: Moji OAuth detalji
       my_tokens: Moje odobrene aplikacije
@@ -1528,19 +1531,7 @@ hr:
       registered_apps: 'Imate registrirane sljedeće aplikacije:'
       register_new: Registriraj svoju aplikaciju
     form:
-      name: Ime
-      required: Zahtjevano
-      url: URL glavne aplikacije
-      callback_url: Callback URL
-      support_url: Podrška URL
       requests: 'Zahtjevam sijedeće dozvole od korisnika:'
-      allow_read_prefs: pročitaj njihove korisničke postavke
-      allow_write_prefs: Izmjeni njihove koriničke postavke.
-      allow_write_diary: Napravi zapise u dnevnik, komentiraj i sprijatelji se.
-      allow_write_api: izmjeni kartu.
-      allow_read_gpx: čitaj njihove privatne GNSS tragove.
-      allow_write_gpx: postavi GNSS tragove.
-      allow_write_notes: izmijeni bilješke.
     not_found:
       sorry: Žao mi je, da se %{type} ne može naći.
     create:
@@ -1560,10 +1551,12 @@ hr:
       lost password link: Izgubljena zaporka?
       login_button: Prijava
       register now: Registrirajte se sada
+      with external: 'Ili koristite drugi servis za prijavljivanje:'
       new to osm: Novi na OpenStreetMap?
       to make changes: Da bi napravili izmjene na OpenStreetMap podacima, morate imati
         korisnički račun.
       create account minute: Otvorite korisnički račun. To traje samo minutu.
+      no account: Nemate račun?
       account not active: Žao nam je, Vaš korisnički račun još nije aktivan. <br />
         Molimo vas da koristite link u e-pošti potvrde da biste aktivirali svoj račun,
         ili <a href="%{reconfirm}">zatražiti novu e-poštu potvrde</a> .
@@ -1614,8 +1607,6 @@ hr:
     reset_password:
       title: Reset lozinke
       heading: Reset lozinke za %{user}
-      password: 'Lozinka:'
-      confirm password: 'Potvrdi zaporku:'
       reset: Reset lozinke
       flash changed: Vaša lozinka je promjenjena.
       flash token bad: Nije pronađen takav token, provjeri URL?
@@ -1632,8 +1623,6 @@ hr:
           <p>Za razliku od drugih karata, OpenStreetMap su u potpunosti napravili ljudi kao vi,
           i slobodno ju svatko može popraviti, osvježiti, skinuti i koristiti.</p>
           <p>Prijavite se i krenite uređivati. Poslat ćemo vam e-mail kako bi potvrdili vaš račun.</p>
-      license_agreement: Kada potvrdiš svoj račun trebati ćeš pristati na <a href="http://www.osmfoundation.org/wiki/License/Contributor_Terms">uvjete
-        pridonositelja</a>.
       email address: 'Email:'
       confirm email address: 'Potvrdi e-mail:'
       not_displayed_publicly_html: Vaša adresa nije javno prikazana, vidi naša <a
@@ -1801,10 +1790,10 @@ hr:
       already active: Ovaj račun je već potvrđen.
       unknown token: Taj potvrdni kôd je istekao ili ne postoji.
     confirm_resend:
-      success: Poslali smo novu potvrdu na email %{email}, a čim potvrdiš svoj račun,
-        moći ćeš početi kartirati.<br /><br />Ako koristiš antispam sustav koji šalje
-        potvrdu zahtjeva, molim te da provjeriš je li %{sender} na tzv. "whitelisti",
-        jer nismo u mogućnosti odgovarati na potvrde zahtjeva.
+      success_html: Poslali smo novu potvrdu na email %{email}, a čim potvrdiš svoj
+        račun, moći ćeš početi kartirati.<br /><br />Ako koristiš antispam sustav
+        koji šalje potvrdu zahtjeva, molim te da provjeriš je li %{sender} na tzv.
+        "whitelisti", jer nismo u mogućnosti odgovarati na potvrde zahtjeva.
       failure: Korisnik %{name} nije pronađen.
     confirm_email:
       heading: Potvrdi promjenu email adrese.
@@ -1910,9 +1899,9 @@ hr:
       revoke: Opozovi!
       flash: Ova blokada je opozvana.
     helper:
-      time_future: Završava u %{time}.
+      time_future_html: Završava u %{time}.
       until_login: Aktivno dok se korsnik ne prijavi.
-      time_past: Završeno %{time}.
+      time_past_html: Završeno %{time}.
       block_duration:
         hours:
           one: 1 sat
@@ -1952,7 +1941,7 @@ hr:
       next: Sljedeća »
       previous: « Prethodna
   notes:
-    mine:
+    index:
       title: Bilješke stvorio ili komentirao %{user}
       heading: Bilješke korisnika %{user}
       subheading_html: Bilješke stvorio ili komentirao %{user}
@@ -2049,6 +2038,9 @@ hr:
         onramp_right_without_exit: Skreni desno na autocestu %{name}
         endofroad_right_without_exit: Na kraju ceste skreni desno na %{name}
     context:
+      directions_from: Upute odavde
+      directions_to: Upute dovde
+      show_address: Prikaži adresu
       query_features: Provjeri elemente karte
   redactions:
     edit:

@@ -82,6 +82,9 @@ fur:
         longitude: Longjitudin
         public: Public
         description: Descrizion
+        gpx_file: 'Cjame file GPX:'
+        visibility: 'Visibilitât:'
+        tagstring: 'Etichetis:'
       message:
         sender: Mitent
         title: Sogjet
@@ -94,6 +97,9 @@ fur:
         description: Descrizion
         languages: Lenghis
         pass_crypt: Password
+    help:
+      trace:
+        tagstring: separâts di virgulis
   editor:
     default: Predeterminât (par cumò %{name})
     potlatch:
@@ -159,9 +165,9 @@ fur:
       relation: Relazions (%{count})
       relation_paginated: Relazions (%{x}-%{y} su %{count})
       comment: Coments (%{count})
-      hidden_commented_by: Coment platât di %{user} <abbr title='%{exact_time}'>%{when}
+      hidden_commented_by_html: Coment platât di %{user} <abbr title='%{exact_time}'>%{when}
         indaûr</abbr>
-      commented_by: Coment di %{user} <abbr title='%{exact_time}'>%{when} indaûr</abbr>
+      commented_by_html: Coment di %{user} <abbr title='%{exact_time}'>%{when} indaûr</abbr>
       changesetxml: Grup di cambiaments XML
       osmchangexml: XML in formât osmChange
       feed:
@@ -230,19 +236,20 @@ fur:
       open_title: 'Note no risolte #%{note_name}'
       closed_title: 'Note risolte #%{note_name}'
       hidden_title: 'Note platade #%{note_name}'
-      opened_by: Creade di %{user} <abbr title='%{exact_time}'>%{when} indaûr</abbr>
-      opened_by_anonymous: Creade di un anonim <abbr title='%{exact_time}'>%{when}
+      opened_by_html: Creade di %{user} <abbr title='%{exact_time}'>%{when} indaûr</abbr>
+      opened_by_anonymous_html: Creade di un anonim <abbr title='%{exact_time}'>%{when}
         indaûr</abbr>
-      commented_by: Coment di %{user} <abbr title='%{exact_time}'>%{when} indaûr</abbr>
-      commented_by_anonymous: Coment di un anonim <abbr title='%{exact_time}'>%{when}
+      commented_by_html: Coment di %{user} <abbr title='%{exact_time}'>%{when} indaûr</abbr>
+      commented_by_anonymous_html: Coment di un anonim <abbr title='%{exact_time}'>%{when}
         indaûr</abbr>
-      closed_by: Risolte di %{user} <abbr title='%{exact_time}'>%{when} indaûr</abbr>
-      closed_by_anonymous: Risolte di anonim <abbr title='%{exact_time}'>%{when} indaûr</abbr>
-      reopened_by: Tornade a ativâ di %{user} <abbr title='%{exact_time}'>%{when}
+      closed_by_html: Risolte di %{user} <abbr title='%{exact_time}'>%{when} indaûr</abbr>
+      closed_by_anonymous_html: Risolte di anonim <abbr title='%{exact_time}'>%{when}
         indaûr</abbr>
-      reopened_by_anonymous: Tornade a ativâ di un anonim <abbr title='%{exact_time}'>%{when}
+      reopened_by_html: Tornade a ativâ di %{user} <abbr title='%{exact_time}'>%{when}
         indaûr</abbr>
-      hidden_by: Platade di %{user} <abbr title='%{exact_time}'>%{when} indaûr</abbr>
+      reopened_by_anonymous_html: Tornade a ativâ di un anonim <abbr title='%{exact_time}'>%{when}
+        indaûr</abbr>
+      hidden_by_html: Platade di %{user} <abbr title='%{exact_time}'>%{when} indaûr</abbr>
     query:
       title: Ce ch'al è intun lûc
       introduction: Frache su la mape par cjatâ lis robis dongje.
@@ -417,7 +424,6 @@ fur:
           kindergarten: Scuelute
           library: Biblioteche
           nightclub: Club noturni
-          office: Ufizi
           parking: Parcament
           pharmacy: Farmacie
           place_of_worship: Lûc di cult
@@ -428,10 +434,7 @@ fur:
           public_building: Edifici public
           recycling: Pont pal ricicli
           restaurant: Ristorant
-          retirement_home: Cjase di polse
-          sauna: Saune
           school: Scuele
-          shop: Buteghe
           social_centre: Centri sociâl
           swimming_pool: Pissine
           taxi: Taxi
@@ -442,7 +445,6 @@ fur:
           vending_machine: Distributôr automatic
           veterinary: Veterinari
           village_hall: Centri civic
-          youth_centre: Centri zovanîl
         boundary:
           administrative: Confin aministratîf
           national_park: Parc nazionâl
@@ -452,6 +454,20 @@ fur:
           viaduct: Viadot
           "yes": Puint
         building:
+          chapel: Capele
+          church: Glesie
+          commercial: Edifici comerciâl
+          dormitory: Dormitori
+          garage: Garage
+          hospital: Edifici dal ospedâl
+          hotel: Hotel
+          house: Cjase
+          industrial: Edifici industriâl
+          public: Edifici public
+          residential: Edifici residenziâl
+          school: Edifici scolastic
+          train_station: Stazion de ferade
+          university: Edifici universitari
           "yes": Edifici
         emergency:
           phone: Telefon di emergjence
@@ -491,7 +507,6 @@ fur:
           citywalls: Muris
           fort: Fuart
           house: Cjase
-          icon: Icone
           memorial: Memoriâl
           mine: Miniere
           monument: Monument
@@ -605,15 +620,12 @@ fur:
           clothes: Buteghe di vistîts
           copyshop: Copisterie
           electronics: Buteghe di eletroniche
-          gallery: Galarie di art
           hairdresser: Piruchîr o barbîr
           jewelry: Buteghe dal oresin
           laundry: Lavandarie
-          market: Marcjât
           newsagent: Buteghe dai gjornâi
           optician: Otic
           pet: Buteghe di animâi
-          pharmacy: Farmacie
           photo: Buteghe di fotografie
           shoes: Buteghe di scarpis
           sports: Buteghe di articui sportîfs
@@ -644,11 +656,6 @@ fur:
         level6: Confin di contee
         level8: Confin di citât
         level9: Confin di vilaç
-    description:
-      title:
-        osm_nominatim: Lûc di <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames: Lûc cjolt di <a href="http://www.geonames.org/">GeoNames</a>
       types:
         cities: Citâts
         towns: Citadinis
@@ -701,7 +708,7 @@ fur:
       text: Done alc
     learn_more: Par savênt di plui
     more: Plui
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} al à zontât un coment ae tô vôs dal diari'
       hi: Mandi %{to_user},
@@ -972,11 +979,6 @@ fur:
         title: No tu âs timp par fâ i cambiaments? Zonte une note!
   traces:
     new:
-      upload_gpx: 'Cjame file GPX:'
-      description: 'Descrizion:'
-      tags: 'Etichetis:'
-      tags_help: separâts di virgulis
-      visibility: 'Visibilitât:'
       visibility_help: ce vuelial dî?
       help: Jutori
     create:
@@ -987,18 +989,6 @@ fur:
     edit:
       title: Daûr a cambiâ il percors %{name}
       heading: Daûr a cambiâ il percors %{name}
-      filename: 'Non dal file:'
-      download: discjame
-      uploaded_at: 'Cjamât ai:'
-      points: 'Ponts:'
-      start_coord: 'Coordenadis iniziâls:'
-      map: mape
-      edit: cambie
-      owner: 'Paron:'
-      description: 'Descrizion:'
-      tags: 'Etichetis:'
-      tags_help: separâts di virgulis
-      visibility: 'Visibilitât:'
       visibility_help: ce vuelial dî?
     trace_optionals:
       tags: Etichetis
@@ -1076,11 +1066,6 @@ fur:
       delete: Elimine client
       confirm: Sêstu sigûr?
       requests: 'Domande i permès ca sot al utent:'
-      allow_read_prefs: lei lis sôs preferencis dal utent.
-      allow_write_prefs: modificâ lis sôs preferencis dal utent.
-      allow_write_diary: creâ vôs dal diari, comentâ e zontâ amîs.
-      allow_write_api: modificâ la mape.
-      allow_write_notes: cambiâ lis notis.
     index:
       title: I miei detais OAuth
       my_tokens: Lis aplicazions che o ai autorizât
@@ -1096,14 +1081,7 @@ fur:
       registered_apps: 'Tu âs chestis aplicazions client regjistradis:'
       register_new: Regjistre la tô aplicazion
     form:
-      name: Non
-      url: URL principâl de aplicazion
       requests: 'Domande i permès ca sot al utent:'
-      allow_read_prefs: lei lis sôs preferencis dal utent.
-      allow_write_prefs: modificâ lis sôs preferencis dal utent.
-      allow_write_diary: creâ vôs dal diari, comentâ e zontâ amîs.
-      allow_write_api: modificâ la mape.
-      allow_write_notes: cambiâ lis notis.
   users:
     login:
       title: Jentre
@@ -1139,16 +1117,12 @@ fur:
     reset_password:
       title: Azere la password
       heading: Azere la password par %{user}
-      password: 'Password:'
-      confirm password: 'Conferme la password:'
       reset: Azere la password
       flash changed: La tô password e je stade cambiade.
     new:
       title: Regjistriti
       about:
         header: Libare e modificabile
-      license_agreement: Creant un profîl tu scugnis aprovâ i <a href="http://www.osmfoundation.org/wiki/License/Contributor_Terms">tiermins
-        par contribuî</a>.
       email address: 'Direzion di pueste eletroniche:'
       confirm email address: 'Conferme direzion pueste:'
       display name: 'Non di mostrâ:'
@@ -1351,8 +1325,8 @@ fur:
       time_future: Chest bloc al finìs ca di %{time}.
       revoke: Revoche!
     helper:
-      time_future: Finìs ca di %{time}.
-      time_past: Finît %{time} indaûr.
+      time_future_html: Finìs ca di %{time}.
+      time_past_html: Finît %{time} indaûr.
       block_duration:
         hours:
           one: 1 ore
@@ -1391,7 +1365,7 @@ fur:
       next: Sucessîf »
       previous: « Precedent
   notes:
-    mine:
+    index:
       title: Note inseride o comentade di %{user}
       heading: Lis notis di %{user}
       subheading_html: Lis notis inseridis o comentadis di %{user}

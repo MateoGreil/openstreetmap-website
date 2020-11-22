@@ -1,5 +1,5 @@
 module BrowseHelper
-  def printable_name(object, version = false)
+  def printable_name(object, version: false)
     id = if object.id.is_a?(Array)
            object.id[0]
          else
@@ -13,7 +13,7 @@ module BrowseHelper
     unless object.redacted?
       available_locales = Locale.list(name_locales(object))
 
-      locale = available_locales.preferred(preferred_languages)
+      locale = available_locales.preferred(preferred_languages, :default => nil)
 
       if object.tags.include? "name:#{locale}"
         name = t "printable_name.with_name_html", :name => tag.bdi(object.tags["name:#{locale}"].to_s), :id => tag.bdi(name)
@@ -44,7 +44,7 @@ module BrowseHelper
     if object.redacted?
       ""
     else
-      h(icon_tags(object).map { |k, v| k + "=" + v }.to_sentence)
+      h(icon_tags(object).map { |k, v| "#{k}=#{v}" }.to_sentence)
     end
   end
 

@@ -23,6 +23,8 @@ ro:
       friendly: '%e %B %Y la %H:%M'
       blog: '%e %B %Y'
   helpers:
+    file:
+      prompt: Selectează fişier
     submit:
       diary_comment:
         create: Salvează
@@ -35,7 +37,7 @@ ro:
         create: Trimite
       client_application:
         create: Înregistrează
-        update: Editează
+        update: Actualizează
       redaction:
         create: Creați redacție
         update: Salvați redacția
@@ -87,6 +89,18 @@ ro:
       way_node: Nod cale
       way_tag: Etichetă cale
     attributes:
+      client_application:
+        name: Nume (Obligatoriu)
+        url: URL-ul principal al aplicației (Obligatoriu)
+        callback_url: Adresă URL cu inversare
+        support_url: Suport URL
+        allow_read_prefs: citiți preferințele utilizatorului
+        allow_write_prefs: modifică preferințele utilizatorului
+        allow_write_diary: creați intrări în jurnal, comentarii și faceți prieteni
+        allow_write_api: modifică harta
+        allow_read_gpx: citiți traseele GPS private
+        allow_write_gpx: încărcați urma GPS
+        allow_write_notes: modificați notele
       diary_comment:
         body: Textul mesajului
       diary_entry:
@@ -101,17 +115,23 @@ ro:
       trace:
         user: Utilizator
         visible: Vizibil
-        name: Nume
+        name: Nume fișier
         size: Dimensiune
         latitude: Latitudine
         longitude: Longitudine
         public: Public
         description: Descriere
+        gpx_file: Încărcați fișier GPX
+        visibility: Vizibilitate
+        tagstring: Etichete
       message:
         sender: Expeditor
         title: Subiect
         body: Textul mesajului
         recipient: Destinatar
+      report:
+        category: Selectați un motiv pentru raportul dvs
+        details: Vă rugăm să furnizați mai multe detalii despre problemă (necesar).
       user:
         email: E-mail
         active: Activ
@@ -119,6 +139,9 @@ ro:
         description: Descriere
         languages: Limbi
         pass_crypt: Parolă
+    help:
+      trace:
+        tagstring: utilizează virgule
   datetime:
     distance_in_words_ago:
       about_x_hours:
@@ -225,6 +248,8 @@ ro:
     view_history: Vezi istoric
     view_details: Vezi detalii
     location: 'Amplasament:'
+    common_details:
+      coordinates_html: '%{latitude}, %{longitude}'
     changeset:
       title: 'Set de modificări: %{id}'
       belongs_to: Autor
@@ -235,8 +260,8 @@ ro:
       relation: Comunicații (%{count})
       relation_paginated: Comunicații (%{x}-%{y} din %{count})
       comment: Comentarii (%{count})
-      hidden_commented_by: Ascuns comentariu de la %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by: Comentariu de la %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      hidden_commented_by_html: Ascuns comentariu de la %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_html: Comentariu de la %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       changesetxml: Set de modificări XML
       osmchangexml: XML osmChange
       feed:
@@ -318,16 +343,17 @@ ro:
       open_title: 'Notă nerezolvată #%{note_name}'
       closed_title: 'Notă rezolvată #%{note_name}'
       hidden_title: 'Notă ascunsă #%{note_name}'
-      opened_by: Creat de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      opened_by_anonymous: Creat de anonim <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by: Comentariu de la %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_anonymous: Comentariu de la anonim <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by: Rezolvat de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_anonymous: Rezolvat de anonim <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by: Reactivat de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by_anonymous: Reactivat de anonim <abbr title='%{exact_time}'>%{when}</abbr>
-      hidden_by: Ascunsă de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      opened_by_html: Creat de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      opened_by_anonymous_html: Creat de anonim <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_html: Comentariu de la %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_anonymous_html: Comentariu de la anonim <abbr title='%{exact_time}'>%{when}</abbr>
+      closed_by_html: Rezolvat de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      closed_by_anonymous_html: Rezolvat de anonim <abbr title='%{exact_time}'>%{when}</abbr>
+      reopened_by_html: Reactivat de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      reopened_by_anonymous_html: Reactivat de anonim <abbr title='%{exact_time}'>%{when}</abbr>
+      hidden_by_html: Ascunsă de %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       report: Raportează această notă
+      coordinates_html: '%{latitude}, %{longitude}'
     query:
       title: Interogări ale funcțiilor
       introduction: Dați clic pe hartă pentru a găsi obiectivele din apropiere.
@@ -417,7 +443,7 @@ ro:
     diary_entry:
       posted_by_html: Postat de către %{link_user} pe %{created} în %{language_link}
       comment_link: Comentează la această înregistrare
-      reply_link: Răspunde la această înregistrare
+      reply_link: Trimite un mesaj autorului
       comment_count:
         zero: Niciun comentariu
         one: '%{count} comentariu'
@@ -437,6 +463,7 @@ ro:
       location: 'Localizare:'
       view: Vizualizează
       edit: Modifică
+      coordinates: '%{latitude}; %{longitude}'
     feed:
       user:
         title: Înregistrări în jurnalul OpenStreetMap pentru %{user}
@@ -487,10 +514,12 @@ ro:
           chair_lift: Telescaun
           drag_lift: Teleschiu
           gondola: Telecabină
+          magic_carpet: Tele Covorul Magic
           platter: Platter Lift
           pylon: Pilon
           station: Stație de antenă
           t-bar: Teleschi
+          "yes": Cale aeriană
         aeroway:
           aerodrome: Aerodrom
           airstrip: Pistă de aterizare
@@ -499,11 +528,15 @@ ro:
           hangar: Hangar
           helipad: Helipad
           holding_position: Păstrează poziția
+          navigationaid: Ajutor de navigație aeriană
           parking_position: Poziția de parcare
           runway: Pistă
+          taxilane: Banda de taxi
           taxiway: Pistă de manevră
           terminal: Terminal
+          windsock: Con de vânt
         amenity:
+          animal_boarding: Îmbarcarea animalelor
           animal_shelter: Adăpost de animale
           arts_centre: Centru de arte
           atm: Bancomat
@@ -513,7 +546,9 @@ ro:
           bench: Bancă
           bicycle_parking: Parcare de biciclete
           bicycle_rental: Închiriere de biciclete
+          bicycle_repair_station: Stația de reparare a bicicletelor
           biergarten: Braserie în aer liber
+          blood_bank: Banca de sânge
           boat_rental: Închiriere de bărci
           brothel: Bordel
           bureau_de_change: Casă de schimb valutar
@@ -530,6 +565,7 @@ ro:
           clock: Ceas
           college: Colegiu
           community_centre: Centru comunitar
+          conference_centre: Centru de conferințe
           courthouse: Tribunal
           crematorium: Crematoriu
           dentist: Dentist
@@ -537,6 +573,7 @@ ro:
           drinking_water: Cișmea
           driving_school: Școală de șoferi
           embassy: Ambasadă
+          events_venue: Sală de evenimente
           fast_food: Fast-food
           ferry_terminal: Terminal pentru feriboturi
           fire_station: Stație de pompieri
@@ -549,36 +586,42 @@ ro:
           hospital: Spital
           hunting_stand: Stand de vânătoare
           ice_cream: Înghețată
+          internet_cafe: Internet Cafe
           kindergarten: Grădiniță
+          language_school: Școală de limbi
           library: Bibliotecă
+          loading_dock: Doc de încărcare
+          love_hotel: Hotel de dragoste
           marketplace: Piață de mărfuri
+          mobile_money_agent: Agent de bani mobil
           monastery: Mănăstire
+          money_transfer: Transfer de bani
           motorcycle_parking: Parcare pentru motociclete
+          music_school: Şcoală de muzică
           nightclub: Club de noapte
           nursing_home: Azil de bătrâni
-          office: Birou
           parking: Parcare
           parking_entrance: Intrare în parcare
           parking_space: Spațiu de parcare
+          payment_terminal: Terminal de plăţi
           pharmacy: Farmacie
           place_of_worship: Lăcaș de cult
           police: Poliție
           post_box: Cutie poștală
           post_office: Oficiu poștal
-          preschool: Preșcolar
           prison: Închisoare
           pub: Pub
+          public_bath: Baie publică
+          public_bookcase: Bibliotecă publică
           public_building: Clădire publică
+          ranger_station: Cabană de pădurar
           recycling: Punct de reciclare
           restaurant: Restaurant
-          retirement_home: Casă de bătrâni
-          sauna: Saună
+          sanitary_dump_station: Stație de scurgere sanitară
           school: Școală
           shelter: Adăpost
-          shop: Magazin
           shower: Duș
           social_centre: Centru social
-          social_club: Club social
           social_facility: Facilitate socială
           studio: Studio
           swimming_pool: Piscină de înot
@@ -587,19 +630,27 @@ ro:
           theatre: Teatru
           toilets: Toalete
           townhall: Primărie
+          training: Facilitatea de instruire
           university: Universitate
+          vehicle_inspection: Inspecția vehiculului
           vending_machine: Vendomat
           veterinary: Operație veterinară
           village_hall: Primărie comunală
           waste_basket: Coș de gunoi
           waste_disposal: Eliminarea deșeurilor
+          waste_dump_site: Groapă de gunoi
+          watering_place: Loc de irigare
           water_point: Punct de apă
-          youth_centre: Centru de tineret
+          weighbridge: Pod basculă
+          "yes": Infrastructură
         boundary:
+          aboriginal_lands: Pământuri aborigene
           administrative: Graniță administrativă
           census: Limită de recensământ
           national_park: Parc național
+          political: Granița electorală
           protected_area: Zonă protejată
+          "yes": Graniţa
         bridge:
           aqueduct: Apeduct
           boardwalk: Promenadă
@@ -608,24 +659,94 @@ ro:
           viaduct: Viaduct
           "yes": Pod
         building:
+          apartment: Apartment
+          apartments: Apartamente
+          barn: Hambar
+          bungalow: Bungalou
+          cabin: Cabană
+          chapel: Capelă
+          church: Clădire de Biserică
+          civic: Clădire Municipală
+          college: Clădirea colegiu
+          commercial: Clădire comercială
+          construction: Clădire în construcție
+          detached: Casă decomandată
+          dormitory: Dormitor
+          duplex: Casă duplex
+          farm: Casă fermă
+          farm_auxiliary: Casă fermă auxiliară
+          garage: Garaj
+          garages: Garaje
+          greenhouse: Seră
+          hangar: Hangar
+          hospital: Clădire de spital
+          hotel: Clădire de hotel
+          house: Casă
+          houseboat: Casă ambarcaţiune
+          hut: Colibă
+          industrial: Clădire industrială
+          kindergarten: Clădirea Grădiniței
+          manufacture: Clădire de Producţie
+          office: Clădire de birouri
+          public: Clădire publică
+          residential: Clădire rezidențială
+          retail: Clădire de vânzare cu amănuntul
+          roof: Acoperiş
+          ruins: Clădire ruină
+          school: Clădire școlară
+          semidetached_house: Casă semidetaşată
+          service: Clădire de servicii
+          shed: Șură
+          stable: Grajd
+          static_caravan: Rulotă
+          temple: Clădire templu
+          terrace: Case înșiruite
+          train_station: Gară
+          university: Clădire de Universitate
+          warehouse: Depozit
           "yes": Clădire
+        club:
+          scout: Sediu Grup de Cercetaşi
+          sport: Club Sportiv
+          "yes": Club
         craft:
+          beekeper: Apicultor
+          blacksmith: Fierar
           brewery: Berărie
           carpenter: Tâmplar
+          caterer: firmă de catering
+          confectionery: Cofetărie
+          dressmaker: Croitoreasă
           electrician: Electrician
+          electronics_repair: Reparații Electronice
           gardener: Grădinar
+          glaziery: Sticlărie
+          handicraft: Tehnici de lucru manual
+          hvac: Fabricant de încălzire, ventilație și aer condiționat
+          metal_construction: Constructor în metal
           painter: Pictor
           photographer: Fotograf
           plumber: Instalator
+          roofer: Constructor de acoperişuri
+          sawmill: Gater
           shoemaker: Cizmar
+          stonemason: Pietrar
           tailor: Croitor
+          window_construction: Construcție ferestre
+          winery: Domeniu viticol
           "yes": Magazin de artizanat
         emergency:
+          access_point: Punct de acces
           ambulance_station: Stație de ambulanță
           assembly_point: Punct de ansamblare
           defibrillator: Defibrilator
+          fire_xtinguisher: Extinctor
+          fire_water_pond: Bazinul cu apă pentru foc
           landing_site: Sit pentru aterizarea de urgență
+          life_ring: Colac de salvare de urgenţă
           phone: Telefon de urgență
+          siren: Sirenă de Urgenţă
+          suction_point: Punct de aspirare de urgenţă
           water_tank: Rezervor de apă de urgență
           "yes": Urgență
         highway:
@@ -638,6 +759,7 @@ ro:
           cycleway: Pistă de biciclete
           elevator: Lift
           emergency_access_point: Punct de acces de urgență
+          emergency_bay: Loc oprire de urgenţă
           footway: Cale pietonală
           ford: Vad
           give_way: Semn de cedează trecerea
@@ -668,37 +790,45 @@ ro:
           tertiary: Drum terțiar
           tertiary_link: Drum terțiar
           track: Drum forestier sau agricol
+          traffic_mirror: Oglindă de trafic
           traffic_signals: Semafor
-          trail: Potecă
+          trailhead: Punct pornire traseu
           trunk: Drum strategic
           trunk_link: Drum strategic
           turning_loop: Buclă de întoarcere
           unclassified: Drum neclasificat
           "yes": Drum
         historic:
+          aircraft: Avion istoric
           archaeological_site: Sit arheologic
+          bomb_crater: Crater de bombă istoric
           battlefield: Câmp de luptă
           boundary_stone: Bornă de graniță
           building: Clădire istorică
           bunker: Buncăr
+          cannon: Tun istoric
           castle: Castel
+          charcoal_pile: Gramadă de carbonizare istorică
           church: Biserică
           city_gate: Poarta orașului
           citywalls: Zidurile orașului
           fort: Fort
           heritage: Sit de patrimoniu
+          hollow_way: Drum tranşeu
           house: Casă
-          icon: Pictogramă
           manor: Conac
           memorial: Memorial
+          milestone: Bornă kilometrică istorică
           mine: Mină
           mine_shaft: Puțul minei
           monument: Monument
+          railway: Cale ferată istorică
           roman_road: Drumul roman
           ruins: Ruine
           stone: Piatră
           tomb: Mormânt
           tower: Turn
+          wayside_chapel: Wayside Chapel
           wayside_cross: Troiță
           wayside_shrine: Altar
           wreck: Epavă
@@ -707,6 +837,7 @@ ro:
           "yes": Intersecție
         landuse:
           allotments: Repartizări
+          aquaculture: Acvacultură
           basin: Bazin
           brownfield: Teren brun
           cemetery: Cimitir
@@ -726,6 +857,7 @@ ro:
           military: Zonă militară
           mine: Mină
           orchard: Livadă
+          plant_nursery: Pepinieră
           quarry: Carieră
           railway: Cale ferată
           recreation_ground: Zonă de recreere
@@ -733,7 +865,6 @@ ro:
           reservoir_watershed: Cumpăna apelor
           residential: Zonă rezidențială
           retail: Amănuntul
-          road: Zonă de drum
           village_green: Village Green
           vineyard: Podgorie
           "yes": Utilizarea terenului
@@ -890,7 +1021,6 @@ ro:
           subdivision: Subdiviziune
           suburb: Suburbie
           town: Oraș
-          unincorporated_area: Zonă neîncorporată
           village: Sat
           "yes": Loc
         railway:
@@ -916,6 +1046,7 @@ ro:
           switch: Macazul de cale ferată
           tram: Tramvai
           tram_stop: Stație de tramvai
+          yard: Depou
         shop:
           alcohol: Fără licență
           antiques: Antichități
@@ -949,12 +1080,10 @@ ro:
           estate_agent: Agent imobiliar
           farm: Magazinul fermei
           fashion: Magazin de modă
-          fish: Pescărie
           florist: Florărie
           food: Alimentară
           funeral_directors: Director de funeralii
           furniture: Mobilier
-          gallery: Galerie
           garden_centre: Magazin de grădinărit
           general: Magazin general
           gift: Magazin de cadouri
@@ -971,7 +1100,6 @@ ro:
           laundry: Spălătorie
           lottery: Loterie
           mall: Mall
-          market: Piață
           massage: Masaj
           mobile_phone: Magazin de telefoane
           motorcycle: Magazin de motociclete
@@ -983,7 +1111,6 @@ ro:
           paint: Atelier de vopsitorie
           pawnbroker: Amanetar
           pet: Magazin de animale
-          pharmacy: Farmacie
           photo: Magazin de fotografie
           seafood: Mâncare de mare
           second_hand: Magazin second hand
@@ -1054,11 +1181,6 @@ ro:
         level8: Limită de oraș
         level9: Limita satului
         level10: Limită de suburbie
-    description:
-      title:
-        osm_nominatim: Locație de la <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames: Rezultate de la <a href="http://www.geonames.org/">GeoNames</a>
       types:
         cities: Orașe
         towns: Orășele
@@ -1136,8 +1258,6 @@ ro:
     new:
       title_html: '%{link} raport'
       missing_params: Nu se poate crea un nou raport
-      details: Vă rugăm să furnizați mai multe detalii despre problemă (necesar).
-      select: 'Selectați un motiv pentru raportul dvs.:'
       disclaimer:
         intro: 'Înainte de a trimite raportul dvs. moderatorilor site-ului, asigurați-vă
           că:'
@@ -1220,7 +1340,7 @@ ro:
       text: Faceți o donație
     learn_more: Aflați mai multe
     more: Mai multe
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} a comentat o intrare în jurnal'
       hi: Salut %{to_user},
@@ -1473,19 +1593,19 @@ ro:
           ei. Dacă modificați sau folosiți datele noastre, puteți distribui rezultatul
           doar sub aceeași licență. Aici  <a href="https://opendatacommons.org/licenses/odbl/1.0/">codul
           legal</a> sunt explicate drepturile și responsabilitățile.
-        intro_3_html: |-
+        intro_3_1_html: |-
           Cartografia din hărțile noastre și documentația noastră sunt
           licențiat sub <a href="https://creativecommons.org/licenses/by-sa/2.0/">Creative
           Commons Attribution-ShareAlike 2.0</a> (CC BY-SA).
         credit_title_html: Cum se creditează OpenStreetMap
         credit_1_html: Noi cerem să utilizați creditul&copy; contribuitori OpenStreetMap&
           rdquo;.
-        credit_2_html: |-
+        credit_2_1_html: |-
           De asemenea, trebuie să clarificați faptul că datele sunt disponibile în cadrul licenței libere a bazei de date și, dacă folosim bucăți de hartă, atunci cartografierea este licențiată de CC BY-SA. Puteți face acest lucru prin conectarea la
           <a href="https://www.openstreetmap.org/copyright"> această pagină de copyright</a>.
           Alternativ, și ca o cerință dacă distribuim OSM într-un
           formularul de date, puteți numi și să vă conectați direct la licența (licențele). Acolo unde legăturile nu sunt posibile (de exemplu lucrări tipărite), vă sugerăm să direcționați cititorii dvs. la openstreetmap.org (probabil prin extinderea "OpenStreetMap" la această adresă completă), la opendatacommons.org, și dacă este cazul, la creativecommons.org.
-        credit_3_html: |-
+        credit_4_html: |-
           Pentru o hartă electronică care poate fi răsfoită, creditul ar trebui să apară în colțul hărții.
           De exemplu:
         attribution_example:
@@ -1884,11 +2004,6 @@ ro:
         ordonate cu marcatori de timp)
     new:
       upload_trace: Încărcați Urma GPS
-      upload_gpx: 'Încărcați fișier GPX:'
-      description: 'Descriere:'
-      tags: 'Etichete:'
-      tags_help: utilizează virgule
-      visibility: 'Vizibilitate:'
       visibility_help: ce înseamnă asta?
       visibility_help_url: https://wiki.openstreetmap.org/wiki/Visibility_of_GPS_traces
       help: Ajutor
@@ -1910,18 +2025,6 @@ ro:
     edit:
       title: Editarea traseului %{name}
       heading: Editarea traseului %{name}
-      filename: 'Nume fișier:'
-      download: descarcă
-      uploaded_at: 'Încărcat:'
-      points: 'Puncte:'
-      start_coord: 'Start coordonate:'
-      map: hartă
-      edit: modificare
-      owner: 'Proprietar:'
-      description: 'Descriere:'
-      tags: 'Etichete:'
-      tags_help: delimitate prin virgulă
-      visibility: 'Vizibilitate:'
       visibility_help: ce înseamnă asta?
     update:
       updated: Traseul a fost actualizat
@@ -2056,13 +2159,6 @@ ro:
       delete: Ștergeți clientul
       confirm: Sunteți sigur(ă)?
       requests: 'Solicitarea următoarelor permisiuni de la utilizator:'
-      allow_read_prefs: citiți preferințele utilizatorilor.
-      allow_write_prefs: modifică preferințele utilizatorilor.
-      allow_write_diary: creați intrări de jurnal, comentați și faceți prieteni.
-      allow_write_api: modifică harta.
-      allow_read_gpx: citiți traseele GPS private.
-      allow_write_gpx: încărcați urma GPS
-      allow_write_notes: modificați notele.
     index:
       title: Detalii despre OAuth
       my_tokens: Aplicațiile mele autorizate
@@ -2079,19 +2175,7 @@ ro:
       registered_apps: 'Aveți următoarele aplicații de client înregistrate:'
       register_new: Înregistrați-vă cererea
     form:
-      name: Nume
-      required: Necesar
-      url: Adresa principală a cererii
-      callback_url: Adresă URL cu inversare
-      support_url: Suport URL
       requests: 'Solicitarea următoarelor permisiuni de la utilizator:'
-      allow_read_prefs: citirea preferințelor utilizatorilor.
-      allow_write_prefs: modificarea preferințelor utilizatorilor.
-      allow_write_diary: creați intrări de jurnal, comentați și creați prieteni.
-      allow_write_api: modifică harta.
-      allow_read_gpx: citiți traseele GPS private.
-      allow_write_gpx: încărcați urma GPS
-      allow_write_notes: modificați notele.
     not_found:
       sorry: Ne pare rău, %{type} nu a putut fi găsit.
     create:
@@ -2172,8 +2256,6 @@ ro:
     reset_password:
       title: Resetare parolă
       heading: Resetați parola pentru %{user}
-      password: 'Parola:'
-      confirm password: 'Confirmați parola:'
       reset: Resetează parola
       flash changed: Parola dumneavoastră a fost schimbată.
       flash token bad: Nu ați găsit acel simbol, verificați adresa URL?
@@ -2190,9 +2272,6 @@ ro:
           <p>Spre deosebire de alte hărți, OpenStreetMap este creat complet de oameni ca tine,
           și este gratuit pentru oricine să stabilească, să actualizeze, să descarce și să folosească.</p>
           <p>Înscrieți-vă pentru a începe să contribuiți. Vom trimite un e-mail pentru a vă confirma contul.</p>
-      license_agreement: Când vă confirmați contul, va trebui să fiți de acord cu
-        <a href="https://www.osmfoundation.org/wiki/License/Contributor_Terms">contributor
-        terms</a>.
       email address: 'Adresa de e-mail:'
       confirm email address: 'Confirmați adresa de e-mail:'
       not_displayed_publicly_html: Adresa dvs. nu este afișată în mod public, consultați
@@ -2400,11 +2479,11 @@ ro:
       reconfirm_html: Dacă aveți nevoie să retrimitem e-mailul de confirmare, <a href="%{reconfirm}">faceți
         clic aici</a>.
     confirm_resend:
-      success: Am trimis o nouă notă de confirmare către %{email} și de îndată ce
-        vă confirmați contul, veți putea obține cartografiere.<br /><br />Dacă utilizați
-        un sistem antispam care trimite cereri de confirmare, vă rugăm să asigurați-vă
-        că ați lăsat pe lista albă %{sender} ca fiind imposibil să răspundeți la orice
-        solicitări de confirmare.
+      success_html: Am trimis o nouă notă de confirmare către %{email} și de îndată
+        ce vă confirmați contul, veți putea obține cartografiere.<br /><br />Dacă
+        utilizați un sistem antispam care trimite cereri de confirmare, vă rugăm să
+        asigurați-vă că ați lăsat pe lista albă %{sender} ca fiind imposibil să răspundeți
+        la orice solicitări de confirmare.
       failure: Utilizatorul %{name} nu a fost găsit.
     confirm_email:
       heading: Confirmați o schimbare a adresei de e-mail
@@ -2541,11 +2620,11 @@ ro:
       revoke: Revocă!
       flash: Această blocare a fost revocată.
     helper:
-      time_future: Se termină în %{time}.
+      time_future_html: Se termină în %{time}.
       until_login: Activ până când utilizatorul se conectează.
-      time_future_and_until_login: Se termină în %{time} și după ce utilizatorul s-a
-        logat.
-      time_past: Terminat în urmă cu %{time}.
+      time_future_and_until_login_html: Se termină în %{time} și după ce utilizatorul
+        s-a logat.
+      time_past_html: Terminat în urmă cu %{time}.
       block_duration:
         hours:
           one: 1 oră
@@ -2599,7 +2678,7 @@ ro:
       next: Următoarea »
       previous: « Precedenta
   notes:
-    mine:
+    index:
       title: Notele trimise sau comentate de %{user}
       heading: Notele %{user}
       subheading_html: Notele trimise sau comentate de %{user}

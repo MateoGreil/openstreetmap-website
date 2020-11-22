@@ -72,7 +72,7 @@ class BoundingBox
   def check_size(max_area = Settings.max_request_area)
     # check the bbox isn't too large
     if area > max_area
-      raise OSM::APIBadBoundingBox, "The maximum bbox size is " + max_area.to_s +
+      raise OSM::APIBadBoundingBox, "The maximum bbox size is #{max_area}" \
                                     ", and your request was too large. Either request a smaller area, or use planet.osm"
     end
     self
@@ -89,7 +89,7 @@ class BoundingBox
   end
 
   def complete?
-    !to_a.include?(nil)
+    to_a.exclude?(nil)
   end
 
   def centre_lon
@@ -124,10 +124,10 @@ class BoundingBox
   # there are two forms used for bounds with and without an underscore,
   # cater for both forms eg minlon and min_lon
   def add_bounds_to(hash, underscore = "")
-    hash["min#{underscore}lat"] = format("%.7f", min_lat)
-    hash["min#{underscore}lon"] = format("%.7f", min_lon)
-    hash["max#{underscore}lat"] = format("%.7f", max_lat)
-    hash["max#{underscore}lon"] = format("%.7f", max_lon)
+    hash["min#{underscore}lat"] = format("%<lat>.7f", :lat => min_lat)
+    hash["min#{underscore}lon"] = format("%<lon>.7f", :lon => min_lon)
+    hash["max#{underscore}lat"] = format("%<lat>.7f", :lat => max_lat)
+    hash["max#{underscore}lon"] = format("%<lon>.7f", :lon => max_lon)
     hash
   end
 

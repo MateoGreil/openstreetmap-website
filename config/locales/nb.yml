@@ -32,6 +32,8 @@ nb:
     formats:
       friendly: '%e %B %Y kl. %H:%M'
   helpers:
+    file:
+      prompt: Velg fil
     submit:
       diary_comment:
         create: Lagre
@@ -67,6 +69,7 @@ nb:
       diary_comment: Dagbokskommentar
       diary_entry: Dagbokoppføring
       friend: Venn
+      issue: Sak
       language: Språk
       message: Melding
       node: Node
@@ -83,6 +86,7 @@ nb:
       relation: Relasjon
       relation_member: Relasjonsmedlem
       relation_tag: Relasjonsmerkelapp
+      report: Rapporter
       session: Økt
       trace: Spor
       tracepoint: Punkt i spor
@@ -94,6 +98,9 @@ nb:
       way_node: Veinode
       way_tag: Linjemerkelapp
     attributes:
+      client_application:
+        callback_url: 'URL for tilbakekall:'
+        support_url: Støtte-URL
       diary_comment:
         body: Brødtekst
       diary_entry:
@@ -108,17 +115,22 @@ nb:
       trace:
         user: Bruker
         visible: Synlig
-        name: Navn
+        name: Filnavn
         size: Størrelse
         latitude: Breddegrad
         longitude: Lengdegrad
         public: Offentlig
         description: Beskrivelse
+        gpx_file: Last opp GPX-fil
+        visibility: Synlighet
+        tagstring: Tagger
       message:
         sender: Avsender
         title: Emne
         body: Brødtekst
         recipient: Mottaker
+      report:
+        details: Fremskaff flere detaljer om problemet (påkrevet)
       user:
         email: E-post
         active: Aktiv
@@ -126,6 +138,9 @@ nb:
         description: Beskrivelse
         languages: Språk
         pass_crypt: Passord
+    help:
+      trace:
+        tagstring: kommaseparert
   datetime:
     distance_in_words_ago:
       about_x_hours:
@@ -137,6 +152,34 @@ nb:
       about_x_years:
         one: omkring et år siden
         other: omkring %{count} år siden
+      almost_x_years:
+        one: nesten ett år siden
+        other: nesten %{count} år siden
+      half_a_minute: et halvt minutt siden
+      less_than_x_seconds:
+        one: mindre enn ett sekund siden
+        other: mindre enn %{count} sekunder siden
+      less_than_x_minutes:
+        one: mindre enn ett minutt siden
+        other: mindre enn %{count} minutter siden
+      over_x_years:
+        one: mer enn ett år siden
+        other: mer enn %{count} år siden
+      x_seconds:
+        one: ett sekund siden
+        other: '%{count} sekunder siden'
+      x_minutes:
+        one: 1 minutt siden
+        other: '%{count} minutter siden'
+      x_days:
+        one: én dag siden
+        other: '%{count} dager siden'
+      x_months:
+        one: én måned siden
+        other: '%{count} måneder siden'
+      x_years:
+        one: ett år siden
+        other: '%{count} år siden'
   editor:
     default: Standard (nåværende %{name})
     potlatch:
@@ -151,6 +194,15 @@ nb:
     remote:
       name: Lokalt installert program
       description: Lokalt installert program (JOSM eller Merkaartor)
+  auth:
+    providers:
+      none: Ingen
+      openid: OpenID
+      google: Google
+      facebook: Facebook
+      windowslive: Windows Live
+      github: GitHub
+      wikipedia: Wikipedia
   api:
     notes:
       comment:
@@ -202,8 +254,8 @@ nb:
       relation: Forbindelser (%{count})
       relation_paginated: Forbindelser (%{x}-%{y} av %{count})
       comment: Kommentarer (%{count})
-      hidden_commented_by: Skjult kommentar fra %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by: Kommentar fra %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      hidden_commented_by_html: Skjult kommentar fra %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_html: Kommentar fra %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       changesetxml: XML for endringssett
       osmchangexml: osmChange-XML
       feed:
@@ -273,7 +325,9 @@ nb:
         tag: Wiki-beskrivelsessiden for %{key}=%{value}-elementet
       wikidata_link: Elementet %{page} på Wikidata
       wikipedia_link: Artikkelen %{page} på Wikipedia
+      wikimedia_commons_link: Elementet %{page} på Wikimedia Commons
       telephone_link: Ring %{phone_number}
+      colour_preview: Forhåndsvisning av fargen %{colour_value}
     note:
       title: 'Merknad: %{id}'
       new_note: Ny merknad
@@ -281,20 +335,17 @@ nb:
       open_title: 'Uavklart merknad #%{note_name}'
       closed_title: 'Avklart merknad: #%{note_name}'
       hidden_title: 'Skjult notis #%{note_name}'
-      opened_by: Opprettet av %{user} for <abbr title='%{exact_time}'>%{when} siden</abbr>
-      opened_by_anonymous: Opprettet av anonym bruker for <abbr title='%{exact_time}'>%{when}
+      opened_by_html: Opprettet av %{user} for <abbr title='%{exact_time}'>%{when}
         siden</abbr>
-      commented_by: Kommentar fra %{user} for <abbr title='%{exact_time}'>%{when}
+      opened_by_anonymous_html: Opprettet av anonym bruker for <abbr title='%{exact_time}'>%{when}
         siden</abbr>
-      commented_by_anonymous: Kommentar fra anonym bruker for <abbr title='%{exact_time}'>%{when}
-        siden</abbr>
-      closed_by: Løst av %{user} for <abbr title='%{exact_time}'>%{when} siden</abbr>
-      closed_by_anonymous: Løst av anonym bruker for <abbr title='%{exact_time}'>%{when}
-        siden</abbr>
-      reopened_by: Gjenåpnet av %{user} for <abbr title='%{exact_time}'>%{when} siden</abbr>
-      reopened_by_anonymous: Gjenåpnet av anonym bruker for <abbr title='%{exact_time}'>%{when}
-        siden</abbr>
-      hidden_by: Skjult av %{user} for <abbr title='%{exact_time}'>%{when} siden</abbr>
+      commented_by_html: Kommentar fra %{user} for <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_anonymous_html: Kommentar fra anonym bruker for <abbr title='%{exact_time}'>%{when}</abbr>
+      closed_by_html: Løst av %{user} for <abbr title='%{exact_time}'>%{when}</abbr>
+      closed_by_anonymous_html: Løst av anonym bruker for <abbr title='%{exact_time}'>%{when}</abbr>
+      reopened_by_html: Gjenåpnet av %{user} for <abbr title='%{exact_time}'>%{when}</abbr>
+      reopened_by_anonymous_html: Gjenåpnet av anonym bruker for <abbr title='%{exact_time}'>%{when}</abbr>
+      hidden_by_html: Skjult av %{user} for <abbr title='%{exact_time}'>%{when}</abbr>
       report: Rapporter denne notisen
     query:
       title: Se over elementer
@@ -360,6 +411,7 @@ nb:
       in_language_title: Dagboksoppføringer på %{language}
       new: Ny dagboksoppføring
       new_title: Skriv et nytt innlegg i brukerdagboken min
+      my_diary: Min dagbok
       no_entries: Ingen innlegg i dagboka
       recent_entries: Nye innlegg i dagboka
       older_entries: Eldre innlegg
@@ -381,18 +433,20 @@ nb:
     diary_entry:
       posted_by_html: Skrevet av %{link_user} den %{created} på %{language_link}
       comment_link: Kommenter dette innlegget
-      reply_link: Svar på dette innlegget
+      reply_link: Send en beskjed til forfatteren
       comment_count:
         zero: Ingen kommentarer
         one: '%{count} kommentar'
         other: '%{count} kommentarer'
       edit_link: Rediger innlegget
       hide_link: Skjul innlegget
+      unhide_link: Fjern skjuling av dette innlegget
       confirm: Bekreft
       report: Rapporter denne innføringen
     diary_comment:
       comment_from_html: Kommentar fra %{link_user} den %{comment_created_at}
       hide_link: Skjul denne kommentaren
+      unhide_link: Fjern skjuling av denne kommentaren
       confirm: Bekreft
       report: Rapporter denne kommentaren
     location:
@@ -516,7 +570,6 @@ nb:
           motorcycle_parking: Motorsykkelparkering
           nightclub: Nattklubb
           nursing_home: Pleiehjem
-          office: Kontor
           parking: Parkeringsplass
           parking_entrance: Innkjøring til parkeringsgarasje
           parking_space: Parkeringsplass
@@ -525,20 +578,15 @@ nb:
           police: Politi
           post_box: Postboks
           post_office: Postkontor
-          preschool: Førskole
           prison: Fengsel
           pub: Pub
           public_building: Offentlig bygning
           recycling: Resirkuleringspunkt
           restaurant: Restaurant
-          retirement_home: Gamlehjem
-          sauna: Sauna
           school: Skole
           shelter: Tilfluktsrom
-          shop: Butikk
           shower: Dusj
           social_centre: Samfunnshus
-          social_club: Sosial klubb
           social_facility: Sosialtjeneste
           studio: Studio
           swimming_pool: Svømmebasseng
@@ -554,7 +602,6 @@ nb:
           waste_basket: Søppelkasse
           waste_disposal: Avfallshåndtering
           water_point: Vannpunkt
-          youth_centre: Ungdomssenter
         boundary:
           administrative: Administrativ grense
           census: Folketellingsgrense
@@ -568,6 +615,25 @@ nb:
           viaduct: Viadukt
           "yes": Bru
         building:
+          apartments: Leilighetsblokk
+          chapel: Kapell
+          church: Kirke
+          commercial: Kommersiell bygning
+          dormitory: Sovesal
+          farm: Gårdsbygg
+          garage: Garasje
+          hospital: Sykehusbygg
+          hotel: Hotell
+          house: Hus
+          industrial: Industribygg
+          office: Kontorbygg
+          public: Offentlig bygg
+          residential: Boligbygg
+          retail: Detaljsalgbygg
+          school: Skolebygg
+          terrace: Terrasse
+          train_station: Jernbanestasjon
+          university: Universitetsbygg
           "yes": Bygning
         craft:
           brewery: Bryggeri
@@ -629,7 +695,6 @@ nb:
           tertiary_link: Tertiær vei
           track: Traktorvei
           traffic_signals: Trafikksignalering
-          trail: Sti
           trunk: Hovedvei
           trunk_link: Hovedvei
           turning_loop: Vendesløyfe
@@ -648,7 +713,6 @@ nb:
           fort: Fort
           heritage: Verdensarvssted
           house: Hus
-          icon: Ikon
           manor: Herregård
           memorial: Minne
           mine: Gruve
@@ -693,7 +757,6 @@ nb:
           reservoir_watershed: Magasinvannskille
           residential: Boligområde
           retail: Detaljsalg
-          road: Veiområde
           village_green: Landsbypark
           vineyard: Vingård
           "yes": Urbant område
@@ -850,7 +913,6 @@ nb:
           subdivision: Underavdeling
           suburb: Forstad
           town: Tettsted
-          unincorporated_area: Kommunefritt område
           village: Landsby
           "yes": Sted
         railway:
@@ -876,6 +938,7 @@ nb:
           switch: Sporveksel
           tram: Sporvei
           tram_stop: Trikkestopp
+          yard: Skiftetomt
         shop:
           alcohol: Utenfor lisens
           antiques: Antikviteter
@@ -909,12 +972,10 @@ nb:
           estate_agent: Eiendomsmegler
           farm: Gårdsbutikk
           fashion: Motebutikk
-          fish: Fiskebutikk
           florist: Blomsterbutikk
           food: Matbutikk
           funeral_directors: Begravelsesforretning
           furniture: Møbler
-          gallery: Galleri
           garden_centre: Hagesenter
           general: Landhandel
           gift: Gavebutikk
@@ -931,7 +992,6 @@ nb:
           laundry: Vaskeri
           lottery: Lotteri
           mall: Kjøpesenter
-          market: Marked
           massage: Massasjeinstitutt
           mobile_phone: Mobiltelefonbutikk
           motorcycle: Motorsykkelbutikk
@@ -943,7 +1003,6 @@ nb:
           paint: Fargehandel
           pawnbroker: Pantelåner
           pet: Dyrebutikk
-          pharmacy: Apotek
           photo: Fotobutikk
           seafood: Sjømat
           second_hand: Bruktbutikk
@@ -1014,11 +1073,6 @@ nb:
         level8: Bygrense
         level9: Landsbygrense
         level10: Forstadsgrense
-    description:
-      title:
-        osm_nominatim: Sted fra <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames: Posisjon fra <a href="http://www.geonames.org/">GeoNames</a>
       types:
         cities: Byer
         towns: Småbyer
@@ -1078,9 +1132,10 @@ nb:
     reopen:
       reopened: Saksstatus har blitt satt til 'Åpen'
     comments:
+      comment_from_html: Kommentar fra %{user_link} %{comment_created_at}
       reassign_param: Omtildele sak?
     reports:
-      reported_by_html: Reportert som %{category} av %{user}
+      reported_by_html: Reportert som %{category} av %{user} %{updated_at}
     helper:
       reportable_title:
         diary_comment: '%{entry_title}, kommentar #%{comment_id}'
@@ -1092,8 +1147,6 @@ nb:
     new:
       title_html: Rapport %{link}
       missing_params: Får ikke opprettet en ny rapport
-      details: Fremskaff flere detaljer om problemet (påkrevet)
-      select: Begrunn rapporten
       disclaimer:
         intro: 'Før du sender rapporten til moderatorene, pass på at:'
         not_just_mistake: Du er sikker på at problemet ikke er basert på en misforståelse
@@ -1178,20 +1231,21 @@ nb:
       text: Doner
     learn_more: Lær mer
     more: Mer
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} kommenterte et dagbokinnlegg'
       hi: Hei %{to_user},
       header: '%{from_user} har kommentert på OpenStreetMap-dagbokinnlegget med emnet
         %{subject}:'
-      footer: Du kan også lese kommentaren på %{readurl} og du kan kommentere på %{commenturl}
-        eller svare på %{replyurl}
+      footer: Du kan også lese kommentaren på %{readurl}, og du kan kommentere på
+        %{commenturl} eller sende forfatteren en melding på %{replyurl}
     message_notification:
       subject_header: '[OpenStreetMap] %{subject}'
       hi: Hei %{to_user},
       header: '%{from_user} har sendt deg en melding gjennom OpenStreetMap med emnet
         %{subject}:'
-      footer_html: Du kan også lese meldingen på %{readurl} og du kan svare på %{replyurl}
+      footer_html: Du kan også lese meldingen på %{readurl}, eller sende forfatteren
+        en melding på %{replyurl}
     friendship_notification:
       hi: Hei %{to_user},
       subject: '[OpenStreetMap] %{user} la deg til som en venn'
@@ -1211,8 +1265,9 @@ nb:
         more_info_2: 'det kan bli funnet hos:'
       success:
         subject: '[OpenStreetMap] Vellykket import av GPX'
-        loaded_successfully: lastet med %{trace_points} av %{possible_points} mulige
-          punkter.
+        loaded_successfully:
+          one: lastet med %{trace_points} av %{possible_points} mulig punkt.
+          other: lastet med %{trace_points} av %{possible_points} mulige punkter.
     signup_confirm:
       subject: '[OpenStreetMap] Velkommen til OpenStreetMap'
       greeting: Hei der!
@@ -1281,8 +1336,8 @@ nb:
         subject_other: '[OpenStreetMap] %{commenter} har kommentert en endring du
           har vist interesse for'
         your_changeset: '%{commenter} har kommentert en av dine endringer %{time}'
-        commented_changeset: '%{commenter} har kommentert en kartendring som du holder
-          oversikten over, opprettet av %{changeset_author} den %{time}'
+        commented_changeset: '%{commenter} kommenterte %{time} en kartendring som
+          du holder oversikten over, opprettet av %{changeset_author}'
         partial_changeset_with_comment: med kommentaren '%{changeset_comment}'
         partial_changeset_without_comment: uten kommentar
       details: Flere detaljer om endringen finnes på %{url}.
@@ -1388,10 +1443,17 @@ nb:
         resultatet under samme lisens. Se <a href=''%{copyright_path}''>Opphavsrett
         og lisenssiden</a> for detaljer.'
       legal_title: Juridisk
-      legal_1_html: |-
-        Dette nettstedet og mange tilknyttede tjenester drives formelt av <a href='http://osmfoundation.org/'>OpenStreetMap Foundation</a> (OSMF) på vegne av fellesskapet. Bruken av alle OSMF-drevne tjenester er gjenstand for vår <a href="http://wiki.openstreetmap.org/wiki/Acceptable_Use_Policy">politikk for akseptabel bruk</a> og vår <a href="http://wiki.osmfoundation.org/wiki/Privacy_Policy">personvernspolitikk</a>
-        <br>
-        Vennligst <a href='http://osmfoundation.org/Contact'>kontakt OSMF</a> om du har spørsmål knyttet til lisensiering, opphavsrett eller andre juridiske spørsmål.
+      legal_1_html: Dette nettstedet og mange tilknyttede tjenester drives formelt
+        av <a href='https://osmfoundation.org/'>OpenStreetMap Foundation</a> (OSMF)
+        på vegne av fellesskapet. Bruken av alle OSMF-drevne tjenester er gjenstand
+        for våre <a href="https://wiki.osmfoundation.org/wiki/Terms_of_Use">bruksvilkår</a>,
+        vår <a href="http://wiki.openstreetmap.org/wiki/Acceptable_Use_Policy">politikk
+        for akseptabel bruk</a> og vår <a href="http://wiki.osmfoundation.org/wiki/Privacy_Policy">personvernspolitikk</a>
+      legal_2_html: |-
+        <a href="https://osmfoundation.org/Contact">Kontakt OSMF</a>
+        hvis du har spørsmål rundt lisenser, opphavsrett eller andre juridiske spørsmål.
+        <br />
+        OpenStreetMap, forstørrelsesglasslogoen og State of the Map er <a href="https://wiki.osmfoundation.org/wiki/Trademark_Policy">registrerte varemerker for OSMF</a>.
       partners_title: Partnere
     copyright:
       foreign:
@@ -1418,12 +1480,12 @@ nb:
           bidragsytere. Hvis du endrer eller bygger videre på våre kart eller data, må du
           distribuere resultatet under samme lisens. Den
           fullstendige <a href="http://creativecommons.org/licenses/by-sa/2.0/legalcode">juridiske teksten</a> beskriver rettigheter og ansvar.
-        intro_3_html: |-
-          Kartografien i våre kartruter, samt dokumentasjonen, er lisensiert under <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative
-          Commons Attribution-ShareAlike 2.0</a> lisensen (CC BY-SA).
+        intro_3_1_html: |-
+          Dokumentasjonen vår er lisensiert under <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative
+          Commons Attribution-ShareAlike 2.0</a> (CC BY-SA 2.0).
         credit_title_html: Hvordan kreditere OpenStreetMap
         credit_1_html: Vi krever at du bruker godskrivinga «© OpenStreetMap-bidragsyterene».
-        credit_2_html: "Du må også gjøre det klart at dataene er tilgjengelige under
+        credit_2_1_html: "Du må også gjøre det klart at dataene er tilgjengelige under
           Open \nDatabase License, og dersom du bruker våre kartfliser, at kartografien
           er\n lisensert som CC BY-SA. Du kan gjøre dette ved å lenke til\n<a href=\"http://www.openstreetmap.org/copyright\">denne
           siden om opphavsrett</a>. \nAlternativt, og som et krav, hvis du distribuerer
@@ -1432,7 +1494,10 @@ nb:
           foreslår vi at du\n henviser dine lesere til openstreetmap.org (kanskje
           ved å utvide\n'OpenStreetMap' til denne fulle adressen), til opendatacommons.org,
           og\n hvis relevant, til creativecommons.org."
-        credit_3_html: For et navigerbart elektronisk kart bør krediteringen vises
+        credit_3_1_html: |-
+          Kartflisene i standardkartlaget på www.openstreetmap.org er et produsert verk («Produced Work») av OpenStreetMap Foundation som bruker data from OpenStreetMap lisensiert under Open Database License. Hvis du bruker disse kartflisene, vennligst bruk følgende kreditering:
+          «Grunnkart og data fra OpenStreetMap og OpenStreetMap Foundation».
+        credit_4_html: For et navigerbart elektronisk kart bør krediteringen vises
           i hjørnet på kartet.
         attribution_example:
           alt: Eksempel på hvordan man angir OpenStreetMap som kartkilde på en nettside
@@ -1616,7 +1681,7 @@ nb:
         kartleggingsemner.
       welcome:
         url: /velkommen
-        title: Velkommen til OSM
+        title: Velkommen til OpenStreetMap
         description: Start med denne hurtigguiden som dekker det grunnleggende om
           OpenStreetMap.
       beginners_guide:
@@ -1625,8 +1690,9 @@ nb:
         description: Dugnadsbasert guide for nybegynnere.
       help:
         url: https://help.openstreetmap.org/
-        title: help.openstreetmap.org
-        description: Still spørsmål eller sjekk svar på OSM sine spørsmål- og svar-sider.
+        title: Hjelpeforum
+        description: Still spørsmål eller sjekk svar på OpenStreetMaps spørsmål- og
+          svar-sider.
       mailing_lists:
         title: E-postlister
         description: Still et spørsmål eller diskuter interessante tema på en rekke
@@ -1650,8 +1716,8 @@ nb:
           Finn ut av hva du har bruk for å vite på Velkomstmatten.
       wiki:
         url: http://wiki.openstreetmap.org/
-        title: wiki.openstreetmap.org
-        description: Se gjennom wikien for dyptpløyende OSM-dokumentasjon.
+        title: OpenStreetMaps wiki
+        description: Se gjennom wikien for dyptgående OSM-dokumentasjon.
     sidebar:
       search_results: Søkeresultater
       close: Lukk
@@ -1810,11 +1876,6 @@ nb:
         punkter med tidsstempel)
     new:
       upload_trace: Last opp GPS-spor
-      upload_gpx: 'Last opp GPX-fil:'
-      description: 'Beskrivelse:'
-      tags: 'Egenskaper:'
-      tags_help: kommaseparert
-      visibility: 'Synlighet:'
       visibility_help: hva betyr dette?
       visibility_help_url: https://wiki.openstreetmap.org/wiki/Visibility_of_GPS_traces
       help: Hjelp
@@ -1834,20 +1895,9 @@ nb:
           disse bli ferdig før du laster opp flere spor slik at du ikke blokkerer
           køa for andre brukere.
     edit:
+      cancel: Avbryt
       title: Redigerer spor %{name}
       heading: Redigerer spor %{name}
-      filename: 'Filnavn:'
-      download: last ned
-      uploaded_at: 'Lastet opp:'
-      points: 'Punkter:'
-      start_coord: 'Startkoordinat:'
-      map: kart
-      edit: rediger
-      owner: 'Eier:'
-      description: 'Beskrivelse:'
-      tags: 'Egenskaper:'
-      tags_help: kommaseparert
-      visibility: 'Synlighet:'
       visibility_help: hva betyr dette?
     update:
       updated: Sporet ble oppdatert
@@ -1879,7 +1929,9 @@ nb:
       newer: Nyere spor
     trace:
       pending: VENTER
-      count_points: '%{count} punkter'
+      count_points:
+        one: ett punkt
+        other: '%{count} punkter'
       more: mer
       trace_details: Vis detaljer for spor
       view_map: Vis kart
@@ -1979,13 +2031,6 @@ nb:
       delete: Slett klient
       confirm: Er du sikker?
       requests: 'Ber om følgende tillatelser fra brukeren:'
-      allow_read_prefs: les brukerinnstillingene deres.
-      allow_write_prefs: endre brukerinnstillingene deres.
-      allow_write_diary: opprett dagbokoppføringer, kommentarer og finn venner.
-      allow_write_api: endre kartet.
-      allow_read_gpx: les deres private GPS-spor.
-      allow_write_gpx: last opp GPS-spor.
-      allow_write_notes: endre merknader.
     index:
       title: Mine OAuth-detaljer
       my_tokens: Mine autoriserte applikasjoner
@@ -1997,22 +2042,11 @@ nb:
       no_apps_html: Har du et program som du vil registrere for bruk med oss gjennom
         %{oauth}-standarden? Da må du først registrere ditt nettprogram før det kan
         gjøre OAuth-forespørsler til denne tjenesten.
+      oauth: OAuth
       registered_apps: 'Du har registrert følgende klientapplikasjoner:'
       register_new: Registrer din applikasjon
     form:
-      name: Navn
-      required: Påkrevet
-      url: URL til hovedapplikasjonen
-      callback_url: 'URL for tilbakekall:'
-      support_url: Støtte-URL
       requests: 'Be om følgende tillatelser fra brukeren:'
-      allow_read_prefs: les brukerinnstillingene deres.
-      allow_write_prefs: endre brukerinnstillingene deres.
-      allow_write_diary: opprett dagbokoppføringer, kommentarer og finn venner.
-      allow_write_api: endre kartet.
-      allow_read_gpx: les deres private GPS-spor.
-      allow_write_gpx: last opp GPS-spor.
-      allow_write_notes: endre merknader.
     not_found:
       sorry: Klarte ikke finne den %{type}-en.
     create:
@@ -2092,8 +2126,6 @@ nb:
     reset_password:
       title: Nullstill passord
       heading: Nullstill passord for %{user}
-      password: 'Passord:'
-      confirm password: 'Bekreft passord:'
       reset: Nullstill passord
       flash changed: Ditt passord er endret.
       flash token bad: Kunne ikke finne den nøkkelen. Sjekke URLen kanskje?
@@ -2108,8 +2140,6 @@ nb:
         html: |-
           <p>I motsetning til andre kart, er OpenStreetMap laget av folk som deg, og det er fritt for alle å rette, oppdatere, laste ned og bruke kartet.</p>
           <p>Registrer deg for å komme i gang med å bidra. Vi vil sende en e-mail for å bekrefte din konto.</p>
-      license_agreement: Når du bekrefter kontoen din må du godkjenne <a href="https://www.osmfoundation.org/wiki/License/Contributor_Terms">betingelsene
-        for bidragsytere</a>.
       email address: 'E-postadresse:'
       confirm email address: 'Bekreft e-postadresse:'
       not_displayed_publicly_html: Adressen din vises ikke offentlig, se <a href="https://wiki.openstreetmap.org/wiki/Privacy_Policy"
@@ -2130,14 +2160,24 @@ nb:
         For mer informasjon, se <a href="%{url}">denne wiki-siden</a> .
       terms declined url: https://wiki.openstreetmap.org/wiki/Contributor_Terms_Declined
     terms:
-      title: Bidragsytervilkår
-      heading: Bidragsytervilkårene
-      consider_pd: I tillegg til den ovennevnte avtalen anser jeg mine bidrag for
-        å være i public domain
+      title: Vilkår
+      heading: Vilkår
+      heading_ct: Bidragsytervilkår
+      read and accept with tou: Les vilkårene for bidragsytere og bruksvilkårene,
+        merk av begge avkrysningsboksene og trykk fortsett.
+      contributor_terms_explain: Denne avtalen beskriver vilkårene for dine eksisterende
+        og framtidige bidrag.
+      read_ct: Jeg har lest og samtykker i vilkårene for bidragsytere
+      tou_explain_html: Disse %{tou_link} beskriver bruken av nettstedet og annen
+        infrastruktur som tilbys av OSMF. Trykk på lenka, les og samtykk til teksten.
+      read_tou: Jeg har lest og samtykker til bruksvilkårene
+      consider_pd: I tillegg til det ovennevnte anser jeg mine bidrag for å være i
+        public domain
       consider_pd_why: hva er dette?
       consider_pd_why_url: https://www.osmfoundation.org/wiki/License/Why_would_I_want_my_contributions_to_be_public_domain
       guidance_html: 'Informasjon for å hjelpe å forstå disse vilkårene: et <a href="%{summary}">menneskelig
         lesbart sammendrag</a> og noen <a href="%{translations}">uformelle oversettelser</a>'
+      continue: Fortsett
       declined: https://wiki.openstreetmap.org/wiki/Contributor_Terms_Declined
       decline: Avslå
       you need to accept or decline: Les og deretter enten godta eller avslå de nye
@@ -2177,7 +2217,7 @@ nb:
       ct status: 'Bidragsyters vilkår:'
       ct undecided: Usikker
       ct declined: Avslått
-      latest edit: 'Siste redigering %{ago}:'
+      latest edit: 'Siste redigering (%{ago}):'
       email address: 'E-postadresse:'
       created from: 'Opprettet fra:'
       status: 'Status:'
@@ -2299,8 +2339,8 @@ nb:
       reconfirm_html: Hvis du trenger at vi sender bekreftelseseposten på nytt, <a
         href="%{reconfirm}">klikk her</a>
     confirm_resend:
-      success: Vi har sendt en ny bekreftelsesmelding til %{email} og så snart du
-        bekrefter kontoen din kan du begynne å lage kart.<br /><br />Om du bruker
+      success_html: Vi har sendt en ny bekreftelsesmelding til %{email} og så snart
+        du bekrefter kontoen din kan du begynne å lage kart.<br /><br />Om du bruker
         et antispamsystem som sender bekreftelsesforspørsler, kontroller at du har
         hvitelistet %{sender} siden vi ikke kan svar på bekreftelsesforespørsler.
       failure: Fant ikke brukeren %{name}.
@@ -2421,20 +2461,32 @@ nb:
       title: Tilbakekaller blokkering på %{block_on}
       heading_html: Tilbakekaller blokkering på %{block_on} av %{block_by}
       time_future: Denne blokkeringen ender om %{time}
-      past: Denne blokkeringen endte for %{time} siden og kan ikke tilbakekalles nå.
+      past: Denne blokkeringen endte for %{time} og kan ikke tilbakekalles nå.
       confirm: Er du sikker på at du vil tilbakekalle denne blokkeringen?
       revoke: Tilbakekall!
       flash: Denne blokkeringen har blitt tilbakekalt.
     helper:
-      time_future: Slutter om %{time}.
+      time_future_html: Slutter om %{time}.
       until_login: Aktiv inntil brukeren logger inn.
-      time_future_and_until_login: Slutter om %{time} og etter at brukeren har logget
-        inn.
-      time_past: Sluttet for %{time} siden.
+      time_future_and_until_login_html: Slutter om %{time} og etter at brukeren har
+        logget inn.
+      time_past_html: Sluttet for %{time}.
       block_duration:
         hours:
           one: 1 time
           other: '%{count} timer'
+        days:
+          one: én dag
+          other: '%{count} dager'
+        weeks:
+          one: én uke
+          other: '%{count} uker'
+        months:
+          one: én måned
+          other: '%{count} måneder'
+        years:
+          one: ett år
+          other: '%{count} år'
     blocks_on:
       title: Blokkeringer av %{name}
       heading_html: Liste over blokkeringer av %{name}
@@ -2471,7 +2523,7 @@ nb:
       next: Neste »
       previous: « Forrige
   notes:
-    mine:
+    index:
       title: Merknader sendt inn eller kommentert på av %{user}
       heading: '%{user} sine merknader'
       subheading_html: Merknader sendt inn eller kommentert på av %{user}
@@ -2514,11 +2566,18 @@ nb:
         out: Forminsk utvalg
       locate:
         title: Vis posisjonen min
+        metersPopup:
+          one: Du er innenfor én meter fra dette punktet
+          other: Du er innenfor %{count} meter fra dette punktet
+        feetPopup:
+          one: Du er innenfor én fot fra dette punktet
+          other: Du er innenfor %{count} fot fra dette punktet
       base:
         standard: Standard
         cycle_map: Sykkelkart
         transport_map: Transport-kart
         hot: Humanitært
+        opnvkarte: ÖPNVKarte
       layers:
         header: Kartlag
         notes: Kartmerknader
@@ -2528,6 +2587,13 @@ nb:
         title: Lag
       copyright: © <a href='%{copyright_url}'>OpenStreetMaps bidragsytere</a>
       donate_link_text: <a class='donate-attr' href='%{donate_url}'>Gi en donasjon</a>
+      terms: <a href='%{terms_url}' target='_blank'>Nettside- og API-vilkår</a>
+      thunderforest: Fliser levert av <a href='%{thunderforest_url}' target='_blank'>Andy
+        Allan</a>
+      opnvkarte: Fliser levert av <a href='%{memomaps_url}' target='_blank'>MeMoMaps</a>
+      hotosm: Flisestil av <a href='%{hotosm_url}' target='_blank'>Humanitarian OpenStreetMap
+        Team</a> levert av <a href='%{osmfrance_url}' target='_blank'>OpenStreetMap
+        France</a>
     site:
       edit_tooltip: Rediger kartet
       edit_disabled_tooltip: Forstørr utvalg for å redigere kartet

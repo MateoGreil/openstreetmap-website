@@ -26,6 +26,8 @@
 #
 
 class Trace < ApplicationRecord
+  require "open3"
+
   self.table_name = "gpx_files"
 
   belongs_to :user, :counter_cache => true
@@ -118,66 +120,63 @@ class Trace < ApplicationRecord
 
   def mime_type
     filetype = Open3.capture2("/usr/bin/file", "-Lbz", trace_name).first.chomp
-    gzipped = filetype =~ /gzip compressed/
-    bzipped = filetype =~ /bzip2 compressed/
-    zipped = filetype =~ /Zip archive/
-    tarred = filetype =~ /tar archive/
+    gzipped = filetype.include?("gzip compressed")
+    bzipped = filetype.include?("bzip2 compressed")
+    zipped = filetype.include?("Zip archive")
+    tarred = filetype.include?("tar archive")
 
-    mimetype = if gzipped
-                 "application/x-gzip"
-               elsif bzipped
-                 "application/x-bzip2"
-               elsif zipped
-                 "application/x-zip"
-               elsif tarred
-                 "application/x-tar"
-               else
-                 "application/gpx+xml"
-               end
-
-    mimetype
+    if gzipped
+      "application/x-gzip"
+    elsif bzipped
+      "application/x-bzip2"
+    elsif zipped
+      "application/x-zip"
+    elsif tarred
+      "application/x-tar"
+    else
+      "application/gpx+xml"
+    end
   end
 
   def extension_name
     filetype = Open3.capture2("/usr/bin/file", "-Lbz", trace_name).first.chomp
-    gzipped = filetype =~ /gzip compressed/
-    bzipped = filetype =~ /bzip2 compressed/
-    zipped = filetype =~ /Zip archive/
-    tarred = filetype =~ /tar archive/
+    gzipped = filetype.include?("gzip compressed")
+    bzipped = filetype.include?("bzip2 compressed")
+    zipped = filetype.include?("Zip archive")
+    tarred = filetype.include?("tar archive")
 
-    extension = if tarred && gzipped
-                  ".tar.gz"
-                elsif tarred && bzipped
-                  ".tar.bz2"
-                elsif tarred
-                  ".tar"
-                elsif gzipped
-                  ".gpx.gz"
-                elsif bzipped
-                  ".gpx.bz2"
-                elsif zipped
-                  ".zip"
-                else
-                  ".gpx"
-                end
-
-    extension
+    if tarred && gzipped
+      ".tar.gz"
+    elsif tarred && bzipped
+      ".tar.bz2"
+    elsif tarred
+      ".tar"
+    elsif gzipped
+      ".gpx.gz"
+    elsif bzipped
+      ".gpx.bz2"
+    elsif zipped
+      ".zip"
+    else
+      ".gpx"
+    end
   end
 
-  def update_from_xml(xml, create = false)
+  def update_from_xml(xml, create: false)
     p = XML::Parser.string(xml, :options => XML::Parser::Options::NOERROR)
     doc = p.parse
+    pt = doc.find_first("//osm/gpx_file")
 
-    doc.find("//osm/gpx_file").each do |pt|
-      return update_from_xml_node(pt, create)
+    if pt
+      update_from_xml_node(pt, :create => create)
+    else
+      raise OSM::APIBadXMLError.new("trace", xml, "XML doesn't contain an osm/gpx_file element.")
     end
-
-    raise OSM::APIBadXMLError.new("trace", xml, "XML doesn't contain an osm/gpx_file element.")
   rescue LibXML::XML::Error, ArgumentError => e
     raise OSM::APIBadXMLError.new("trace", xml, e.message)
   end
 
-  def update_from_xml_node(pt, create = false)
+  def update_from_xml_node(pt, create: false)
     raise OSM::APIBadXMLError.new("trace", pt, "visibility missing") if pt["visibility"].nil?
 
     self.visibility = pt["visibility"]
@@ -209,26 +208,26 @@ class Trace < ApplicationRecord
 
   def xml_file
     filetype = Open3.capture2("/usr/bin/file", "-Lbz", trace_name).first.chomp
-    gzipped = filetype =~ /gzip compressed/
-    bzipped = filetype =~ /bzip2 compressed/
-    zipped = filetype =~ /Zip archive/
-    tarred = filetype =~ /tar archive/
+    gzipped = filetype.include?("gzip compressed")
+    bzipped = filetype.include?("bzip2 compressed")
+    zipped = filetype.include?("Zip archive")
+    tarred = filetype.include?("tar archive")
 
     if gzipped || bzipped || zipped || tarred
       file = Tempfile.new("trace.#{id}")
 
       if tarred && gzipped
-        system("tar -zxOf #{trace_name} > #{file.path}")
+        system("tar", "-zxOf", trace_name, :out => file.path)
       elsif tarred && bzipped
-        system("tar -jxOf #{trace_name} > #{file.path}")
+        system("tar", "-jxOf", trace_name, :out => file.path)
       elsif tarred
-        system("tar -xOf #{trace_name} > #{file.path}")
+        system("tar", "-xOf", trace_name, :out => file.path)
       elsif gzipped
-        system("gunzip -c #{trace_name} > #{file.path}")
+        system("gunzip", "-c", trace_name, :out => file.path)
       elsif bzipped
-        system("bunzip2 -c #{trace_name} > #{file.path}")
+        system("bunzip2", "-c", trace_name, :out => file.path)
       elsif zipped
-        system("unzip -p #{trace_name} -x '__MACOSX/*' > #{file.path} 2> /dev/null")
+        system("unzip", "-p", trace_name, "-x", "__MACOSX/*", :out => file.path, :err => "/dev/null")
       end
 
       file.unlink

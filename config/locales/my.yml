@@ -53,6 +53,7 @@ my:
         longitude: လောင်ဂျီကျု
         public: အများကြည့်
         description: ဖော်ပြချက်
+        visibility: 'မြင်နိုင်မှု:'
       message:
         sender: ပေးပို့သူ
         title: အကြောင်းအရာ
@@ -261,19 +262,15 @@ my:
           marketplace: စျေးတန်း
           monastery: ဘုန်းကြီးကျောင်း
           nightclub: နိုက်ကလပ်
-          office: ရုံး
           parking: ယာဉ်ရပ်နားရာနေရာ
           pharmacy: ဆေးဆိုင်
           police: ရဲ
           post_box: စာတိုက်သေတ္တာ
           post_office: စာတိုက်
-          preschool: မူကြိုကျောင်း
           prison: အကျဉ်းထောင်
           public_building: အများပိုင် အဆောက်အအုံ
           restaurant: စားသောက်ဆိုင်
           school: ကျောင်း
-          shop: ဆိုင်
-          social_club: လူမှုရေးကလပ်
           studio: စတူဒီယို
           swimming_pool: ရေကူးကန်
           taxi: တက္ကစီ
@@ -338,7 +335,6 @@ my:
           military: စစ်တပ်ဧရိယာ
           railway: ရထားလမ်း
           reservoir: ရေလှောင်တံမံ
-          road: လမ်းဧရိယာ
           vineyard: စပျစ်ခြံ
         leisure:
           fishing: ငါးမျှားဧရိယာ
@@ -433,12 +429,10 @@ my:
           interior_decoration: အတွင်းပိုင်း အလှဆင်လုပ်ငန်း
           laundry: ဒိုဘီဆိုင်
           lottery: ထီ
-          market: စျေးတန်း
           massage: မာဆပ်
           mobile_phone: မိုလ်ဘိုင်းဖုန်းဆိုင်
           motorcycle: ဆိုင်ကယ်ဆိုင်
           organic: အော်ဂဲနစ် အစားအစာဆိုင်
-          pharmacy: ဆေးဆိုင်
           photo: ဓါတ်ပုံဆိုင်
           seafood: ပင်လယ်စာ
           second_hand: တစ်ခါသုံးပြီးဆိုင်
@@ -463,11 +457,6 @@ my:
           dam: တမံ
           river: မြစ်
           waterfall: ရေတံခွန်
-    description:
-      title:
-        osm_nominatim: <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a> မှ တည်နေရာ
-        geonames: <a href="http://www.geonames.org/">GeoNames</a> မှ တည်နေရာ
       types:
         cities: မြို့များ
         towns: မြို့များ
@@ -539,7 +528,7 @@ my:
       text: အလှူတစ်ခု ပြုလုပ်ရန်
     learn_more: ပိုမို လေ့လာရန်
     more: ပို၍
-  notifier:
+  user_mailer:
     diary_comment_notification:
       hi: ဟိုင်း %{to_user}၊
     message_notification:
@@ -694,20 +683,11 @@ my:
       start_mapping: မြေပုံ စတင်ရေးဆွဲရန်
   traces:
     new:
-      description: 'ဖော်ပြချက်:'
-      visibility: 'မြင်နိုင်မှု:'
       visibility_help: ဒါက ဘာကိုဆိုလိုတာပါလိမ့်
       visibility_help_url: https://wiki.openstreetmap.org/wiki/Visibility_of_GPS_traces
       help: အ​ကူ​အ​ညီ​
       help_url: https://wiki.openstreetmap.org/wiki/Upload
     edit:
-      filename: 'ဖိုင်အမည်:'
-      download: ဒေါင်းလုဒ်
-      map: မြေပုံ
-      edit: ပြင်ဆင်
-      owner: 'ပိုင်ဆိုင်သူ:'
-      description: 'ဖော်ပြချက်:'
-      visibility: 'မြင်နိုင်မှု:'
       visibility_help: ဒါက ဘာကိုဆိုလိုတာပါလိမ့်
     show:
       map: မြေပုံ
@@ -725,9 +705,6 @@ my:
   oauth_clients:
     show:
       confirm: သေချာပါသလား
-    form:
-      name: အမည်
-      required: လိုအပ်သည်
   users:
     login:
       title: အကောင့်ထဲဝင်ရန်
@@ -762,8 +739,6 @@ my:
     reset_password:
       title: စကားဝှက်ကို ပြန်ချိန်ရန်
       heading: '%{user} အတွက် စကားဝှက်ကို ပြန်ချိန်ရန်'
-      password: 'စကားဝှက်:'
-      confirm password: 'စကားဝှက်ကို အတည်ပြုပါ:'
       reset: စကားဝှက်ကို ပြန်ချိန်ရန်
       flash changed: သင့်စကားဝှက်ကို ပြောင်းလဲပြီးပါပြီ
     new:
@@ -853,7 +828,7 @@ my:
       next: ရှေ့ »
       previous: « ယခင်က
   notes:
-    mine:
+    index:
       creator: ဖန်တီးသူ
       description: ဖော်ပြချက်
   javascripts:

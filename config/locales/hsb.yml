@@ -74,6 +74,9 @@ hsb:
       way_node: Pućny suk
       way_tag: Pućny atribut
     attributes:
+      client_application:
+        callback_url: URL wróćowołanja
+        support_url: URL podpěry
       diary_comment:
         body: Tekst
       diary_entry:
@@ -94,11 +97,16 @@ hsb:
         longitude: Dołhostnik
         public: Zjawny
         description: Wopisanje
+        gpx_file: 'GPX-dataju nahrać:'
+        visibility: 'Widźomnosć:'
+        tagstring: 'Atributy:'
       message:
         sender: Wotpósłar
         title: Tema
         body: Tekst
         recipient: Přijimowar
+      report:
+        details: Prošu zapodaj wjace podrobnosćow k tutomu problemej (trěbne).
       user:
         email: E-mejl
         active: Aktiwny
@@ -106,6 +114,9 @@ hsb:
         description: Wopisanje
         languages: Rěče
         pass_crypt: Hesło
+    help:
+      trace:
+        tagstring: přez komu dźěleny
   datetime:
     distance_in_words_ago:
       about_x_hours:
@@ -206,8 +217,8 @@ hsb:
       relation: Relacije (%{count})
       relation_paginated: Relacije (%{x}-%{y} z %{count})
       comment: Komentary (%{count})
-      hidden_commented_by: Schowany komentar wužiwarja %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by: Komentar wužiwarja %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      hidden_commented_by_html: Schowany komentar wužiwarja %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_html: Komentar wužiwarja %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       changesetxml: Sadźba změnow XML
       osmchangexml: osmChange XML
       feed:
@@ -287,17 +298,18 @@ hsb:
       open_title: 'Njesčinjena pokazka #%{note_name}'
       closed_title: 'Sčinjena pokazka #%{note_name}'
       hidden_title: 'Schowana pokazka #%{note_name}'
-      opened_by: Wutworjeny wot %{user} <abbr title='%{exact_time}'>před %{when}</abbr>
-      opened_by_anonymous: Wutworjeny wot anonymneho <abbr title='%{exact_time}'>před
+      opened_by_html: Wutworjeny wot %{user} <abbr title='%{exact_time}'>před %{when}</abbr>
+      opened_by_anonymous_html: Wutworjeny wot anonymneho <abbr title='%{exact_time}'>před
         %{when}</abbr>
-      commented_by: Komentar wot %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_anonymous: Komentar wot anonymneho <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by: Rozrisany wot %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_anonymous: Rozrisany wot anonymneho <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by: Reaktiwizowany wot %{user} <abbr title='%{exact_time}'>před %{when}</abbr>
-      reopened_by_anonymous: Reaktiwizowany wot anonymneho <abbr title='%{exact_time}'>před
+      commented_by_html: Komentar wot %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      commented_by_anonymous_html: Komentar wot anonymneho <abbr title='%{exact_time}'>%{when}</abbr>
+      closed_by_html: Rozrisany wot %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      closed_by_anonymous_html: Rozrisany wot anonymneho <abbr title='%{exact_time}'>%{when}</abbr>
+      reopened_by_html: Reaktiwizowany wot %{user} <abbr title='%{exact_time}'>před
         %{when}</abbr>
-      hidden_by: Schowany wot %{user} <abbr title='%{exact_time}'>před %{when}</abbr>
+      reopened_by_anonymous_html: Reaktiwizowany wot anonymneho <abbr title='%{exact_time}'>před
+        %{when}</abbr>
+      hidden_by_html: Schowany wot %{user} <abbr title='%{exact_time}'>před %{when}</abbr>
       report: Tutón pokiw zdźělić
     query:
       title: Funkcije naprašować
@@ -514,7 +526,6 @@ hsb:
           motorcycle_parking: parkowanišćo za motorske
           nightclub: nócny klub
           nursing_home: starownja
-          office: běrow
           parking: parkowanišćo
           parking_entrance: zajězd parkowanišća
           parking_space: stejnišćo
@@ -523,20 +534,15 @@ hsb:
           police: policija
           post_box: póštowy kašćik
           post_office: póštowy zarjad
-          preschool: předšula
           prison: jastwo
           pub: korčma
           public_building: zjawne twarjenje
           recycling: přijimarnja starowiznow
           restaurant: hosćenc
-          retirement_home: starownja
-          sauna: sawna
           school: šula
           shelter: podstup
-          shop: wobchod
           shower: duša
           social_centre: socialny centrum
-          social_club: towarstwo
           social_facility: socialne zarjadnišćo
           studio: studijo
           swimming_pool: płuwanišćo
@@ -552,7 +558,6 @@ hsb:
           waste_basket: smjećnik
           waste_disposal: wotstronjenje wotpadkow
           water_point: wodowy přizamk
-          youth_centre: młodźinski dom
         boundary:
           administrative: zarjadniska hranica
           census: mjeza ludličenskeho wobwoda
@@ -566,6 +571,25 @@ hsb:
           viaduct: wiadukt
           "yes": móst
         building:
+          apartments: Bydlenski blok
+          chapel: Kapałka
+          church: Cyrkej
+          commercial: Wobchodniske twarjenje
+          dormitory: Studentski internat
+          farm: Hospodarske twarjenje
+          garage: Garaža
+          hospital: Chorownja
+          hotel: Hotel
+          house: Dom
+          industrial: Industrijowe twarjenje
+          office: Běrowowe twarjenje
+          public: Zjawne twarjenje
+          residential: Bydlenske twarjenje
+          retail: Priwatne twarjenje
+          school: Šulske twarjenje
+          terrace: Terasa
+          train_station: Dwórnišćo
+          university: Uniwersitne twarjenje
           "yes": twarjenje
         craft:
           brewery: piwarnja
@@ -624,7 +648,6 @@ hsb:
           tertiary_link: přijězd na dróhu třećeho rjadu
           track: pólny puć
           traffic_signals: ampla
-          trail: šćežka
           trunk: spěšnodróha
           trunk_link: přijězd na spěšnodróhu
           turning_loop: wobroćišćo
@@ -643,7 +666,6 @@ hsb:
           fort: fort
           heritage: kulturne herbstwo
           house: dom
-          icon: ikona
           manor: knježi dwór
           memorial: wopomnišćo
           mine: podkopki
@@ -688,7 +710,6 @@ hsb:
           reservoir_watershed: wodowe přitočnišćo
           residential: sydlišćo
           retail: wobchody
-          road: dróhowe pasmo
           village_green: nawjes
           vineyard: winica
           "yes": wužiwanje zemje
@@ -844,7 +865,6 @@ hsb:
           subdivision: předměsto
           suburb: měšćanski dźěl
           town: město
-          unincorporated_area: bjezgmejnska kónčina
           village: wjes
           "yes": městno
         railway:
@@ -870,6 +890,7 @@ hsb:
           switch: wuhibka
           tram: tramwajka
           tram_stop: zastanišćo tramwajki
+          yard: Ranžěrowanske dwórnišćo
         shop:
           alcohol: wobchod za spirituozy
           antiques: wobchod starožitnosćow
@@ -902,12 +923,10 @@ hsb:
           estate_agent: wikowar z imobilijemi
           farm: statokowy wobchod
           fashion: modowy wobchod
-          fish: rybowy wobchod
           florist: kwětkarnja
           food: wobchod za žiwidła
           funeral_directors: pochowanski wustaw
           furniture: meblowy wobchod
-          gallery: galerija
           garden_centre: zahrodniski centrum
           general: wobchod za měšane twory
           gift: wobchod za dary
@@ -924,7 +943,6 @@ hsb:
           laundry: myjernja
           lottery: loterija
           mall: nakupowanski centrum
-          market: wiki
           massage: masaža
           mobile_phone: handyjowy wobchod
           motorcycle: wobchod za motorske
@@ -936,7 +954,6 @@ hsb:
           paint: lakěrowarnja
           pawnbroker: zastawnja
           pet: zwěrjacy wobchod
-          pharmacy: lěkarnja
           photo: fotowy wobchod
           seafood: mórske płody
           second_hand: second-hand-wobchod
@@ -1007,11 +1024,6 @@ hsb:
         level8: měšćanska hranica
         level9: hranica měšćanskeho dźěla
         level10: hranica štwórće
-    description:
-      title:
-        osm_nominatim: Městno wot <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames: Městno wot <a href="http://www.geonames.org/">GeoNames</a>
       types:
         cities: wulkoměsta
         towns: města
@@ -1088,8 +1100,6 @@ hsb:
     new:
       title_html: '%{link} rozprawić'
       missing_params: Njemóžu nowu rozprawu wutworić
-      details: Prošu zapodaj wjace podrobnosćow k tutomu problemej (trěbne).
-      select: 'Wubjer přičinu za twoju rozprawu:'
       disclaimer:
         intro: 'Prjedy hač pósćeleš twoju rozprawu moderatoram webstronu, prošu zawěsć,
           zo:'
@@ -1175,7 +1185,7 @@ hsb:
       text: Darić
     learn_more: Wjace zhonić
     more: Wjace
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} je twój dźenikowy zapisk komentował(a)'
       hi: Witaj %{to_user},
@@ -1420,12 +1430,12 @@ hsb:
           abo zepěraš so na nje, móžeš wuslědk jenož pod samsnej licencu rozdźělić.
           Dospołny <a href="http://opendatacommons.org/licenses/odbl/1.0/">tekst licency</a>
           wujasnja twoje prawa a winowatosće.
-        intro_3_html: Kartografija w našich kartowych kachličkach a naša dokumentacija
+        intro_3_1_html: Kartografija w našich kartowych kachličkach a naša dokumentacija
           stej pod licencu <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative
           Commons Attribution-ShareAlike 2.0</a> (CC-BY-SA) licencowanej.
         credit_title_html: Kak ma so na awtorstwo OpenStreetMap pokazać
         credit_1_html: Žadamy sej wužiwanje pokazki „&copy; sobuskutkowacy OpenStreetMap“.
-        credit_2_html: Dyrbiš tež wujasnić, zo steja daty pod licencu Open Database,
+        credit_2_1_html: Dyrbiš tež wujasnić, zo steja daty pod licencu Open Database,
           a, jelizo wužiwaš naše kartowe kachlički, zo je kartografija pod CC-BY-SA
           licencowana. Móžeš to činić wotkazujo na stronu <a href="http://www.openstreetmap.org/copyright">www.openstreetmap.org/copyright</a>.
           Alternatiwnje, a winowatostnje, jeli OSM w formje datow dale dawaš, móžeš
@@ -1433,7 +1443,7 @@ hsb:
           njejsu (na př. ćišćane dźěła), doporučimy tebi, twojich čitarjow na openstreetmap.org
           (snadź rozšěrjejo 'OpenStreetMap' k połnej adresy), na opendatacommons.org
           a, jeli přitrjechi, na creativecommons.org skedźbnić.
-        credit_3_html: 'Za přepytujomnu elektronisku kartu měła so pokazka w róžku
+        credit_4_html: 'Za přepytujomnu elektronisku kartu měła so pokazka w róžku
           karty jewić. Na přikład:'
         attribution_example:
           alt: Přikład, kak so na webstronje na OpenStreetMap pokazuje
@@ -1786,11 +1796,6 @@ hsb:
       identifiable: Identifikujomny (pokazuje so w lisćinje ćěrjow a jako identifikujomny,
         zrjadowane dypki z časowymi kołkami)
     new:
-      upload_gpx: 'GPX-dataju nahrać:'
-      description: 'Wopisanje:'
-      tags: 'Atributy:'
-      tags_help: přez komu dźěleny
-      visibility: 'Widźomnosć:'
       visibility_help: što to woznamjenja?
       help: Pomoc
     create:
@@ -1808,18 +1813,6 @@ hsb:
     edit:
       title: Ćěr %{name} wobdźěłać
       heading: Ćěr %{name} wobdźěłać
-      filename: 'Datajowe mjeno:'
-      download: sćahnyć
-      uploaded_at: 'Nahraty dnja:'
-      points: 'Dypki:'
-      start_coord: 'Startowa koordinata:'
-      map: karta
-      edit: wobdźěłać
-      owner: 'Wobsedźer:'
-      description: 'Wopisanje:'
-      tags: 'Atributy:'
-      tags_help: přez komu dźěleny
-      visibility: 'Widźomnosć:'
       visibility_help: što to woznamjenja?
     trace_optionals:
       tags: Atributy
@@ -1942,13 +1935,6 @@ hsb:
       delete: Klient zhašeć
       confirm: Sy sej wěsty?
       requests: 'Požadanje lědowacych prawow wot wužiwarja:'
-      allow_read_prefs: jich wužiwarske nastajenja čitać.
-      allow_write_prefs: jich wužiwarske nastajenja změnić.
-      allow_write_diary: dźenikowe zapiski a komentar spisać a přećelow zapisać.
-      allow_write_api: kartu změnić.
-      allow_read_gpx: jich priwatne GPS-ćěrje čitać.
-      allow_write_gpx: GPS-ćěrje nahrać.
-      allow_write_notes: změnjenje pokazkow.
     index:
       title: Moje podrobnosće OAuth
       my_tokens: Moje awtorizowane aplikacije
@@ -1963,19 +1949,7 @@ hsb:
       registered_apps: 'Sy slědowace aplikacije zregistrował:'
       register_new: Twoju aplikaciju registrować
     form:
-      name: Mjeno
-      required: Trěbny
-      url: URL hłowneje aplikacije
-      callback_url: URL wróćowołanja
-      support_url: URL podpěry
       requests: 'Slědowace prawa wot wužiwarja požadać:'
-      allow_read_prefs: jich wužiwarske nastajenja čitać.
-      allow_write_prefs: jich wužiwarske nastajenja změnić.
-      allow_write_diary: dźenikowe zapiski a komentary spisać a přećelow zapisać.
-      allow_write_api: kartu změnić.
-      allow_read_gpx: jich priwatne GPS-ćěrje čitać.
-      allow_write_gpx: GPS-ćěrje nahrać.
-      allow_write_notes: pokazki změnić.
     not_found:
       sorry: Tón typ %{type} njeda so namakać.
     create:
@@ -2052,8 +2026,6 @@ hsb:
     reset_password:
       title: Hesło wróćo stajić
       heading: Hesło za wužiwarja %{user} wróćo stajić
-      password: 'Hesło:'
-      confirm password: 'Hesło wobkrućić:'
       reset: Hesło wróćo stajić
       flash changed: Twoje hesło je so změniło.
       flash token bad: Njemóžachmy tutón kod namakać, prošu přepruwuj URL.
@@ -2069,8 +2041,6 @@ hsb:
         html: |-
           <p>Na rozdźěl wot druhich kartow, so OpenStreetMap dospołnje wot ludźi kaž ty twori, a kóždy móže ju korigować, aktualizować, sćahnyć a wužiwać.</p>
           <p>Zregistruj so a skutkuj sobu. Budźemy ći e-mejlku słać, zo bychmy twoje konto wobkrućili.</p>
-      license_agreement: Hdyž swoje konto wubkrućeš, dyrbiš <a href="http://www.osmfoundation.org/wiki/License/Contributor_Terms">wuměnjenjam
-        za sobuskutkowarjow</a> přihłosować.
       email address: 'E-mejlowa adresa:'
       confirm email address: 'E-mejlowu adresu wobkrućić:'
       not_displayed_publicly_html: Njepokazuje so zjawnje (hlej <a href="http://wiki.openstreetmap.org/wiki/Privacy_Policy"
@@ -2252,8 +2222,8 @@ hsb:
       reconfirm_html: Jeli dyrbiš nam wobkrućensku e-mejlku znowa pósłać, <a href="%{reconfirm}">klikń
         tu</a>.
     confirm_resend:
-      success: Smy nowu wobkrućenski e-mejl na %{email} póslali a tak ruče hač swoje
-        konto wobkrućiš, móžeš kartěrowanje započeć.<br /><br /> Jeli přećiwospamowy
+      success_html: Smy nowu wobkrućenski e-mejl na %{email} póslali a tak ruče hač
+        swoje konto wobkrućiš, móžeš kartěrowanje započeć.<br /><br /> Jeli přećiwospamowy
         system wužiwaš, kotryž wobkrućenske naprašowanja sćele, přewzmi adresu %{sender}
         do swojeje běłeje lisćiny, dokelž njemóžemy na wobkrućenske naprašowanja wotmołwić.
       failure: Wužiwar %{name} njenamakany.
@@ -2380,9 +2350,9 @@ hsb:
       revoke: Zběhnyć!
       flash: Tute blokowanje je so zběhnyło.
     helper:
-      time_future: Kónči so %{time}.
+      time_future_html: Kónči so %{time}.
       until_login: Aktiwne, doniž so wužiwar njepřizjewja.
-      time_past: Je so před %{time} skónčiło.
+      time_past_html: Je so před %{time} skónčiło.
       block_duration:
         hours:
           few: '%{count} hodźiny'
@@ -2425,7 +2395,7 @@ hsb:
       next: Přichodny »
       previous: « Předchadny
   notes:
-    mine:
+    index:
       title: Pokazki, kotrež su so wot %{user} dali abo komentowali
       heading: Pokazki wužiwarja %{user}
       subheading_html: Pokazki, kotrež su so wot %{user} dali abo komentowali

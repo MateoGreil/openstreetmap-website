@@ -151,25 +151,6 @@ module Api
                                   [relation_with_relation, second_relation])
     end
 
-    def check_relations_for_element(path, type, id, expected_relations)
-      # check the "relations for relation" mode
-      get path
-      assert_response :success
-
-      # count one osm element
-      assert_select "osm[version='#{Settings.api_version}'][generator='OpenStreetMap server']", 1
-
-      # we should have only the expected number of relations
-      assert_select "osm>relation", expected_relations.size
-
-      # and each of them should contain the element we originally searched for
-      expected_relations.each do |relation|
-        # The relation should appear once, but the element could appear multiple times
-        assert_select "osm>relation[id='#{relation.id}']", 1
-        assert_select "osm>relation[id='#{relation.id}']>member[type='#{type}'][ref='#{id}']"
-      end
-    end
-
     def test_full
       # check the "full" mode
       get relation_full_path(:id => 999999)
@@ -264,7 +245,7 @@ module Api
       # create an relation with a node as member, this time test that we don't
       # need a role attribute to be included
       xml = "<osm><relation changeset='#{private_changeset.id}'>" \
-            "<member  ref='#{node.id}' type='node'/>" + "<tag k='test' v='yes' /></relation></osm>"
+            "<member  ref='#{node.id}' type='node'/><tag k='test' v='yes' /></relation></osm>"
       put relation_create_path, :params => xml, :headers => auth_header
       # hope for forbidden due to user
       assert_response :forbidden,
@@ -296,10 +277,8 @@ module Api
       assert_not_nil checkrelation,
                      "uploaded relation not found in data base after upload"
       # compare values
-      assert_equal checkrelation.members.length, 0,
-                   "saved relation contains members but should not"
-      assert_equal checkrelation.tags.length, 1,
-                   "saved relation does not contain exactly one tag"
+      assert_equal(0, checkrelation.members.length, "saved relation contains members but should not")
+      assert_equal(1, checkrelation.tags.length, "saved relation does not contain exactly one tag")
       assert_equal changeset.id, checkrelation.changeset.id,
                    "saved relation does not belong in the changeset it was assigned to"
       assert_equal user.id, checkrelation.changeset.user_id,
@@ -326,10 +305,8 @@ module Api
       assert_not_nil checkrelation,
                      "uploaded relation not found in data base after upload"
       # compare values
-      assert_equal checkrelation.members.length, 1,
-                   "saved relation does not contain exactly one member"
-      assert_equal checkrelation.tags.length, 1,
-                   "saved relation does not contain exactly one tag"
+      assert_equal(1, checkrelation.members.length, "saved relation does not contain exactly one member")
+      assert_equal(1, checkrelation.tags.length, "saved relation does not contain exactly one tag")
       assert_equal changeset.id, checkrelation.changeset.id,
                    "saved relation does not belong in the changeset it was assigned to"
       assert_equal user.id, checkrelation.changeset.user_id,
@@ -345,7 +322,7 @@ module Api
       # create an relation with a node as member, this time test that we don't
       # need a role attribute to be included
       xml = "<osm><relation changeset='#{changeset.id}'>" \
-            "<member  ref='#{node.id}' type='node'/>" + "<tag k='test' v='yes' /></relation></osm>"
+            "<member  ref='#{node.id}' type='node'/><tag k='test' v='yes' /></relation></osm>"
       put relation_create_path, :params => xml, :headers => auth_header
       # hope for success
       assert_response :success,
@@ -356,10 +333,8 @@ module Api
       assert_not_nil checkrelation,
                      "uploaded relation not found in data base after upload"
       # compare values
-      assert_equal checkrelation.members.length, 1,
-                   "saved relation does not contain exactly one member"
-      assert_equal checkrelation.tags.length, 1,
-                   "saved relation does not contain exactly one tag"
+      assert_equal(1, checkrelation.members.length, "saved relation does not contain exactly one member")
+      assert_equal(1, checkrelation.tags.length, "saved relation does not contain exactly one tag")
       assert_equal changeset.id, checkrelation.changeset.id,
                    "saved relation does not belong in the changeset it was assigned to"
       assert_equal user.id, checkrelation.changeset.user_id,
@@ -387,10 +362,8 @@ module Api
       assert_not_nil checkrelation,
                      "uploaded relation not found in data base after upload"
       # compare values
-      assert_equal checkrelation.members.length, 2,
-                   "saved relation does not have exactly two members"
-      assert_equal checkrelation.tags.length, 1,
-                   "saved relation does not contain exactly one tag"
+      assert_equal(2, checkrelation.members.length, "saved relation does not have exactly two members")
+      assert_equal(1, checkrelation.tags.length, "saved relation does not contain exactly one tag")
       assert_equal changeset.id, checkrelation.changeset.id,
                    "saved relation does not belong in the changeset it was assigned to"
       assert_equal user.id, checkrelation.changeset.user_id,
@@ -934,9 +907,26 @@ module Api
       end
     end
 
-    # ============================================================
-    # utility functions
-    # ============================================================
+    private
+
+    def check_relations_for_element(path, type, id, expected_relations)
+      # check the "relations for relation" mode
+      get path
+      assert_response :success
+
+      # count one osm element
+      assert_select "osm[version='#{Settings.api_version}'][generator='OpenStreetMap server']", 1
+
+      # we should have only the expected number of relations
+      assert_select "osm>relation", expected_relations.size
+
+      # and each of them should contain the element we originally searched for
+      expected_relations.each do |relation|
+        # The relation should appear once, but the element could appear multiple times
+        assert_select "osm>relation[id='#{relation.id}']", 1
+        assert_select "osm>relation[id='#{relation.id}']>member[type='#{type}'][ref='#{id}']"
+      end
+    end
 
     ##
     # checks that the XML document and the string arguments have
@@ -993,10 +983,10 @@ module Api
         assert_response :success, "can't re-read changeset for modify test"
         assert_select "osm>changeset", 1, "Changeset element doesn't exist in #{@response.body}"
         assert_select "osm>changeset[id='#{changeset_id}']", 1, "Changeset id=#{changeset_id} doesn't exist in #{@response.body}"
-        assert_select "osm>changeset[min_lon='#{format('%.7f', bbox.min_lon)}']", 1, "Changeset min_lon wrong in #{@response.body}"
-        assert_select "osm>changeset[min_lat='#{format('%.7f', bbox.min_lat)}']", 1, "Changeset min_lat wrong in #{@response.body}"
-        assert_select "osm>changeset[max_lon='#{format('%.7f', bbox.max_lon)}']", 1, "Changeset max_lon wrong in #{@response.body}"
-        assert_select "osm>changeset[max_lat='#{format('%.7f', bbox.max_lat)}']", 1, "Changeset max_lat wrong in #{@response.body}"
+        assert_select "osm>changeset[min_lon='#{format('%<lon>.7f', :lon => bbox.min_lon)}']", 1, "Changeset min_lon wrong in #{@response.body}"
+        assert_select "osm>changeset[min_lat='#{format('%<lat>.7f', :lat => bbox.min_lat)}']", 1, "Changeset min_lat wrong in #{@response.body}"
+        assert_select "osm>changeset[max_lon='#{format('%<lon>.7f', :lon => bbox.max_lon)}']", 1, "Changeset max_lon wrong in #{@response.body}"
+        assert_select "osm>changeset[max_lat='#{format('%<lat>.7f', :lat => bbox.max_lat)}']", 1, "Changeset max_lat wrong in #{@response.body}"
       end
     end
 

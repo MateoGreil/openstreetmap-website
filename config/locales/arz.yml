@@ -57,6 +57,9 @@ arz:
       way_node: عقده طريق
       way_tag: سمه طريق
     attributes:
+      client_application:
+        callback_url: رابط الرد
+        support_url: رابط الدعم
       diary_comment:
         body: نص الرسالة
       diary_entry:
@@ -77,6 +80,9 @@ arz:
         longitude: خط الطول
         public: عام
         description: الوصف
+        gpx_file: 'ابلود فايل GPX:'
+        visibility: الرؤية
+        tagstring: الوسوم
       message:
         sender: المرسل
         title: العنوان
@@ -89,6 +95,9 @@ arz:
         description: الوصف
         languages: اللغات
         pass_crypt: كلمه المرور
+    help:
+      trace:
+        tagstring: محدد بفواصل
   browse:
     changeset:
       title: 'حزمه التغييرات: %{id}'
@@ -259,24 +268,19 @@ arz:
           marketplace: سوق
           nightclub: نادى ليلي
           nursing_home: دار رعايه مسنين/معاقين
-          office: مكتب
           parking: موقف سيارات
           pharmacy: صيدلية
           place_of_worship: معبد
           police: شرطة
           post_box: صندوق بريد
           post_office: مكتب بريد
-          preschool: روضه أطفال
           prison: سجن
           pub: حانة
           public_building: مبنى عام
           recycling: نقطه إعاده تصنيع
           restaurant: مطعم
-          sauna: حمّام بخارى حار
           school: مدرسة
           shelter: ملجأ
-          shop: متجر/دكان/حانوت
-          social_club: نادى اجتماعي
           studio: ستوديو
           taxi: سياره أجرة
           telephone: هاتف عمومي
@@ -287,10 +291,27 @@ arz:
           vending_machine: آله بيع
           veterinary: جراحه بيطرية
           waste_basket: سله نفايات
-          youth_centre: مركز نشاطات للشباب
         boundary:
           administrative: حدود إدارية
         building:
+          apartments: مجموعه شقق
+          chapel: معبد/مصلى
+          church: كنيسة
+          commercial: مبنى تجاري
+          dormitory: عنبر نوم
+          farm: مبنى مزرعة
+          garage: مرآب
+          hospital: مبنى مستشفى
+          hotel: فندق
+          house: منزل
+          industrial: مبنى صناعي
+          office: مبنى مكتب
+          public: مبنى عام
+          residential: مبنى سكني
+          school: مبنى مدرسة
+          terrace: صف منازل
+          train_station: محطه قطار
+          university: مبنى جامعة
           "yes": مبنى
         highway:
           bridleway: مسلك خيول
@@ -329,7 +350,6 @@ arz:
           castle: قلعة
           church: كنيسة
           house: منزل
-          icon: أيقونة
           manor: عزبة
           memorial: نصب تذكاري
           mine: منجم
@@ -445,6 +465,7 @@ arz:
           subway: محطه مترو الأنفاق
           subway_entrance: مدخل مترو
           tram_stop: موقف ترام
+          yard: فناء سكه حديد
         shop:
           art: متجر فن
           bakery: مخبز
@@ -471,12 +492,10 @@ arz:
           estate_agent: وكيل عقاري
           farm: متجر منتوجات زراعية
           fashion: متجر أزياء
-          fish: متجر أسماك
           florist: بائع زهور
           food: دكان مأكولات
           funeral_directors: وكلاء ترتيبات جنازة
           furniture: أثاث
-          gallery: معرض
           general: متجر عام
           gift: متجر هدايا
           grocery: بقالة
@@ -486,7 +505,6 @@ arz:
           kiosk: كشك
           laundry: مصبغة
           mall: مركز تسوق
-          market: سوق
           mobile_phone: متجر هواتف محمولة
           motorcycle: متجر دراجات نارية
           music: متجر موسيقى
@@ -535,11 +553,6 @@ arz:
           stream: جدول
           wadi: وادي
           waterfall: شلال
-    description:
-      title:
-        osm_nominatim: موقع من <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames: موقع من <a href="http://www.geonames.org/">GeoNames</a>
       types:
         cities: مدن
         towns: بلدات
@@ -571,7 +584,7 @@ arz:
     make_a_donation:
       title: ادعم خريطه الشارع المفتوحه بهبه نقدية
       text: تبرع
-  notifier:
+  user_mailer:
     diary_comment_notification:
       subject: '[خريطه الشارع المفتوحة] %{user} أضاف تعليقًا على مدخلتك فى اليومية'
       hi: مرحبًا %{to_user}،
@@ -789,11 +802,6 @@ arz:
       trackable: تعقبى (يظهر كمجهول الهويه ونقاط مرتبه زمنيًا)
       identifiable: محدد الهويه (يظهر فى قائمه الآثار محدد الهويه والنقاط مرتبه زمنيًا)
     new:
-      upload_gpx: 'ابلود فايل GPX:'
-      description: الوصف
-      tags: الوسوم
-      tags_help: محدد بفواصل
-      visibility: الرؤية
       visibility_help: ماذا يعنى هذا؟
       help: المساعدة
     create:
@@ -805,18 +813,6 @@ arz:
     edit:
       title: تعديل الأثر %{name}
       heading: تعديل الأثر %{name}
-      filename: 'اسم الملف:'
-      download: نزّل
-      uploaded_at: 'تم الرفع في:'
-      points: 'النقاط:'
-      start_coord: 'إحداثيات البدء:'
-      map: خريطة
-      edit: عدّل
-      owner: 'المالك:'
-      description: 'الوصف:'
-      tags: 'الوسوم:'
-      tags_help: محدد بفواصل
-      visibility: 'الرؤية:'
       visibility_help: ماذا يعنى هذا؟
     trace_optionals:
       tags: الوسوم
@@ -896,12 +892,6 @@ arz:
       support_notice: نحن ندعم HMAC-SHA1 (مستحسن) وكذلك النص العادى فى وضع ssl.
       edit: عدّل التفاصيل
       requests: 'طلب الصلاحيات التاليه من المستخدم:'
-      allow_read_prefs: قراءه تفضيلاته.
-      allow_write_prefs: تعديل تفضيلاته.
-      allow_write_diary: إنشاء مدخلات يوميه، تعليقات وإضافه أصدقاء.
-      allow_write_api: تعديل الخريطه.
-      allow_read_gpx: قراءه آثاره للجى بى إس الخصوصيه.
-      allow_write_gpx: ارفع آثار جى بى إس.
     index:
       title: تفاصيل OAuth الخاص بي
       my_tokens: تطبيقاتى المصرحة
@@ -916,18 +906,7 @@ arz:
       registered_apps: 'لديك التطبيقات المسجله التالية:'
       register_new: سجِّل تطبيقك
     form:
-      name: الاسم
-      required: مطلوب
-      url: رابط التطبيق الرئيسي
-      callback_url: رابط الرد
-      support_url: رابط الدعم
       requests: 'اطلب الصلاحيات التاليه من المستخدم:'
-      allow_read_prefs: قراءه تفضيلاته.
-      allow_write_prefs: تعديل تفضيلاته.
-      allow_write_diary: إنشاء مدخلات يوميه، تعليقات وإضافه أصدقاء.
-      allow_write_api: تعديل الخريطه.
-      allow_read_gpx: قراءه آثاره للجى بى إس الخصوصيه.
-      allow_write_gpx: رفع آثار جى بى إس.
     not_found:
       sorry: عذرًا، لم يتم العثور على تلك %{type}.
     create:
@@ -960,8 +939,6 @@ arz:
     reset_password:
       title: إعاده ضبط كلمه المرور
       heading: إعاده تعيين كلمه المرور %{user}
-      password: 'كلمه المرور:'
-      confirm password: 'أكّد كلمه المرور:'
       reset: إعاده ضبط كلمه المرور
       flash changed: كلمه المرور الخاصه بك قد تغيرت.
       flash token bad: لم تجد تلك المعلومات، تحقق من الرابط ربما؟
@@ -972,9 +949,6 @@ arz:
       contact_webmaster_html: يرجى الاتصال <a href="mailto:webmaster@openstreetmap.org">بمسؤول
         الموقع</a> لترتيب الحساب المراد إنشاؤه - وسنحاول التعامل مع هذا الطلب بأسرع
         وقت ممكن.
-      license_agreement: بإنشائك الحساب، أنت توافق على أن تكون جميع المعلومات التى
-        تقدمها إلى مشروع خريطه الشارع المفتوحه مرخصه (بشكل غير حصري) تحت <a href="http://creativecommons.org/licenses/by-sa/2.0/">رخصه
-        المشاع الإبداعى، النسبه، نسخه 2.0</a>. 2.0
       email address: 'عنوان البريد الإلكتروني:'
       confirm email address: 'تأكيد عنوان البريد الإلكتروني:'
       not_displayed_publicly_html: لا يعرض علنًا (انظر <a href="http://wiki.openstreetmap.org/wiki/Privacy_Policy"
@@ -1159,9 +1133,9 @@ arz:
       revoke: ابطل!
       flash: تم إبطال هذه العرقله.
     helper:
-      time_future: ينتهى فى %{time}.
+      time_future_html: ينتهى فى %{time}.
       until_login: نشط حتى يقوم المستخدم بتسجيل الدخول.
-      time_past: انتهى منذ %{time}.
+      time_past_html: انتهى منذ %{time}.
       block_duration:
         hours:
           few: '%{count} ساعات'

@@ -76,19 +76,17 @@ class ClientApplicationsTest < ActionDispatch::IntegrationTest
     # tests, as its too tied into the HTTP headers and stuff that it signs.
   end
 
+  private
+
   ##
   # utility method to make the HTML screening easier to read.
-  def assert_in_heading
-    assert_select "div.content-heading" do
-      yield
-    end
+  def assert_in_heading(&block)
+    assert_select("div.content-heading", &block)
   end
 
   ##
   # utility method to make the HTML screening easier to read.
-  def assert_in_body
-    assert_select "div#content" do
-      yield
-    end
+  def assert_in_body(&block)
+    assert_select("div#content", &block)
   end
 end

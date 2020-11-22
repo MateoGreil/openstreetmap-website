@@ -17,6 +17,8 @@ diq:
     formats:
       friendly: '%e %B %Y seate %H:%M'
   helpers:
+    file:
+      prompt: Dosya weçinê
     submit:
       diary_comment:
         create: Qeyd ke
@@ -29,7 +31,10 @@ diq:
         create: Bırışe
       client_application:
         create: Qeyd Be
-        update: Bıvurne
+        update: Rocane kerê
+      redaction:
+        create: Redaksiyon vırazê
+        update: Redaksiyoni qeyd kerê
       trace:
         create: Bar ke
         update: Vurnayışan qeyd ke
@@ -37,6 +42,10 @@ diq:
         create: Bloqe vırazê
         update: Bloqi noroc resn
   activerecord:
+    errors:
+      messages:
+        invalid_email_address: Ravêrde ze yew adresê eposta nêaseno
+        email_address_not_routable: Tadeyaye niyo
     models:
       acl: Qontrol Listeyê Resayışi
       changeset: Qeydê Vurnayışan
@@ -74,6 +83,13 @@ diq:
       way_node: Ray Qedyin
       way_tag: Etikete ray
     attributes:
+      client_application:
+        name: Name (ganiyo)
+        url: Gıray Esas Aplikasyoni (ganiyo)
+        callback_url: Gırey Peyd Cıgeyrayışi
+        support_url: Gırey Destegi
+        allow_read_prefs: Tercihanê karberi bıwanê
+        allow_write_prefs: Tercihanê karberanê inan bıvurne
       diary_comment:
         body: Metın
       diary_entry:
@@ -88,12 +104,14 @@ diq:
       trace:
         user: Karber
         visible: Aseno
-        name: Name
+        name: Namedosya
         size: Gırdiye
         latitude: Verıniye
         longitude: Derganiye
-        public: Şar
+        public: Pêroyi
         description: Şınasnayış
+        visibility: Asayış
+        tagstring: Etiketi
       message:
         sender: Rıster
         title: Mewzu
@@ -371,7 +389,6 @@ diq:
           motorcycle_parking: Motorpiskilet park kerdış
           nightclub: Kluba Şewer
           nursing_home: Rehatxane
-          office: Ofis
           parking: Otopark
           parking_entrance: Keyberê par kerdışi
           pharmacy: Eczaxane
@@ -379,20 +396,15 @@ diq:
           police: Pulis
           post_box: Dora Postay
           post_office: Postexane
-          preschool: Ver-Wendxane
           prison: Hepısxane
           pub: Biraxane
           public_building: Binaya Şaran
           recycling: Heruna peyd amayışi
           restaurant: Restaurant
-          retirement_home: Weynexane
-          sauna: Hemam
           school: Wendxane
           shelter: Starek
-          shop: Dukan
           shower: Çımecek
           social_centre: Merkezo Sosyal
-          social_club: Kluba Sosyal
           social_facility: Tesiso sosyal
           studio: Studyo
           swimming_pool: Dola Asnawkerdışi
@@ -407,7 +419,6 @@ diq:
           village_hall: Wedaya Dewe
           waste_basket: Tenkey Sıloy
           waste_disposal: Cay sıloy
-          youth_centre: Merkezê Gencan
         boundary:
           administrative: Sinorê İdari
           census: Sinora amora nıfusi
@@ -474,7 +485,6 @@ diq:
           tertiary_link: Raya Dewan
           track: Raya Herın
           traffic_signals: Signalê trafiki
-          trail: Şop
           trunk: Letebıyayi ser ray
           trunk_link: Lwtebıyayi ser ray
           unclassified: Nêrêzbıyayi ray
@@ -492,7 +502,6 @@ diq:
           fort: Qula
           heritage: Cayo Miras
           house: Keye
-          icon: Ikon
           manor: Kosk
           memorial: Qub
           mine: Mahden
@@ -533,7 +542,6 @@ diq:
           reservoir_watershed: Merga awer
           residential: Heruna Cıwiyayışi
           retail: Esnaf
-          road: Cay ray
           village_green: Cayo kıho
           vineyard: Rez
           "yes": Karıyayışa erdi
@@ -653,7 +661,6 @@ diq:
           subdivision: Qısımo bınên
           suburb: Mahle / Banliyö
           town: bacar
-          unincorporated_area: Wareyo Yewnêbiyaye
           village: Dewe
           "yes": Ca
         railway:
@@ -687,7 +694,6 @@ diq:
           department_store: Meğaza
           florist: Çiçekdar
           furniture: Mobilya
-          gallery: Galeri
           garden_centre: Merkeza Hêgay
           gift: Çiyo Hediye
           "yes": Dukan
@@ -704,7 +710,6 @@ diq:
           dam: Berac
           lock: İskele
           river: Ro
-    description:
       types:
         cities: Sûki
         towns: Bacari
@@ -731,7 +736,7 @@ diq:
     community_blogs: Blogê Cemaeti
     learn_more: Tayêna bımuse
     more: Zêde
-  notifier:
+  user_mailer:
     diary_comment_notification:
       hi: Merheba %{to_user},
     message_notification:
@@ -867,20 +872,7 @@ diq:
       title: Xeyr amey!
   traces:
     new:
-      tags: 'Etiketi:'
-      visibility: Vinayîşî
       help: Peşti
-    edit:
-      filename: 'Namey dosya:'
-      download: biya war
-      uploaded_at: 'Bar biyo:'
-      points: 'Dawte:'
-      map: xerite
-      edit: bıvurne
-      owner: 'Wayir:'
-      description: 'Şınasnayış:'
-      tags: 'Etiketi:'
-      visibility: Vinayîşî
     trace_optionals:
       tags: Etiketi
     show:
@@ -928,9 +920,6 @@ diq:
     index:
       issued_at: Mersela
       revoke: Terkne!
-    form:
-      name: Name
-      required: Mecburiyo
   users:
     login:
       title: Cıkewtış
@@ -956,8 +945,6 @@ diq:
     reset_password:
       title: Parola reset ke
       heading: Parolay %{user} reset ke
-      password: 'Parola:'
-      confirm password: 'Parola tesdiq ke:'
       reset: Parola reset ke
     new:
       email address: 'Adresa e-postey:'
@@ -1055,7 +1042,7 @@ diq:
       preferred editor: 'Editorê ke tercih kerê:'
       image: 'Resım:'
       new image: Yew resım cı ke
-      home location: 'Herun:'
+      home location: 'Herune:'
       latitude: 'Verıniye:'
       longitude: 'Derganiye:'
       save changes button: Vurnayışan qeyd ke
@@ -1100,8 +1087,8 @@ diq:
     revoke:
       revoke: Terkne!
     helper:
-      time_future: '%{time} dı bıqediyo'
-      time_past: '%{time} qedya'
+      time_future_html: '%{time} dı bıqediyo'
+      time_past_html: '%{time} qedya'
       block_duration:
         hours:
           one: 1 seate
@@ -1135,7 +1122,7 @@ diq:
       next: Peyên »
       previous: « Verên
   notes:
-    mine:
+    index:
       description: Şınasnayış
   javascripts:
     close: Kip ke
@@ -1143,6 +1130,8 @@ diq:
       title: Vıla ke
       cancel: Bıtexelne
       image: Resım
+      link: Gıre ya zi HTML
+      long_link: Gıre
       format: 'Format:'
       download: Biya war
     map:

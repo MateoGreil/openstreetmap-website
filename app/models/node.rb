@@ -71,19 +71,21 @@ class Node < ApplicationRecord
   end
 
   # Read in xml as text and return it's Node object representation
-  def self.from_xml(xml, create = false)
+  def self.from_xml(xml, create: false)
     p = XML::Parser.string(xml, :options => XML::Parser::Options::NOERROR)
     doc = p.parse
+    pt = doc.find_first("//osm/node")
 
-    doc.find("//osm/node").each do |pt|
-      return Node.from_xml_node(pt, create)
+    if pt
+      Node.from_xml_node(pt, :create => create)
+    else
+      raise OSM::APIBadXMLError.new("node", xml, "XML doesn't contain an osm/node element.")
     end
-    raise OSM::APIBadXMLError.new("node", xml, "XML doesn't contain an osm/node element.")
   rescue LibXML::XML::Error, ArgumentError => e
     raise OSM::APIBadXMLError.new("node", xml, e.message)
   end
 
-  def self.from_xml_node(pt, create = false)
+  def self.from_xml_node(pt, create: false)
     node = Node.new
 
     raise OSM::APIBadXMLError.new("node", pt, "lat missing") if pt["lat"].nil?

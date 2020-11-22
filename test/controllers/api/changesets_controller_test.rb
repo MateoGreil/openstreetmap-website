@@ -71,7 +71,7 @@ module Api
       duration = cs.closed_at - cs.created_at
       # the difference can either be a rational, or a floating point number
       # of seconds, depending on the code path taken :-(
-      if duration.class == Rational
+      if duration.instance_of?(Rational)
         assert_equal Rational(1, 24), duration, "initial idle timeout should be an hour (#{cs.created_at} -> #{cs.closed_at})"
       else
         # must be number of seconds...
@@ -908,7 +908,7 @@ module Api
       CHANGESET
       post changeset_upload_path(changeset), :params => diff, :headers => auth_header
       assert_response :bad_request, "Shouldn't be able to upload a diff with the action ping"
-      assert_equal @response.body, "Unknown action ping, choices are create, modify, delete"
+      assert_equal("Unknown action ping, choices are create, modify, delete", @response.body)
     end
 
     ##

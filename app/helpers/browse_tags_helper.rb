@@ -58,9 +58,10 @@ module BrowseTagsHelper
 
   def wikipedia_link(key, value)
     # Some k/v's are wikipedia=http://en.wikipedia.org/wiki/Full%20URL
-    return nil if value =~ %r{^https?://}
+    return nil if %r{^https?://}.match?(value)
 
-    if key == "wikipedia"
+    case key
+    when "wikipedia"
       # This regex should match Wikipedia language codes, everything
       # from de to zh-classical
       lang = if value =~ /^([a-z-]{2,12}):(.+)$/i
@@ -71,7 +72,7 @@ module BrowseTagsHelper
                # Value is <title> so default to English Wikipedia
                "en"
              end
-    elsif key =~ /^wikipedia:(\S+)$/
+    when /^wikipedia:(\S+)$/
       # Language is in the key, so assume value is the title
       lang = Regexp.last_match(1)
     else
@@ -83,8 +84,8 @@ module BrowseTagsHelper
       # Contains a reference to a section of the wikipedia article
       # Must break it up to correctly build the url
       value = Regexp.last_match(1)
-      section = "#" + Regexp.last_match(2)
-      encoded_section = "#" + CGI.escape(Regexp.last_match(2).gsub(/ +/, "_")).tr("%", ".")
+      section = "##{Regexp.last_match(2)}"
+      encoded_section = "##{CGI.escape(Regexp.last_match(2).gsub(/ +/, '_')).tr('%', '.')}"
     else
       section = ""
       encoded_section = ""

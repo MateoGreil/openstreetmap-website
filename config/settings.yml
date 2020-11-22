@@ -97,6 +97,9 @@ imagery_blacklist:
   - "http://xdworld\\.vworld\\.kr:8080/.*"
   # Blacklist here
   - ".*\\.here\\.com[/:].*"
+  # Blacklist Kanton SH and GL
+  - ".*wms.geo.sh.ch.*Luftbild_201[06].*"
+  - ".*wms.geo.gl.ch.*ch.gl.imagery.orthofoto201[357].*"
 # URL of Overpass instance to use for feature queries
 overpass_url: "https://overpass-api.de/api/interpreter"
 # Routing endpoints
@@ -126,3 +129,5 @@ csp_enforce: false
 storage_service: "local"
 # Root URL for storage service
 # storage_url:
+# URL for tile CDN
+#tile_cdn_url: ""
